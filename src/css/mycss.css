@@ -1,0 +1,436 @@
+@media screen and (min-width: 991px) {
+
+    html, body{
+        width:100%;
+        height:100%;
+    }
+
+    ul li {
+        display: inline-block;
+        padding: 0 10px;
+    }
+
+    ul li:last-child {
+        padding: 0 0;
+    }
+
+    ul li:nth-last-child(2) {
+        padding-right: 0px;
+    }
+
+    ul li.line-separator {
+        border-right: 1px solid rgb(255, 255, 255);
+        padding-left: 10px;
+    }
+}
+
+html, body{
+    width:100%;
+    height:100%;
+}
+
+body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+h1 {
+    font-size: 350%;
+}
+
+.bg { 
+    /* The image used */
+    background-image: url(../img/event-background.jpg);
+  
+    /* Full height */
+    height: 100%; 
+  
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#logo {
+    width: 10%;
+    height: 10%;
+}
+
+/*################ FOR DEBUGGING ################*/
+/* .container {
+    border: solid 1px #ff0000;
+    zoom: 1; 
+}
+
+.container:before,
+.container:after {
+    content: "";
+    display: table;
+}
+
+.container:after {
+    clear: both;
+} */
+/*################ FOR DEBUGGING ################*/
+
+.cust-alert {
+    position:fixed; 
+    left: 0px; 
+    width: 100%;
+    z-index:9999; 
+    border-radius:0px;
+    opacity: 0.5;
+    background-color: white;
+}
+
+.cust-nav {
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+}
+
+#contact, #signup, #login {
+    color: white;
+}
+
+ul.right-bar li a{
+    color: white;
+}
+
+.top-pg, .scn-pg, .trd-pg {
+    padding: 15px;
+    padding-top: 80px;
+    margin-bottom: auto;
+}
+
+.fourth-pg, .fifth-pg {
+    padding: 25px;
+    padding-top: 90px;
+    margin-bottom: 15px;
+}
+
+.footer-pg {
+    padding: 25px;
+    padding-top: 40px;
+    margin-bottom: 15px;
+}
+
+.top-pg-txt {
+    font-size: 120%;
+}
+
+.top-pg-img {
+    padding-top: 50px;
+}
+
+.scn-pg-title {
+    padding-left: 15px;
+    margin-bottom: 15px;
+}
+
+.trd-pg-title {
+    margin-left:auto;
+    margin-right:auto;
+    display:block;
+    text-align:center;
+}
+
+.trd-pg-txt {
+    margin-left:auto;
+    margin-right:auto;
+    display:block;
+    text-align:center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+}
+
+.trd-pg-ftr {
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+
+.ft-title, .ft-text, #section03 .card-img-top {
+    margin-left:auto;
+    margin-right:auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display:block;
+    text-align:center;
+}
+
+.ft-2-col {
+    margin: 75px 0px 75px 150px;
+}
+
+.ft-3-col {
+    margin: 75px 150px 75px 0px;
+}
+
+#section04 .card-img-top, 
+#section05 .card-img-top {
+    width: 100%;
+    height: 100%;
+}
+
+#section03 .card-img-top {
+    width: 70%;
+    height: 70%;
+}
+
+.alr-mbr-login {
+    font-size: 15px;
+}
+
+a#see-all-event {
+    margin-left: auto;
+    margin-top: 10px;
+    margin-right: 15px;
+}
+
+/* reference: https://codepen.io/nxworld/pen/OyRrGy */
+section {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+  
+section::after {
+    bottom: 0;
+    left: 0;
+    content: '';
+    width: 100%;
+    height: 80%;
+    background: -webkit-linear-gradient(top,rgba(0,0,0,0) 0,rgba(0,0,0,.8) 80%,rgba(0,0,0,.8) 100%);
+    background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,.8) 80%,rgba(0,0,0,.8) 100%);
+}
+
+#section02 { 
+    background: linear-gradient(to bottom, #f5f5f5 0%, #fff5ee 100%) center center / cover no-repeat;
+}
+
+#section03 {
+    background: linear-gradient(to bottom, #fff5ee 0%, #ffe5e1 100%) center center / cover no-repeat;
+    padding-top: 25px;
+}
+
+#section04 {
+    background: linear-gradient(to bottom right, #ffe5e1 0%, #e8d4cd 100%) center center / cover no-repeat;
+    padding-top: 25px;
+    height: 100%;
+}
+
+#section05 {
+    background: linear-gradient(to bottom left, #e8d4cd 0%, #b2a195 100%) center center / cover no-repeat;
+    padding-top: 25px;
+    height: 100%;
+}
+
+#section-footer {
+    background: linear-gradient(to bottom, #b2a195 0%, #7f7a77 100%) center center / cover no-repeat;
+    height: 100%;
+}
+
+a#scroll{
+    /* position: relative; */
+    margin-top: 50px;
+    z-index: 2;
+    display: inline-block;
+    -webkit-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+    color: black;
+    font : normal 400 20px/1 'Josefin Sans', sans-serif;
+    /* letter-spacing: .1em; */
+    text-decoration: none;
+    transition: opacity .3s;
+}
+
+#scroll-wrapper {
+    text-align: center;
+}
+
+#scroll:hover {
+    opacity: .5;
+}
+
+#scroll {
+    padding-top: 40px;
+}
+
+#section01 a span {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 24px;
+    height: 24px;
+    margin-left: -12px;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    box-sizing: border-box;
+}
+
+#section02 a#scroll {
+    padding-top: 40px;
+  }
+
+#section02 a#scroll span {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 24px;
+    height: 24px;
+    margin-left: -12px;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    box-sizing: border-box;
+}
+
+#section03 a#scroll {
+    padding-top: 40px;
+  }
+
+#section03 a#scroll span {
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    width: 24px;
+    height: 24px;
+    margin-left: -12px;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    box-sizing: border-box;
+}
+
+#section04 a#scroll {
+    padding-top: 40px;
+  }
+
+#section04 a#scroll span {
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    width: 24px;
+    height: 24px;
+    margin-left: -12px;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    box-sizing: border-box;
+}
+
+#section05 a#scroll {
+    padding-top: 40px;
+  }
+
+#section05 a#scroll span {
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    width: 24px;
+    height: 24px;
+    margin-left: -12px;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    box-sizing: border-box;
+}
+
+/* ref: https://mdbootstrap.com/docs/jquery/javascript/carousel/ */
+.carousel-control-next,
+.carousel-control-prev {
+    filter: invert(100%);
+}
+
+.copyright {
+    margin-left:auto;
+    margin-right:auto;
+    display:block;
+    text-align:center;
+}
+
+/* FOOTER SECTION ##### ref: https://bootsnipp.com/snippets/rlXdE */
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+section#section-footer {
+    padding: 60px 0;
+}
+
+section .section-title {
+    text-align: center;
+    color: #007b5e;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+}
+
+#section-footer h5{
+	padding-left: 10px;
+    border-left: 3px solid #eeeeee;
+    padding-bottom: 6px;
+    margin-bottom: 20px;
+    color:black;
+}
+#section-footer h5.first{
+    border-left: 0px;
+}
+#section-footer a {
+    color: #ffffff;
+    text-decoration: none !important;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+}
+#section-footer ul.social li{
+	padding: 3px 0;
+}
+#section-footer ul.social li a i {
+    margin-right: 5px;
+	font-size:25px;
+	-webkit-transition: .5s all ease;
+	-moz-transition: .5s all ease;
+	transition: .5s all ease;
+}
+#section-footer ul.social li:hover a i {
+	font-size:30px;
+	margin-top:-10px;
+}
+#section-footer ul.social li a,
+#section-footer ul.quick-links li a{
+	color:#ffffff;
+}
+#section-footer ul.social li a:hover{
+	color:#eeeeee;
+}
+#section-footer ul.quick-links li{
+    display: block;
+	padding: 3px 0;
+	-webkit-transition: .5s all ease;
+	-moz-transition: .5s all ease;
+	transition: .5s all ease;
+}
+#section-footer ul.quick-links li:hover{
+	padding: 3px 0;
+	margin-left:5px;
+	font-weight:700;
+}
+#section-footer ul.quick-links li a i{
+	margin-right: 5px;
+}
+#section-footer ul.quick-links li:hover a i {
+    font-weight: 700;
+}
+
+.row-social {
+    margin-top: 78px;
+}
+
+@media (max-width:767px){
+	#section-footer h5 {
+        padding-left: 0;
+        border-left: transparent;
+        padding-bottom: 0px;
+        margin-bottom: 10px;
+    }
+}
