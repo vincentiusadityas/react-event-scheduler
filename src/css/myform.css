@@ -37,16 +37,15 @@ h1 {
     font-size: 350%;
 }
 
-.bg { 
-    /* The image used */
-    background-image: url(../img/event-background.jpg);
-  
+.bg {
     /* Full height */
-    height: 100%; 
-  
+    height: 100vh;
+
     /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
+    background: url("../img/event-background.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
 }
 

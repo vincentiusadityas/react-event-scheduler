@@ -2,7 +2,430 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="94a57982-5bea-4f60-ac60-256b89f3a2e4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.babelrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.eslintrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.prettierrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Footer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Header.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Home.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Login.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/ast/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/ast/esm/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@webassemblyjs/ast/esm/utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/ast/lib/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@webassemblyjs/ast/lib/utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/ast/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@webassemblyjs/ast/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/ast/webassemblyjs-ast-1.7.10.tgz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/floating-point-hex-parser/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@webassemblyjs/floating-point-hex-parser/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/helper-api-error/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/helper-api-error/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@webassemblyjs/helper-api-error/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/helper-buffer/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/helper-buffer/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@webassemblyjs/helper-buffer/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/helper-code-frame/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/helper-code-frame/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@webassemblyjs/helper-code-frame/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/helper-code-frame/webassemblyjs-helper-code-frame-1.7.10.tgz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/helper-fsm/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/helper-fsm/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@webassemblyjs/helper-fsm/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/helper-module-context/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/helper-module-context/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@webassemblyjs/helper-module-context/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/helper-wasm-bytecode/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/helper-wasm-bytecode/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@webassemblyjs/helper-wasm-bytecode/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/helper-wasm-bytecode/webassemblyjs-helper-wasm-bytecode-1.7.10.tgz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/helper-wasm-section/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/helper-wasm-section/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@webassemblyjs/helper-wasm-section/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/helper-wasm-section/webassemblyjs-helper-wasm-section-1.7.10.tgz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/ieee754/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/ieee754/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@webassemblyjs/ieee754/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/leb128/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@webassemblyjs/leb128/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/utf8/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/utf8/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@webassemblyjs/utf8/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/wasm-edit/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/wasm-edit/esm/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@webassemblyjs/wasm-edit/esm/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/wasm-edit/lib/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@webassemblyjs/wasm-edit/lib/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/wasm-edit/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@webassemblyjs/wasm-edit/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/wasm-edit/webassemblyjs-wasm-edit-1.7.10.tgz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/wasm-gen/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/wasm-gen/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@webassemblyjs/wasm-gen/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/wasm-gen/webassemblyjs-wasm-gen-1.7.10.tgz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/wasm-opt/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/wasm-opt/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@webassemblyjs/wasm-opt/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/wasm-opt/webassemblyjs-wasm-opt-1.7.10.tgz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/wasm-parser/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/wasm-parser/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@webassemblyjs/wasm-parser/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/wasm-parser/webassemblyjs-wasm-parser-1.7.10.tgz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/wast-parser/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/wast-parser/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@webassemblyjs/wast-parser/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/wast-parser/webassemblyjs-wast-parser-1.7.10.tgz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/wast-printer/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/wast-printer/esm/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@webassemblyjs/wast-printer/esm/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/wast-printer/lib/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@webassemblyjs/wast-printer/lib/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/wast-printer/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@webassemblyjs/wast-printer/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@webassemblyjs/wast-printer/webassemblyjs-wast-printer-1.7.10.tgz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/babel-eslint/lib/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/babel-eslint/lib/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/babel-eslint/lib/parse-with-patch.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/babel-eslint/lib/patch-eslint-scope.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/babel-eslint/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/babel-eslint/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/babel-loader/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/babel-loader/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/babel-loader/lib/cache.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/babel-loader/lib/cache.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/babel-loader/lib/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/babel-loader/lib/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/babel-loader/lib/injectCaller.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/babel-loader/lib/transform.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/babel-loader/lib/transform.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/babel-loader/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/babel-loader/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/css-loader/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/css-loader/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/doctrine/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/doctrine/CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/doctrine/lib/doctrine.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/doctrine/lib/doctrine.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/doctrine/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/doctrine/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint-loader/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint-loader/CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint-loader/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint-loader/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint-loader/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint-loader/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint-loader/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint-loader/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint-plugin-react/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint-plugin-react/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/conf/eslint-all.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/conf/eslint-all.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/conf/eslint-recommended.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/conf/eslint-recommended.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/cli-engine.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/cli-engine.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/config/config-file.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/config/config-file.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/config/config-initializer.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/config/config-initializer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/config/config-ops.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/config/config-ops.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/config/config-rule.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/config/config-rule.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/config/config-validator.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/config/config-validator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/config/plugins.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/config/plugins.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/formatters/codeframe.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/formatters/codeframe.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/formatters/stylish.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/formatters/stylish.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/formatters/table.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/formatters/table.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/formatters/tap.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/formatters/tap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/linter.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/linter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/load-rules.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/load-rules.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/accessor-pairs.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/accessor-pairs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/array-callback-return.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/array-callback-return.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/arrow-body-style.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/arrow-body-style.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/arrow-parens.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/arrow-parens.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/arrow-spacing.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/arrow-spacing.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/brace-style.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/brace-style.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/camelcase.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/camelcase.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/capitalized-comments.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/capitalized-comments.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/class-methods-use-this.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/class-methods-use-this.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/comma-spacing.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/comma-spacing.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/complexity.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/complexity.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/consistent-return.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/consistent-return.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/curly.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/curly.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/default-case.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/default-case.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/dot-notation.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/dot-notation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/eol-last.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/eol-last.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/for-direction.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/for-direction.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/func-call-spacing.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/func-call-spacing.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/func-style.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/func-style.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/getter-return.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/getter-return.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/global-require.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/global-require.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/guard-for-in.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/guard-for-in.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/handle-callback-err.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/handle-callback-err.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/id-blacklist.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/id-blacklist.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/id-length.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/id-length.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/id-match.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/id-match.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/implicit-arrow-linebreak.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/implicit-arrow-linebreak.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/indent-legacy.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/indent-legacy.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/indent.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/indent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/init-declarations.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/init-declarations.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/jsx-quotes.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/jsx-quotes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/key-spacing.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/key-spacing.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/keyword-spacing.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/keyword-spacing.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/line-comment-position.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/line-comment-position.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/linebreak-style.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/linebreak-style.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/lines-around-comment.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/lines-around-comment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/lines-around-directive.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/lines-around-directive.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/lines-between-class-members.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/lines-between-class-members.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/max-depth.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/max-depth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/max-len.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/max-len.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/max-lines-per-function.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/max-lines-per-function.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/max-lines.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/max-lines.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/max-nested-callbacks.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/max-nested-callbacks.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/max-params.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/max-params.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/max-statements-per-line.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/max-statements-per-line.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/max-statements.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/max-statements.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/multiline-comment-style.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/multiline-comment-style.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/multiline-ternary.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/multiline-ternary.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/new-cap.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/new-cap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/new-parens.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/new-parens.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/newline-after-var.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/newline-after-var.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/newline-before-return.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/newline-before-return.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/newline-per-chained-call.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/newline-per-chained-call.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-alert.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-alert.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-async-promise-executor.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-async-promise-executor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-bitwise.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-bitwise.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-caller.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-caller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-confusing-arrow.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-confusing-arrow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-constant-condition.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-constant-condition.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-dupe-keys.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-dupe-keys.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-duplicate-imports.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-duplicate-imports.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-else-return.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-else-return.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-empty-character-class.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-empty-character-class.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-empty.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-empty.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-eval.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-eval.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-extra-parens.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-extra-parens.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-fallthrough.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-fallthrough.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-floating-decimal.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-floating-decimal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-implicit-coercion.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-implicit-coercion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-implied-eval.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-implied-eval.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-invalid-regexp.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-invalid-regexp.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-irregular-whitespace.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-irregular-whitespace.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-labels.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-labels.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-lonely-if.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-lonely-if.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-magic-numbers.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-magic-numbers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-mixed-operators.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-mixed-operators.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-mixed-requires.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-mixed-requires.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-mixed-spaces-and-tabs.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-mixed-spaces-and-tabs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-multi-spaces.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-multi-spaces.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-octal-escape.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-octal-escape.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-octal.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-octal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-param-reassign.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-param-reassign.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-path-concat.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-path-concat.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-plusplus.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-plusplus.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-redeclare.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-redeclare.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-regex-spaces.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-regex-spaces.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-return-assign.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-return-assign.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-self-assign.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-self-assign.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-shadow-restricted-names.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-shadow-restricted-names.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-shadow.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-shadow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-sync.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-sync.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-tabs.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-tabs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-template-curly-in-string.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-template-curly-in-string.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-trailing-spaces.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-trailing-spaces.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-undef.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-undef.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-underscore-dangle.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-underscore-dangle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-unexpected-multiline.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-unexpected-multiline.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-unmodified-loop-condition.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-unmodified-loop-condition.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-unneeded-ternary.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-unneeded-ternary.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-unsafe-finally.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-unsafe-finally.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-unsafe-negation.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-unsafe-negation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-unused-expressions.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-unused-expressions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-unused-labels.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-unused-labels.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-unused-vars.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-unused-vars.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-use-before-define.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-use-before-define.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-useless-escape.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-useless-escape.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-useless-rename.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-useless-rename.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-var.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-var.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-warning-comments.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/no-warning-comments.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/object-property-newline.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/object-property-newline.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/object-shorthand.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/object-shorthand.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/one-var.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/one-var.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/operator-assignment.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/operator-assignment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/padded-blocks.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/padded-blocks.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/padding-line-between-statements.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/padding-line-between-statements.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/prefer-arrow-callback.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/prefer-arrow-callback.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/prefer-const.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/prefer-const.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/prefer-destructuring.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/prefer-destructuring.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/prefer-object-spread.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/prefer-object-spread.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/prefer-promise-reject-errors.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/prefer-promise-reject-errors.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/prefer-spread.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/prefer-spread.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/prefer-template.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/prefer-template.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/quotes.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/quotes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/require-jsdoc.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/require-jsdoc.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/semi-spacing.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/semi-spacing.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/semi.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/semi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/sort-imports.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/sort-imports.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/sort-keys.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/sort-keys.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/sort-vars.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/sort-vars.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/space-infix-ops.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/space-infix-ops.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/space-unary-ops.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/space-unary-ops.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/spaced-comment.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/spaced-comment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/strict.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/strict.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/switch-colon-spacing.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/switch-colon-spacing.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/symbol-description.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/symbol-description.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/template-curly-spacing.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/template-curly-spacing.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/template-tag-spacing.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/template-tag-spacing.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/unicode-bom.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/unicode-bom.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/use-isnan.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/use-isnan.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/valid-jsdoc.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/valid-jsdoc.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/valid-typeof.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/valid-typeof.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/vars-on-top.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/vars-on-top.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/wrap-iife.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/wrap-iife.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/yield-star-spacing.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/yield-star-spacing.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/rules/yoda.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/rules/yoda.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/testers/rule-tester.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/testers/rule-tester.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/util/ajv.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/util/ajv.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/util/ast-utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/util/ast-utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/util/config-comment-parser.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/util/config-comment-parser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/util/glob-utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/util/glob-utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/util/ignored-paths.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/util/ignored-paths.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/util/interpolate.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/util/interpolate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/util/naming.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/util/naming.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/util/node-event-generator.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/util/node-event-generator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/util/path-utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/util/path-utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/util/patterns/letters.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/util/patterns/letters.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/util/source-code.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/util/source-code.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/lib/util/xml-escape.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/lib/util/xml-escape.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/file-entry-cache/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/file-entry-cache/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/file-entry-cache/cache.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/file-entry-cache/cache.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/file-entry-cache/changelog.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/file-entry-cache/changelog.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/file-entry-cache/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/file-entry-cache/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/flat-cache/cache.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/flat-cache/cache.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/flat-cache/changelog.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/flat-cache/changelog.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/flat-cache/del.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/flat-cache/del.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/flat-cache/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/flat-cache/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/flat-cache/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/flat-cache/utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/handle-thing/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/handle-thing/.travis.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/handle-thing/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/handle-thing/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/handle-thing/lib/handle.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/handle-thing/lib/handle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/handle-thing/lib/queue.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/handle-thing/lib/queue.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/handle-thing/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/handle-thing/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/handle-thing/test/api-test.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/handle-thing/test/api-test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/spdy-transport/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/spdy-transport/.travis.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/spdy-transport/lib/spdy-transport/connection.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/spdy-transport/lib/spdy-transport/connection.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/spdy-transport/lib/spdy-transport/priority.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/spdy-transport/lib/spdy-transport/priority.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/spdy-transport/lib/spdy-transport/protocol/base/scheduler.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/spdy-transport/lib/spdy-transport/protocol/base/scheduler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/spdy-transport/lib/spdy-transport/protocol/http2/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/spdy-transport/lib/spdy-transport/protocol/http2/constants.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/spdy-transport/lib/spdy-transport/protocol/http2/framer.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/spdy-transport/lib/spdy-transport/protocol/http2/framer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/spdy-transport/lib/spdy-transport/protocol/http2/parser.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/spdy-transport/lib/spdy-transport/protocol/http2/parser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/spdy-transport/lib/spdy-transport/protocol/spdy/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/spdy-transport/lib/spdy-transport/protocol/spdy/constants.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/spdy-transport/lib/spdy-transport/protocol/spdy/dictionary.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/spdy-transport/lib/spdy-transport/protocol/spdy/dictionary.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/spdy-transport/lib/spdy-transport/protocol/spdy/framer.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/spdy-transport/lib/spdy-transport/protocol/spdy/framer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/spdy-transport/lib/spdy-transport/protocol/spdy/parser.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/spdy-transport/lib/spdy-transport/protocol/spdy/parser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/spdy-transport/lib/spdy-transport/stream.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/spdy-transport/lib/spdy-transport/stream.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/spdy-transport/lib/spdy-transport/window.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/spdy-transport/lib/spdy-transport/window.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/spdy-transport/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/spdy-transport/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/spdy/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/spdy/.travis.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/spdy/lib/spdy/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/spdy/lib/spdy/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/spdy/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/spdy/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/spdy/test/client-test.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/spdy/test/client-test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/spdy/test/fixtures.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/spdy/test/fixtures.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/spdy/test/server-test.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/spdy/test/server-test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/style-loader/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/style-loader/CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/style-loader/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/style-loader/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/style-loader/lib/addStyles.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/style-loader/lib/addStyles.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/style-loader/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/style-loader/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-dev-middleware/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack-dev-middleware/CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-dev-middleware/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack-dev-middleware/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-dev-middleware/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack-dev-middleware/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-dev-middleware/lib/fs.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack-dev-middleware/lib/fs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-dev-middleware/lib/middleware.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack-dev-middleware/lib/middleware.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-dev-middleware/lib/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack-dev-middleware/lib/util.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-dev-middleware/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack-dev-middleware/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-dev-server/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack-dev-server/CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-dev-server/bin/options.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack-dev-server/bin/options.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-dev-server/client/index.bundle.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack-dev-server/client/index.bundle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-dev-server/client/live.bundle.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack-dev-server/client/live.bundle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-dev-server/client/sockjs.bundle.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack-dev-server/client/sockjs.bundle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-dev-server/lib/Server.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack-dev-server/lib/Server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-dev-server/lib/options.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack-dev-server/lib/options.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-dev-server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack-dev-server/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/buildin/global.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/buildin/global.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/declarations/WebpackOptions.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/declarations/plugins/BannerPlugin.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/declarations/plugins/DllPlugin.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/declarations/plugins/DllReferencePlugin.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/declarations/plugins/HashedModuleIdsPlugin.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/declarations/plugins/IgnorePlugin.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/declarations/plugins/LoaderOptionsPlugin.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/declarations/plugins/ProgressPlugin.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/declarations/plugins/SourceMapDevToolPlugin.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/declarations/plugins/WatchIgnorePlugin.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/declarations/plugins/debug/ProfilingPlugin.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/declarations/plugins/optimize/AggressiveSplittingPlugin.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/declarations/plugins/optimize/LimitChunkCountPlugin.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/declarations/plugins/optimize/MinChunkSizePlugin.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/declarations/plugins/optimize/OccurrenceOrderChunkIdsPlugin.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/declarations/plugins/optimize/OccurrenceOrderModuleIdsPlugin.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/AmdMainTemplatePlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/AmdMainTemplatePlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/BannerPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/BannerPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/BasicEvaluatedExpression.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/BasicEvaluatedExpression.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/Chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/Chunk.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/Compilation.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/Compilation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/Compiler.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/Compiler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/ConstPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/ConstPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/DefinePlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/DefinePlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/DllPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/DllPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/DllReferencePlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/DllReferencePlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/DynamicEntryPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/DynamicEntryPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/EntryOptionPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/EntryOptionPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/Entrypoint.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/Entrypoint.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/ExternalModule.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/ExternalModule.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/FlagDependencyExportsPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/FlagDependencyExportsPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/HashedModuleIdsPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/HashedModuleIdsPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/HotModuleReplacementPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/HotModuleReplacementPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/HotUpdateChunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/HotUpdateChunk.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/IgnorePlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/IgnorePlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/LibManifestPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/LibManifestPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/LibraryTemplatePlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/LibraryTemplatePlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/LoaderOptionsPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/LoaderOptionsPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/MainTemplate.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/MainTemplate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/Module.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/Module.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/NormalModule.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/NormalModule.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/Parser.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/Parser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/ProgressPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/ProgressPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/ProvidePlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/ProvidePlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/ResolverFactory.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/ResolverFactory.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/SourceMapDevToolPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/SourceMapDevToolPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/Stats.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/Stats.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/Template.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/Template.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/UmdMainTemplatePlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/UmdMainTemplatePlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/WatchIgnorePlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/WatchIgnorePlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/Watching.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/Watching.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/WebpackOptionsApply.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/WebpackOptionsApply.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/WebpackOptionsDefaulter.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/WebpackOptionsDefaulter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/debug/ProfilingPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/debug/ProfilingPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/AMDDefineDependencyParserPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/AMDDefineDependencyParserPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/AMDRequireDependenciesBlockParserPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/AMDRequireDependenciesBlockParserPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/CommonJsRequireDependencyParserPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/CommonJsRequireDependencyParserPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/ContextDependencyHelpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/ContextDependencyHelpers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/ImportParserPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/ImportParserPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/RequireResolveDependencyParserPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/RequireResolveDependencyParserPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/WebAssemblyExportImportedDependency.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/WebAssemblyExportImportedDependency.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/WebAssemblyImportDependency.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/WebAssemblyImportDependency.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/node/NodeSourcePlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/node/NodeSourcePlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/node/NodeTargetPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/node/NodeTargetPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/node/NodeWatchFileSystem.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/node/NodeWatchFileSystem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/optimize/AggressiveSplittingPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/optimize/AggressiveSplittingPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/optimize/ConcatenatedModule.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/optimize/ConcatenatedModule.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/optimize/LimitChunkCountPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/optimize/LimitChunkCountPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/optimize/MinChunkSizePlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/optimize/MinChunkSizePlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/optimize/MinMaxSizeWarning.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/optimize/OccurrenceChunkOrderPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/optimize/OccurrenceChunkOrderPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/optimize/OccurrenceModuleOrderPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/optimize/OccurrenceModuleOrderPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/optimize/SplitChunksPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/optimize/SplitChunksPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/util/deterministicGrouping.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/util/deterministicGrouping.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/wasm/WasmFinalizeExportsPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/wasm/WasmFinalizeExportsPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/wasm/WebAssemblyJavascriptGenerator.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/wasm/WebAssemblyJavascriptGenerator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/wasm/WebAssemblyParser.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/wasm/WebAssemblyParser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/web/JsonpExportMainTemplatePlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/web/JsonpExportMainTemplatePlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/web/JsonpMainTemplate.runtime.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/web/JsonpMainTemplate.runtime.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/web/JsonpMainTemplatePlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/web/JsonpMainTemplatePlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/webpack.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/webpack.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/schemas/WebpackOptions.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/schemas/WebpackOptions.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/schemas/ajv.absolutePath.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/schemas/ajv.absolutePath.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/schemas/plugins/BannerPlugin.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/schemas/plugins/BannerPlugin.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/schemas/plugins/DllPlugin.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/schemas/plugins/DllPlugin.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/schemas/plugins/DllReferencePlugin.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/schemas/plugins/DllReferencePlugin.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/schemas/plugins/HashedModuleIdsPlugin.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/schemas/plugins/HashedModuleIdsPlugin.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/schemas/plugins/IgnorePlugin.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/schemas/plugins/IgnorePlugin.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/schemas/plugins/LoaderOptionsPlugin.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/schemas/plugins/LoaderOptionsPlugin.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/schemas/plugins/ProgressPlugin.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/schemas/plugins/SourceMapDevToolPlugin.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/schemas/plugins/SourceMapDevToolPlugin.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/schemas/plugins/WatchIgnorePlugin.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/schemas/plugins/WatchIgnorePlugin.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/schemas/plugins/debug/ProfilingPlugin.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/schemas/plugins/debug/ProfilingPlugin.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/schemas/plugins/optimize/AggressiveSplittingPlugin.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/schemas/plugins/optimize/AggressiveSplittingPlugin.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/schemas/plugins/optimize/LimitChunkCountPlugin.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/schemas/plugins/optimize/LimitChunkCountPlugin.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/schemas/plugins/optimize/MinChunkSizePlugin.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/schemas/plugins/optimize/MinChunkSizePlugin.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/schemas/plugins/optimize/OccurrenceOrderChunkIdsPlugin.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/schemas/plugins/optimize/OccurrenceOrderChunkIdsPlugin.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/schemas/plugins/optimize/OccurrenceOrderModuleIdsPlugin.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/schemas/plugins/optimize/OccurrenceOrderModuleIdsPlugin.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/write/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/write/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/write/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/write/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/write/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/write/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/write/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/write/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/mycss.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/mycss.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/myform.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/myform.css" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -14,20 +437,169 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="14" column="62" lean-forward="true" selection-start-line="14" selection-start-column="62" selection-end-line="14" selection-end-column="62" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/css/myform.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2085">
+              <caret line="48" column="27" selection-start-line="48" selection-start-column="27" selection-end-line="48" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/package.json">
+        <entry file="file://$PROJECT_DIR$/src/css/mycss.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1110">
+              <caret line="235" lean-forward="true" selection-start-line="235" selection-end-line="235" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/App.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="136">
-              <caret line="8" column="3" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
+              <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="9" selection-end-column="9" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Main.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="14" column="25" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
+              <folding>
+                <element signature="e#0#25#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Home.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="192">
+              <caret line="275" column="22" lean-forward="true" selection-start-line="275" selection-start-column="22" selection-end-line="275" selection-end-column="22" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Login.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="73">
+              <caret line="5" column="28" lean-forward="true" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Header.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="294">
+              <caret line="37" column="30" lean-forward="true" selection-start-line="37" selection-start-column="30" selection-end-line="37" selection-end-column="30" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+              <folding>
+                <element signature="e#0#25#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webpack.config.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="37" column="20" selection-start-line="37" selection-start-column="20" selection-end-line="37" selection-end-column="20" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>module.e</find>
+      <find>*</find>
+      <find>event-</find>
+      <find>Carou</find>
+      <find>eve</find>
+      <find>events.p</find>
+      <find>src/</find>
+      <find>src</find>
+      <find>bg</find>
+      <find>back</find>
+      <find>section {</find>
+      <find>index</find>
+      <find>javascript:void();</find>
+      <find>class=</find>
+      <find>sty</find>
+      <find>sign</find>
+      <find>font</find>
+      <find>Link</find>
+      <find>section01</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>className=</replace>
+    </replaceStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/.babelrc" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/.prettierrc" />
+        <option value="$PROJECT_DIR$/.eslintrc" />
+        <option value="$PROJECT_DIR$/src/Navbar.js" />
+        <option value="$PROJECT_DIR$/src/App.css" />
+        <option value="$PROJECT_DIR$/src/Home.js" />
+        <option value="$PROJECT_DIR$/src/Footer.js" />
+        <option value="$PROJECT_DIR$/src/css/mycss.css" />
+        <option value="$PROJECT_DIR$/src/js/Login.js" />
+        <option value="$PROJECT_DIR$/src/App.js" />
+        <option value="$PROJECT_DIR$/src/index.js" />
+        <option value="$PROJECT_DIR$/src/Header.js" />
+        <option value="$PROJECT_DIR$/webpack.config.js" />
+        <option value="$PROJECT_DIR$/src/css/myform.css" />
+        <option value="$PROJECT_DIR$/src/Login.js" />
+        <option value="$PROJECT_DIR$/src/Main.js" />
+        <option value="$PROJECT_DIR$/public/index.html" />
+      </list>
+    </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="10" />
@@ -48,6 +620,17 @@
               <item name="react_event_scheduler" type="b2602c69:ProjectViewProjectNode" />
               <item name="react_event_scheduler" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="react_event_scheduler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="react_event_scheduler" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="react_event_scheduler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="react_event_scheduler" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -60,6 +643,13 @@
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="prettierjs.PrettierConfiguration.Package" value="V:\Vincent\KULIAH\AUSSIE\2019_SEM1\INFS3202\Project\react_event_scheduler\node_modules\prettier" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="V:\Vincent\KULIAH\AUSSIE\2019_SEM1\INFS3202\Project\react_event_scheduler\src" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -98,24 +688,23 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1553819766235</updated>
-      <workItem from="1553819767983" duration="2213000" />
+      <workItem from="1553819767983" duration="3580000" />
+      <workItem from="1553830748713" duration="20596000" />
+      <workItem from="1553922021567" duration="2112000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2213000" />
+    <option name="totallyTimeSpent" value="26288000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="npm" side_tool="true" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info active="true" anchor="bottom" id="Terminal" visible="true" weight="0.3289689" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info id="npm" order="2" side_tool="true" />
+      <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.3289689" />
@@ -123,6 +712,10 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50074404" side_tool="true" weight="0.3289689" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49925596" visible="true" weight="0.3289689" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -132,10 +725,136 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/.prettierrc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="16" column="49" selection-start-line="16" selection-start-column="49" selection-end-line="16" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.eslintrc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="4" lean-forward="true" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.babelrc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="1" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="1" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Footer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="11" column="82" selection-start-line="11" selection-start-column="82" selection-end-line="11" selection-end-column="82" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Header.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="37" column="30" lean-forward="true" selection-start-line="37" selection-start-column="30" selection-end-line="37" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webpack.config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="37" column="20" selection-start-line="37" selection-start-column="20" selection-end-line="37" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="73">
+          <caret line="5" column="28" lean-forward="true" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Home.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="275" column="22" lean-forward="true" selection-start-line="275" selection-start-column="22" selection-end-line="275" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="25" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.js">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
-          <caret line="8" column="3" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
+          <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="9" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="62" lean-forward="true" selection-start-line="14" selection-start-column="62" selection-end-line="14" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/css/myform.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2085">
+          <caret line="48" column="27" selection-start-line="48" selection-start-column="27" selection-end-line="48" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/css/mycss.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1110">
+          <caret line="235" lean-forward="true" selection-start-line="235" selection-end-line="235" />
         </state>
       </provider>
     </entry>
