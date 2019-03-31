@@ -3,7 +3,10 @@ import {hot} from "react-hot-loader";
 import {
     BrowserRouter as Router,
     Link} from "react-router-dom";
+
+import SignOutButton from './Signout';
 import * as ROUTES from '../constants/routes';
+import { AuthUserContext } from './Session';
 
 class Header extends Component{
     constructor(props) {
@@ -13,6 +16,9 @@ class Header extends Component{
         if (this.currentLocation == "/") {
             this.currentLocation = "";
         }
+
+        // this.authUser = this.props.authUser;
+        // console.log(this.authUser);
     }
 
     render() {
@@ -34,13 +40,28 @@ class Header extends Component{
                                     <li className="nav-item line-separator">
                                         <a className="nav-link" id="contact" href={this.currentLocation + "#section-footer"}>Contact Us</a>
                                     </li>
-                                    <li className="nav-item">
-                                        <a className="nav-link" id="signup" href={ROUTES.SIGN_UP}>Sign Up</a>
-                                    </li>
-                                    <li className="nav-item">
-                                        <a className="nav-link" id="login" href={ROUTES.LOG_IN}>Log In</a>
-                                        {/*<Link className="nav-link" id="login" onClick={() => window.location.refresh()} to={ROUTES.LOG_IN}>Log In</Link>*/}
-                                    </li>
+                                    <AuthUserContext.Consumer>
+                                        {authUser => authUser ?
+                                            <div>
+                                                <li className="nav-item">
+                                                    <a className="nav-link" id="signup" href={ROUTES.LANDING}>{authUser.email}</a>
+                                                </li>
+                                                <li className="nav-item">
+                                                    <SignOutButton/>
+                                                </li>
+                                            </div>
+                                            :
+                                            <div>
+                                                <li className="nav-item">
+                                                    <a className="nav-link" id="signup" href={ROUTES.SIGN_UP}>Sign Up</a>
+                                                </li>
+                                                <li className="nav-item">
+                                                    <a className="nav-link" id="login" href={ROUTES.LOG_IN}>Log In</a>
+                                                    {/*<Link className="nav-link" id="login" onClick={() => window.location.refresh()} to={ROUTES.LOG_IN}>Log In</Link>*/}
+                                                </li>
+                                            </div>
+                                        }
+                                    </AuthUserContext.Consumer>
                                 </ul>
                             </div>
                         </div>
@@ -48,8 +69,7 @@ class Header extends Component{
                 </div>
             </Router>
         );
-    }
-
+    };
 };
 
 export default hot(module) (Header);

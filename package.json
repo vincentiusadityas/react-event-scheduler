@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "Firebase": "latest",
     "bootstrap": "^4.3.1",
     "firebase": "^5.9.2",
     "jquery": "^3.3.1",
@@ -12,7 +13,7 @@
     "react-hot-loader": "^4.8.0",
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
-    "Firebase": "latest"
+    "recompose": "^0.30.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

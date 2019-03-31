@@ -1,15 +1,60 @@
 import React, {Component} from 'react';
 import {hot} from "react-hot-loader";
+import {withFirebase} from "./Firebase";
+import {withRouter} from "react-router-dom";
+import * as ROUTES from "../constants/routes";
 
-class Login extends Component {
+const INITIAL_STATE = {
+    email: '',
+    password: '',
+    error: null,
+};
 
-    constructor(props, context) {
-        super(props, context);
+const Login = () => (
+    <div>
+        <LoginForm />
+    </div>
+);
+
+class LoginFormBase extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = { ...INITIAL_STATE };
+    };
+
+    onSubmit = event => {
+        const { email, password } = this.state;
+
+        this.props.firebase
+            .doSignInWithEmailAndPassword(email, password)
+            .then(() => {
+                this.setState({ ...INITIAL_STATE });
+                this.props.history.push(ROUTES.HOME);
+            })
+            .catch(error => {
+                this.setState({ error });
+            });
+
+        event.preventDefault();
+    };
+
+    onChange = event => {
+        this.setState({ [event.target.name]: event.target.value });
     };
 
     render() {
+        const { email, password, error } = this.state;
+
         return (
             <div className="bg">
+                {error &&
+                <div className="alert alert-warning alert-dismissible fade show" id="email-used-alert" role="alert">
+                    <strong>Error:</strong> {error.message}
+                    <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>}
                 <section id="section-myform">
                     <article className="card-body mx-auto">
                         <h4 className="card-title text-center">Log In</h4>
@@ -25,20 +70,22 @@ class Login extends Component {
                             <span><b>OR</b></span>
                         </p>
 
-                        <form>
+                        <form onSubmit={this.onSubmit}>
                             <div className="form-group input-group">
                                 <div className="input-group-prepend">
                                     <span className="input-group-text"> <i className="fa fa-envelope"></i> </span>
                                 </div>
-                                <input name="" className="form-control" placeholder="Email address" type="email"
-                                       required></input>
+                                <input className="form-control" placeholder="Email address" name="email"
+                                       onChange={this.onChange} value={email} type="email" required>
+                                </input>
                             </div>
                             <div className="form-group input-group">
                                 <div className="input-group-prepend">
                                     <span className="input-group-text"> <i className="fa fa-lock"></i> </span>
                                 </div>
                                 <input id="password" className="form-control" placeholder="Password" type="password"
-                                       required></input>
+                                       name="password" onChange={this.onChange} value={password} required>
+                                </input>
                             </div>
                             <div className="form-group">
                                 <button type="submit" className="btn btn-primary btn-block" id="btn-login"> Log In
@@ -53,4 +100,6 @@ class Login extends Component {
     };
 };
 
-export default hot(module) (Login)
+const LoginForm = withRouter(withFirebase(LoginFormBase));
+
+export default (Login)

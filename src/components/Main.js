@@ -4,11 +4,11 @@ import {
     Switch,
     Route } from 'react-router-dom'
 
-import Home from './Home'
+import * as ROUTES from '../constants/routes';
+import Landing from './Landing'
 import Login from './Login'
 import SignUp from './Signup'
-
-import * as ROUTES from '../constants/routes';
+import Home from "./Home";
 
 // The Main component renders one of the three provided
 // Routes (provided that one matches). Both the /roster
@@ -18,15 +18,16 @@ import * as ROUTES from '../constants/routes';
 
 class Main extends Component {
 
-    constructor(props, context) {
-        super(props, context);
+    constructor(props) {
+        super(props);
     }
 
     render() {
         return (
             <Router>
                 <Switch>
-                    <Route exact path={ROUTES.LANDING} component={Home}/>
+                    <Route exact path={ROUTES.LANDING} component={Landing}/>
+                    <Route path={ROUTES.HOME} component={Home}/>
                     <Route path={ROUTES.LOG_IN} component={Login}/>
                     <Route path={ROUTES.SIGN_UP} component={SignUp}/>
                 </Switch>

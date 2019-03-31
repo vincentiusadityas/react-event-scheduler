@@ -9,23 +9,16 @@ import Header from './Header'
 import Main from './Main'
 import Footer from "./Footer";
 
-class App extends Component{
+import { withAuthentication } from './Session';
 
-    constructor(props, context) {
-        super(props, context);
-    }
+const App = () => (
+    <Router>
+        <div>
+            <Header />
+            <Main />
+            <Footer />
+        </div>
+    </Router>
+);
 
-    render() {
-        return (
-            <Router>
-                <div>
-                    <Header/>
-                    <Main/>
-                    <Footer/>
-                </div>
-            </Router>
-        );
-    };
-};
-
-export default hot(module)(App);
+export default hot(module) (withAuthentication(App));

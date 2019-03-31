@@ -68,10 +68,10 @@ h1 {
     vertical-align: center;
 }
 
-/* SIGNUP FORM SECTION #####
-    ref: https://bootsnipp.com/snippets/z8699 #####
-    ref: https://www.tutorialrepublic.com/snippets/preview.php?topic=bootstrap&file=sign-up-form-with-rounded-social-buttons
-    */
+/******************** SIGN UP FORM ********************/
+/*ref: https://bootsnipp.com/snippets/z8699*/
+/*ref: https://www.tutorialrepublic.com/snippets/preview.php?topic=bootstrap&file=sign-up-form-with-rounded-social-buttons*/
+
 .social-btn .btn {
     color: #fff;
     margin: 0 0 0 15px;
@@ -101,7 +101,17 @@ h1 {
     margin: 2px 8px;
     font-size: 22px;
 }
-
+#email-used-alert {
+    position:fixed;
+    text-align: center;
+    left: 0px;
+    top: 50%;
+    width: 100%;
+    z-index:9999;
+    border-radius:0px;
+    /*opacity: 0.5;*/
+    background-color: yellow;
+}
 #btn-signup, #btn-login {
     color: #fff;
     font-size: 18px;
@@ -167,6 +177,12 @@ h1 {
 .cust-nav {
     opacity: 0.5;
     filter: alpha(opacity=50);
+}
+
+#sign-out-btn {
+    color: white;
+    background: none;
+    border: none;
 }
 
 #contact, #signup, #login {
