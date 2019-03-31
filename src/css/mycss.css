@@ -43,6 +43,100 @@ h1 {
     height: 10%;
 }
 
+.bg {
+    /* Full height */
+    height: 100vh;
+
+    /* Center and scale the image nicely */
+    background: url("../img/event-background.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+
+/******************** LOGIN FORM ********************/
+#section-myform {
+    width: 100%;
+    height: 100%;
+    padding-top: 55px;
+}
+
+.card-body {
+    max-width: 450px;
+    vertical-align: center;
+}
+
+/* SIGNUP FORM SECTION #####
+    ref: https://bootsnipp.com/snippets/z8699 #####
+    ref: https://www.tutorialrepublic.com/snippets/preview.php?topic=bootstrap&file=sign-up-form-with-rounded-social-buttons
+    */
+.social-btn .btn {
+    color: #fff;
+    margin: 0 0 0 15px;
+    font-size: 15px;
+    border-radius: 50px;
+    font-weight: normal;
+    border: none;
+    transition: all 0.4s;
+}
+.social-btn .btn:first-child {
+    margin-left: 0;
+}
+.social-btn .btn:hover, #btn-signup, #btn-login {
+    opacity: 0.8;
+}
+.social-btn .btn-primary {
+    background: #507cc0;
+}
+.social-btn .btn-info {
+    background: #64ccf1;
+}
+.social-btn .btn-danger {
+    background: #df4930;
+}
+.social-btn .btn i {
+    float: left;
+    margin: 2px 8px;
+    font-size: 22px;
+}
+
+#btn-signup, #btn-login {
+    color: #fff;
+    font-size: 18px;
+    border-radius: 50px;
+    font-weight: normal;
+    border: none;
+    transition: all 0.4s;
+}
+
+.divider-text {
+    position: relative;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.divider-text span {
+    padding: 7px;
+    font-size: 12px;
+    position: relative;
+    z-index: 2;
+}
+.divider-text:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    top: 55%;
+    left: 0;
+    z-index: 1;
+}
+.text-hint {
+    font-weight: lighter;
+}
+/*********************************************************/
+
 /*################ FOR DEBUGGING ################*/
 /* .container {
     border: solid 1px #ff0000;

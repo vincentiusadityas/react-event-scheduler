@@ -58,7 +58,7 @@ const Footer = () => {
                             <p><u><a href="https://www.courses.uq.edu.au/student_section_loader.php?profileId=97411&section=1">Web
                                 Information System</a></u> is
                                 a INFS3202 Course in The University of Queensland, Brisbane [QLD, Australia]</p>
-                            <p className="h6">&copy All right Reversed.<a className="text-green ml-2" href="https://www.sunlimetech.com"
+                            <p className="h6">&copy; All right Reversed.<a className="text-green ml-2" href="https://www.sunlimetech.com"
                                                                       target="_blank">MyEvent</a></p>
                         </div>
                     </div>

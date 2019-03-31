@@ -9,22 +9,40 @@
 
     <link rel="shortcut icon" href="src/img/groupevent.ico" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link type="text/css" href="src/css/mycss.css">
     <link type="text/css" href="src/css/myform.css">
     <link type="text/css" href="src/css/bootstrap-social.css">
 
+    <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        const config = {
+            apiKey: "AIzaSyAye6byrn5tDqJdVk7_NB_xKrwLZHzz7wc",
+            authDomain: "eventscheduler-ec6bf.firebaseapp.com",
+            databaseURL: "https://eventscheduler-ec6bf.firebaseio.com",
+            projectId: "eventscheduler-ec6bf",
+            storageBucket: "eventscheduler-ec6bf.appspot.com",
+            messagingSenderId: "115371147254"
+        };
+        firebase.initializeApp(config);
+    </script>
+
+    <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
+    <script src="https://www.w3schools.com/lib/w3.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <!--<script type="javascript" src="src/js/myjs.js"></script>-->
 </head>
 
 <body>
 <div id="root"></div>
+
 <!--<noscript>-->
     <!--You need to enable JavaScript to run this app.-->
 <!--</noscript>-->
+
 <script src="../dist/bundle.js"></script>
 </body>
 
