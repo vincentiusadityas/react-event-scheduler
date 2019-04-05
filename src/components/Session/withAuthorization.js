@@ -8,15 +8,21 @@ import * as ROUTES from '../../constants/routes';
 
 const withAuthorization = condition => Component => {
     class WithAuthorization extends React.Component {
+        _isMounted = false;
+
         componentDidMount() {
+            this._isMounted = true;
+
             this.listener = this.props.firebase.auth.onAuthStateChanged(authUser => {
-                if (!condition(authUser)) {
+                if (!condition(authUser) && this._isMounted) {
                     this.props.history.push(ROUTES.LOG_IN);
                 }
             });
         }
 
         componentWillUnmount() {
+
+            this._isMounted = false;
             this.listener();
         }
 

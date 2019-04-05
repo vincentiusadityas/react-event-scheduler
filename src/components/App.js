@@ -12,13 +12,13 @@ import Footer from "./Footer";
 import { withAuthentication } from './Session';
 
 const App = () => (
-    <Router>
+    <main>
         <div>
             <Header />
             <Main />
             <Footer />
         </div>
-    </Router>
+    </main>
 );
 
 export default hot(module) (withAuthentication(App));

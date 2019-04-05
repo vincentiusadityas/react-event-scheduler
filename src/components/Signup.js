@@ -5,6 +5,7 @@ import $ from "jquery";
 
 import { withFirebase } from './Firebase';
 import * as ROUTES from '../constants/routes';
+import withAuthorization from "./Session/withAuthorization";
 
 const INITIAL_STATE = {
     firstName: '',
@@ -38,6 +39,8 @@ class SignUpFormBase extends Component {
                     confirm_password.setCustomValidity("Passwords Don't Match");
                 }
             });
+
+
         });
     };
 
@@ -57,14 +60,26 @@ class SignUpFormBase extends Component {
             })
             .catch(error => {
                 this.setState({ error });
+
                 // Handle Errors here.
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                // ...
-                // if (errorCode == "auth/email-already-in-use") {
-                //
-                // }
-                // console.log(errorCode + ": " + errorMessage);
+                const errorCode = error.code.split("/");
+                const errorCodeName = errorCode[1];
+
+                let errorMessage = error.message;
+
+                if (errorCodeName == "too-many-requests") {
+                    errorMessage = "The password is invalid or the user does not have a password";
+                }
+
+                // console.log(errorCodeName + ": " + errorMessage)
+                // this.props.history.push(ROUTES.LOG_IN);
+
+                $(".error-message").html(
+                    "<div class='alert alert-warning alert-dismissible fade show' id='email-used-alert' role='alert'> \
+                    <strong>Error: </strong>" + errorMessage +
+                    "<button type='button' class='close' data-dismiss='alert' aria-label='Close'> \
+                    <span aria-hidden='true'>&times;</span> </button> \
+                    </div>");
             });
 
         event.preventDefault();
@@ -86,13 +101,6 @@ class SignUpFormBase extends Component {
 
         return (
             <div>
-                {error &&
-                <div className="alert alert-warning alert-dismissible fade show" id="email-used-alert" role="alert">
-                    <strong>Error:</strong> {error.message}
-                    <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>}
                 <div className="bg">
                     <section id="section-myform">
                         <article className="card-body mx-auto">
@@ -176,4 +184,6 @@ class SignUpFormBase extends Component {
 
 const SignUpForm = withRouter(withFirebase(SignUpFormBase));
 
-export default hot(module) (SignUp)
+const condition = authUser => !authUser;
+
+export default hot(module) (withAuthorization(condition)(withRouter(SignUp)))

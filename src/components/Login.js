@@ -3,6 +3,7 @@ import {hot} from "react-hot-loader";
 import {withFirebase} from "./Firebase";
 import {withRouter} from "react-router-dom";
 import * as ROUTES from "../constants/routes";
+import withAuthorization from "./Session/withAuthorization";
 
 const INITIAL_STATE = {
     email: '',
@@ -34,6 +35,26 @@ class LoginFormBase extends Component {
             })
             .catch(error => {
                 this.setState({ error });
+
+                // Handle Errors here.
+                const errorCode = error.code.split("/");
+                const errorCodeName = errorCode[1];
+
+                let errorMessage = error.message;
+
+                if (errorCodeName == "too-many-requests") {
+                    errorMessage = "The password is invalid or the user does not have a password";
+                }
+
+                // console.log(errorCodeName + ": " + errorMessage)
+                // this.props.history.push(ROUTES.LOG_IN);
+
+                $(".error-message").html(
+                    "<div class='alert alert-warning alert-dismissible fade show' id='email-used-alert' role='alert'> \
+                    <strong>Error: </strong>" + errorMessage +
+                    "<button type='button' class='close' data-dismiss='alert' aria-label='Close'> \
+                    <span aria-hidden='true'>&times;</span> </button> \
+                    </div>");
             });
 
         event.preventDefault();
@@ -48,13 +69,8 @@ class LoginFormBase extends Component {
 
         return (
             <div className="bg">
-                {error &&
-                <div className="alert alert-warning alert-dismissible fade show" id="email-used-alert" role="alert">
-                    <strong>Error:</strong> {error.message}
-                    <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>}
+                <div className="error-message">
+                </div>
                 <section id="section-myform">
                     <article className="card-body mx-auto">
                         <h4 className="card-title text-center">Log In</h4>
@@ -100,6 +116,8 @@ class LoginFormBase extends Component {
     };
 };
 
+const condition = authUser => !authUser;
+
 const LoginForm = withRouter(withFirebase(LoginFormBase));
 
-export default (Login)
+export default withAuthorization(condition)(Login)

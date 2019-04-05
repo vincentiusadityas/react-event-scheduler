@@ -2,7 +2,8 @@ import React, {Component} from 'react'
 import {
     BrowserRouter as Router,
     Switch,
-    Route } from 'react-router-dom'
+    Route, withRouter
+} from 'react-router-dom'
 
 import * as ROUTES from '../constants/routes';
 import Landing from './Landing'
@@ -24,14 +25,12 @@ class Main extends Component {
 
     render() {
         return (
-            <Router>
                 <Switch>
-                    <Route exact path={ROUTES.LANDING} component={Landing}/>
-                    <Route path={ROUTES.HOME} component={Home}/>
-                    <Route path={ROUTES.LOG_IN} component={Login}/>
-                    <Route path={ROUTES.SIGN_UP} component={SignUp}/>
+                    <Route exact path={ROUTES.LANDING} component={withRouter(Landing)}/>
+                    <Route path={ROUTES.HOME} component={withRouter(Home)}/>
+                    <Route path={ROUTES.LOG_IN} component={withRouter(Login)}/>
+                    <Route path={ROUTES.SIGN_UP} component={withRouter(SignUp)}/>
                 </Switch>
-            </Router>
         );
     };
 };
