@@ -29,12 +29,12 @@ class Header extends Component{
                         <AuthUserContext.Consumer>
                             {authUser => authUser ?
                                 <Link className="navbar-brand" to={ROUTES.HOME}>
-                                    {/*<img id="logo" src="img/groupevent.ico"> </img>*/}
+                                    <img id="logo" src="../img/groupevent.ico" alt=""/>
                                     MyEvent
                                 </Link>
                                 :
                                 <Link className="navbar-brand" to={ROUTES.LANDING}>
-                                    {/*<img id="logo" src="img/groupevent.ico"> </img>*/}
+                                    <img id="logo" src="../img/groupevent.ico" alt=""/>
                                     MyEvent
                                 </Link>
                             }

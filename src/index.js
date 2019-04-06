@@ -8,7 +8,9 @@ import ScrollToTop from './components/Tool/ScrollToTop'
 render((
     <BrowserRouter>
         <FirebaseContext.Provider value={new Firebase()}>
-            <App />
+            <ScrollToTop>
+                <App />
+            </ScrollToTop>
         </FirebaseContext.Provider>
     </BrowserRouter>
 ), document.getElementById('root'));

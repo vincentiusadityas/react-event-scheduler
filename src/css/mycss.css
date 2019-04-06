@@ -145,6 +145,19 @@ h1 {
 .text-hint {
     font-weight: lighter;
 }
+
+/*input#password-str{*/
+    /*-webkit-appearance:none!important;*/
+    /*color:red;*/
+    /*text-align:center;*/
+    /*background:white;*/
+/*}*/
+/*input[type="password"]#password{*/
+    /*-webkit-appearance:none!important;*/
+    /*border:2px solid;*/
+    /*outline:none;*/
+/*}*/
+
 /*********************************************************/
 
 /*################ FOR DEBUGGING ################*/
@@ -185,7 +198,12 @@ h1 {
     border: none;
 }
 
-#contact, #signup, #login {
+#contact {
+    color: white;
+    margin-right: 10px;
+}
+
+#signup, #login {
     color: white;
 }
 

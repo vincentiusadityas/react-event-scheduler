@@ -6,6 +6,7 @@ import $ from "jquery";
 import { withFirebase } from './Firebase';
 import * as ROUTES from '../constants/routes';
 import withAuthorization from "./Session/withAuthorization";
+import PasswordInput from "./Tool/PasswordInput";
 
 const INITIAL_STATE = {
     firstName: '',
@@ -32,15 +33,21 @@ class SignUpFormBase extends Component {
         $(function() {
             $('#password, #confirm-password').on('keyup', function () {
                 const confirm_password = document.getElementById("confirm-password");
+                const password = document.getElementById("password");
                 // console.log($('#password').val() == $('#confirm-password').val())
-                if ($('#password').val() == $('#confirm-password').val()) {
-                    confirm_password.setCustomValidity("");
+                if ($('#password').val() === $('#confirm-password').val()) {
+
+                    if ($('#password-str').text() === "very weak ") {
+                        password.setCustomValidity("Your password must have at least 5 characters");
+                    } else if ($('#password-str').text() === "weak ") {
+                        password.setCustomValidity("Your password must contain a capital letter or a number");
+                    } else {
+                        confirm_password.setCustomValidity("");
+                    }
                 } else {
                     confirm_password.setCustomValidity("Passwords Don't Match");
                 }
             });
-
-
         });
     };
 
@@ -59,7 +66,7 @@ class SignUpFormBase extends Component {
                 this.props.history.push(ROUTES.HOME);
             })
             .catch(error => {
-                this.setState({ error });
+                this.setState({ email: '', error });
 
                 // Handle Errors here.
                 const errorCode = error.code.split("/");
@@ -96,12 +103,13 @@ class SignUpFormBase extends Component {
             email,
             passwordOne,
             passwordTwo,
-            error,
         } = this.state;
 
         return (
             <div>
                 <div className="bg">
+                    <div className="error-message">
+                    </div>
                     <section id="section-myform">
                         <article className="card-body mx-auto">
                             <h4 className="card-title text-center">Create Account</h4>
@@ -141,14 +149,22 @@ class SignUpFormBase extends Component {
                                            onChange={this.onChange} value={email} type="email" required>
                                     </input>
                                 </div>
-                                <div className="form-group input-group">
-                                    <div className="input-group-prepend">
-                                        <span className="input-group-text"> <i className="fa fa-lock"></i> </span>
-                                    </div>
-                                    <input id="password" className="form-control" placeholder="Create password"
-                                           onChange={this.onChange} name="passwordOne" value={passwordOne} type="password" required>
-                                    </input>
-                                </div>
+                                {/*<div className="form-group input-group">*/}
+                                    {/*<div className="input-group-prepend">*/}
+                                        {/*<span className="input-group-text"> <i className="fa fa-lock"></i> </span>*/}
+                                    {/*</div>*/}
+                                    <PasswordInput
+                                        id='password'
+                                        value={passwordOne}
+                                        placeholder='Create password'
+                                        handleChanges={this.onChange}
+                                    />
+
+                                    {/*<input id="password" className="form-control" placeholder="Create password"*/}
+                                           {/*onChange={this.onChange} name="passwordOne" value={passwordOne} type="password" required>*/}
+                                    {/*</input>*/}
+
+                                {/*</div>*/}
                                 <div className="form-group input-group">
                                     <div className="input-group-prepend">
                                         <span className="input-group-text"> <i className="fa fa-lock"></i> </span>
