@@ -29,12 +29,12 @@ class Header extends Component{
                         <AuthUserContext.Consumer>
                             {authUser => authUser ?
                                 <Link className="navbar-brand" to={ROUTES.HOME}>
-                                    <img id="logo" src="../img/groupevent.ico" alt=""/>
+                                    {/*<img id="logo" src="./../img/groupevent.ico" alt=""/>*/}
                                     MyEvent
                                 </Link>
                                 :
                                 <Link className="navbar-brand" to={ROUTES.LANDING}>
-                                    <img id="logo" src="../img/groupevent.ico" alt=""/>
+                                    {/*<img id="logo" src="./../img/groupevent.ico" alt=""/>*/}
                                     MyEvent
                                 </Link>
                             }
@@ -52,7 +52,7 @@ class Header extends Component{
                                     {authUser => authUser ?
                                         <div>
                                             <li className="nav-item">
-                                                <Link className="nav-link" id="signup" to={ROUTES.LANDING}>{authUser.email}</Link>
+                                                <Link className="nav-link" id="my-account" to={ROUTES.ACCOUNT}>{authUser.email}</Link>
                                             </li>
                                             <li className="nav-item">
                                                 <SignOutButton/>

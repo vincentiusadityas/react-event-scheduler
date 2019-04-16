@@ -68,6 +68,18 @@ h1 {
     vertical-align: center;
 }
 
+/******************** FORGET PASSWORD FORM ********************/
+#section-forget-password {
+    width: 100%;
+    height: 100%;
+    padding-top: 80px;
+}
+
+.card-body {
+    max-width: 450px;
+    vertical-align: center;
+}
+
 /******************** SIGN UP FORM ********************/
 /*ref: https://bootsnipp.com/snippets/z8699*/
 /*ref: https://www.tutorialrepublic.com/snippets/preview.php?topic=bootstrap&file=sign-up-form-with-rounded-social-buttons*/
@@ -203,7 +215,7 @@ h1 {
     margin-right: 10px;
 }
 
-#signup, #login {
+#signup, #login, #my-account {
     color: white;
 }
 
@@ -212,8 +224,7 @@ ul.right-bar li a{
 }
 
 .top-pg, .scn-pg, .trd-pg {
-    padding: 15px;
-    padding-top: 80px;
+    padding: 80px 15px 15px;
     margin-bottom: auto;
 }
 
@@ -292,7 +303,7 @@ ul.right-bar li a{
 }
 
 .alr-mbr-login {
-    font-size: 15px;
+    font-size: 14px;
 }
 
 a#see-all-event {

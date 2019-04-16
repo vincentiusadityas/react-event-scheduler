@@ -10,6 +10,9 @@ import Landing from './Landing'
 import Login from './Login'
 import SignUp from './Signup'
 import Home from "./Home";
+import Account from "./Account";
+import PasswordForgetPage from "./PasswordForget";
+import AfterResetPage from "./AfterResetPassword";
 
 // The Main component renders one of the three provided
 // Routes (provided that one matches). Both the /roster
@@ -28,8 +31,11 @@ class Main extends Component {
                 <Switch>
                     <Route exact path={ROUTES.LANDING} component={withRouter(Landing)}/>
                     <Route path={ROUTES.HOME} component={withRouter(Home)}/>
+                    <Route path={ROUTES.ACCOUNT} component={withRouter(Account)}/>
                     <Route path={ROUTES.LOG_IN} component={withRouter(Login)}/>
                     <Route path={ROUTES.SIGN_UP} component={withRouter(SignUp)}/>
+                    <Route path={ROUTES.PASSWORD_FORGET} component={withRouter(PasswordForgetPage)}/>
+                    <Route path={ROUTES.AFTER_RESET} component={withRouter(AfterResetPage)}/>
                 </Switch>
         );
     };

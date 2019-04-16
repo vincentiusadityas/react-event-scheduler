@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
-import {hot} from "react-hot-loader";
 import {withFirebase} from "./Firebase";
-import {withRouter} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import * as ROUTES from "../constants/routes";
 import withAuthorization from "./Session/withAuthorization";
+import $ from "jquery";
+import { withCookies, Cookies } from 'react-cookie';
+import {instanceOf} from "prop-types";
 
 const INITIAL_STATE = {
     email: '',
@@ -18,14 +20,34 @@ const Login = () => (
 );
 
 class LoginFormBase extends Component {
+    static propTypes = {
+        cookies: instanceOf(Cookies).isRequired
+    };
 
     constructor(props) {
         super(props);
-        this.state = { ...INITIAL_STATE };
+
+        const { cookies } = props;
+        this.state = {
+            ...INITIAL_STATE,
+            email: cookies.get('email') || '',
+            remember: cookies.get('remember') || false
+        };
+
+        console.log(this.state.remember)
     };
 
     onSubmit = event => {
         const { email, password } = this.state;
+        const { cookies } = this.props;
+
+        if ($('#rememberMe').prop('checked')) {
+            cookies.set('email', email, {path: '/', expires: new Date(Date.now()+1209600)});
+            cookies.set('remember', true, {path: '/', expires: new Date(Date.now()+1209600)});
+        } else {
+            cookies.set('email', '');
+            cookies.set('remember', '');
+        }
 
         this.props.firebase
             .doSignInWithEmailAndPassword(email, password)
@@ -65,7 +87,12 @@ class LoginFormBase extends Component {
     };
 
     render() {
-        const { email, password, error } = this.state;
+        let { email, password, error, remember } = this.state;
+
+        if (remember) {
+            $('#rememberMe').prop('checked', true);
+            console.log("remember")
+        }
 
         return (
             <div className="bg">
@@ -91,7 +118,7 @@ class LoginFormBase extends Component {
                                 <div className="input-group-prepend">
                                     <span className="input-group-text"> <i className="fa fa-envelope"></i> </span>
                                 </div>
-                                <input className="form-control" placeholder="Email address" name="email"
+                                <input id="email" className="form-control" placeholder="Email address" name="email"
                                        onChange={this.onChange} value={email} type="email" required>
                                 </input>
                             </div>
@@ -107,7 +134,21 @@ class LoginFormBase extends Component {
                                 <button type="submit" className="btn btn-primary btn-block" id="btn-login"> Log In
                                 </button>
                             </div>
-                            <p className="text-center">Are you new? Register <a href="/signup">here</a>. </p>
+                            <div className="form-group text-center">
+                                <div className="form-check">
+                                    <input className="form-check-input" type="checkbox" name="rememberMe" id="rememberMe">
+                                    </input>
+                                    <label className="form-check-label" htmlFor="rememberMe">
+                                        Remember Me
+                                    </label>
+                                </div>
+                            </div>
+                            <p className="text-center">Are you new? Register
+                                <Link to={ROUTES.SIGN_UP}> here</Link>.
+                            </p>
+                            <p className="text-center">
+                                <Link to={ROUTES.PASSWORD_FORGET}> Forgot Password?</Link>
+                            </p>
                         </form>
                     </article>
                 </section>
@@ -118,6 +159,6 @@ class LoginFormBase extends Component {
 
 const condition = authUser => !authUser;
 
-const LoginForm = withRouter(withFirebase(LoginFormBase));
+const LoginForm = withRouter(withFirebase(withCookies(LoginFormBase)));
 
 export default withAuthorization(condition)(Login)

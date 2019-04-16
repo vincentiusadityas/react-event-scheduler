@@ -12,6 +12,10 @@ const INITIAL_STATE = {
     firstName: '',
     lastName: '',
     email: '',
+    phone:'',
+    uniqueId:'',
+    profession:'',
+    description:'',
     passwordOne: '',
     passwordTwo: '',
     error: null,
@@ -54,7 +58,7 @@ class SignUpFormBase extends Component {
     onSubmit = event => {
         // console.log(this.state);
 
-        const { email, passwordOne } = this.state;
+        const { firstName, lastName, email, phone, uniqueId, profession, description, passwordOne } = this.state;
 
         // console.log(email);
         // console.log(passwordOne);
@@ -62,6 +66,20 @@ class SignUpFormBase extends Component {
         this.props.firebase
             .doCreateUserWithEmailAndPassword(email, passwordOne)
             .then(authUser => {
+                // Create a user in your Firebase realtime database
+                return this.props.firebase
+                    .user(authUser.user.uid)
+                    .set({
+                        firstName,
+                        lastName,
+                        email,
+                        phone,
+                        uniqueId: authUser.user.uid.substr(0,8),
+                        profession,
+                        description
+                    });
+            })
+            .then(() => {
                 this.setState({ ...INITIAL_STATE });
                 this.props.history.push(ROUTES.HOME);
             })
@@ -74,7 +92,7 @@ class SignUpFormBase extends Component {
 
                 let errorMessage = error.message;
 
-                if (errorCodeName == "too-many-requests") {
+                if (errorCodeName === "too-many-requests") {
                     errorMessage = "The password is invalid or the user does not have a password";
                 }
 

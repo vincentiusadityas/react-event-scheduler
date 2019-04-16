@@ -4,8 +4,12 @@ import { withAuthorization } from './Session';
 
 const Home = () => (
     <div>
-        <h1>Home Page</h1>
-        <p>The Home Page is accessible by every signed in user.</p>
+        <section id="section01">
+            <div className="container top-pg">
+                <h1>Home Page</h1>
+                <p>The Home Page is accessible by every signed in user.</p>
+            </div>
+        </section>
     </div>
 );
 
