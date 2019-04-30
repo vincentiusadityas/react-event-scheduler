@@ -13,6 +13,8 @@ import Home from "./Home";
 import Account from "./Account";
 import PasswordForgetPage from "./PasswordForget";
 import AfterResetPage from "./AfterResetPassword";
+import CreateEvent from "./CreateEvent";
+import Event from "./Event";
 
 // The Main component renders one of the three provided
 // Routes (provided that one matches). Both the /roster
@@ -36,6 +38,8 @@ class Main extends Component {
                     <Route path={ROUTES.SIGN_UP} component={withRouter(SignUp)}/>
                     <Route path={ROUTES.PASSWORD_FORGET} component={withRouter(PasswordForgetPage)}/>
                     <Route path={ROUTES.AFTER_RESET} component={withRouter(AfterResetPage)}/>
+                    <Route path={ROUTES.CREATE_EVENT} component={withRouter(CreateEvent)}/>
+                    <Route path={ROUTES.EVENT} component={withRouter(Event)}/>
                 </Switch>
         );
     };

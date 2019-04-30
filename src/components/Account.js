@@ -114,9 +114,9 @@ class AccountFormBase extends Component {
         userRef.set(data)
             .then((data) => {
                 console.log('data ', data);
-            }).catch((error)=>{
-            //error callback
-            console.log('error ' , error)
+            }).catch((error) => {
+                //error callback
+                console.log('error ' , error)
         });
     };
 

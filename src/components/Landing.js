@@ -5,6 +5,7 @@ import {Link, withRouter} from "react-router-dom";
 import * as ROUTES from "../constants/routes";
 import {AuthUserContext} from "./Session";
 import Home from "./Home";
+import {withFirebase} from "./Firebase";
 
 class Landing extends Component {
 
@@ -42,17 +43,13 @@ class Landing extends Component {
                                         <h1 className="mt-5">Register Your Event Now!</h1>
 
                                         <p className="top-pg-txt">
-                                            The logo in the navbar is now a default Bootstrap feature in Bootstrap 4! Make sure to
-                                            set
-                                            the
-                                            width
-                                            and height of the logo within the HTML or with CSS. For best results, use an SVG image
-                                            as
-                                            your
-                                            logo.
+                                            MyEvent is a SIMPLE event scheduler for all types of events and for anyone to use!
+                                            Suits BEST for students, companies, and clubs to organize and share their events. Take the initiative
+                                            to build the most EPIC event now!
                                         </p>
+                                        <br/>
 
-                                        <Link className="btn btn-primary btn-md" id="signup" to={ROUTES.SIGN_UP}>Sign Up</Link>
+                                        <Link className="btn btn-primary btn-md" id="signup" to={ROUTES.SIGN_UP}>Create Event</Link>
 
                                         <p className="alr-mbr-login">Already a member?
                                             <Link to={ROUTES.LOG_IN}> Log In</Link>
@@ -87,7 +84,7 @@ class Landing extends Component {
                                                         <div className="card">
                                                             <img className="card-img-top"
                                                                  src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg"
-                                                                 alt="Card image cap"></img>
+                                                                 alt="Card image cap"/>
                                                             <div className="card-body">
                                                                 <h4 className="card-title">Card title</h4>
                                                                 <p className="card-text">Some quick example text to build on the card
@@ -97,6 +94,9 @@ class Landing extends Component {
                                                                     card's content.</p>
                                                                 <a className="btn btn-primary">Button</a>
                                                             </div>
+                                                            <div className="card-footer">
+                                                                <p className="text-muted">Last updated 3 mins ago</p>
+                                                            </div>
                                                         </div>
                                                     </div>
 
@@ -104,7 +104,7 @@ class Landing extends Component {
                                                         <div className="card">
                                                             <img className="card-img-top"
                                                                  src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(18).jpg"
-                                                                 alt="Card image cap"></img>
+                                                                 alt="Card image cap"/>
                                                             <div className="card-body">
                                                                 <h4 className="card-title">Card title</h4>
                                                                 <p className="card-text">Some quick example text to build on the card
@@ -121,7 +121,7 @@ class Landing extends Component {
                                                         <div className="card">
                                                             <img className="card-img-top"
                                                                  src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
-                                                                 alt="Card image cap"></img>
+                                                                 alt="Card image cap"/>
                                                             <div className="card-body">
                                                                 <h4 className="card-title">Card title</h4>
                                                                 <p className="card-text">Some quick example text to build on the card
@@ -142,7 +142,7 @@ class Landing extends Component {
                                                         <div className="card">
                                                             <img className="card-img-top"
                                                                  src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg"
-                                                                 alt="Card image cap"></img>
+                                                                 alt="Card image cap"/>
                                                             <div className="card-body">
                                                                 <h4 className="card-title">Card title</h4>
                                                                 <p className="card-text">Some quick example text to build on the card
@@ -159,7 +159,7 @@ class Landing extends Component {
                                                         <div className="card">
                                                             <img className="card-img-top"
                                                                  src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(47).jpg"
-                                                                 alt="Card image cap"></img>
+                                                                 alt="Card image cap"/>
                                                             <div className="card-body">
                                                                 <h4 className="card-title">Card title</h4>
                                                                 <p className="card-text">Some quick example text to build on the card
@@ -176,7 +176,7 @@ class Landing extends Component {
                                                         <div className="card">
                                                             <img className="card-img-top"
                                                                  src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(48).jpg"
-                                                                 alt="Card image cap"></img>
+                                                                 alt="Card image cap"/>
                                                             <div className="card-body">
                                                                 <h4 className="card-title">Card title</h4>
                                                                 <p className="card-text">Some quick example text to build on the card
@@ -194,12 +194,12 @@ class Landing extends Component {
                                         </div>
                                         <a className="carousel-control-prev" href="#events-nearby-carousel" role="button"
                                            data-slide="prev">
-                                            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span className="carousel-control-prev-icon" aria-hidden="true"/>
                                             <span className="sr-only">Previous</span>
                                         </a>
                                         <a className="carousel-control-next" href="#events-nearby-carousel" role="button"
                                            data-slide="next">
-                                            <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span className="carousel-control-next-icon" aria-hidden="true"/>
                                             <span className="sr-only">Next</span>
                                         </a>
                                     </div>
@@ -208,7 +208,7 @@ class Landing extends Component {
                             </div>
 
                             <div id="scroll-wrapper">
-                                <a href="#section03" id="scroll"><span></span>About Us</a>
+                                <a href="#section03" id="scroll"><span/>About Us</a>
                             </div>
                         </section>
 
@@ -224,7 +224,7 @@ class Landing extends Component {
                                 </div>
                                 <div className="row trd-pg-ftr">
                                     <div className="col">
-                                        <img src={require("../img/events.png")} className="card-img-top"></img>
+                                        <img src={require("../img/events.png")} className="card-img-top"/>
                                         <h5 className="ft-title">Card title</h5>
                                         <p className="ft-text">Some quick example text to build on the card title
                                             and make up the
@@ -232,7 +232,7 @@ class Landing extends Component {
                                             of the card's content.</p>
                                     </div>
                                     <div className="col">
-                                        <img src={require("../img/events.png")} className="card-img-top"></img>
+                                        <img src={require("../img/events.png")} className="card-img-top"/>
                                         <h5 className="ft-title">Card title</h5>
                                         <p className="ft-text">Some quick example text to build on the card title
                                             and make up the
@@ -240,7 +240,7 @@ class Landing extends Component {
                                             of the card's content.</p>
                                     </div>
                                     <div className="col">
-                                        <img src={require("../img/events.png")} className="card-img-top"></img>
+                                        <img src={require("../img/events.png")} className="card-img-top"/>
                                         <h5 className="ft-title">Card title</h5>
                                         <p className="ft-text">Some quick example text to build on the card title
                                             and make up the
@@ -251,7 +251,7 @@ class Landing extends Component {
                             </div>
 
                             <div id="scroll-wrapper">
-                                <a href="#section04" id="scroll"><span></span>Next</a>
+                                <a href="#section04" id="scroll"><span/>Next</a>
                             </div>
                         </section>
 
@@ -259,7 +259,7 @@ class Landing extends Component {
                             <div className="container fourth-pg">
                                 <div className="row">
                                     <div className="col-md-4">
-                                        <img src={require("../img/bulb-clipart.png")} className="card-img-top"></img>
+                                        <img src={require("../img/bulb-clipart.png")} className="card-img-top"/>
                                     </div>
                                     <div className="col-md-6 ft-2-col">
                                         <h2>Sub-title</h2>
@@ -272,7 +272,7 @@ class Landing extends Component {
                             </div>
 
                             <div id="scroll-wrapper">
-                                <a href="#section05" id="scroll"><span></span>More</a>
+                                <a href="#section05" id="scroll"><span/>More</a>
                             </div>
                         </section>
 
@@ -287,13 +287,13 @@ class Landing extends Component {
                                             of the card's content.</h4>
                                     </div>
                                     <div className="col-md-4">
-                                        <img src={require("../img/bulb-clipart.png")} className="card-img-top"></img>
+                                        <img src={require("../img/bulb-clipart.png")} className="card-img-top"/>
                                     </div>
                                 </div>
                             </div>
 
                             <div id="scroll-wrapper">
-                                <a href="#section-footer" id="scroll"><span></span>Last</a>
+                                <a href="#section-footer" id="scroll"><span/>Last</a>
                             </div>
                         </section>
                     </div>
@@ -303,9 +303,8 @@ class Landing extends Component {
                     </div>
                 }
             </AuthUserContext.Consumer>
-
         );
     };
 };
 
-export default hot(module) (withRouter(Landing));
+export default hot(module) (withRouter(withFirebase(Landing)));

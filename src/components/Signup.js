@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {withRouter} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import {hot} from "react-hot-loader";
 import $ from "jquery";
 
@@ -206,7 +206,7 @@ class SignUpFormBase extends Component {
                                 <div className="form-group">
                                     <button type="submit" className="btn btn-primary btn-block" id="btn-signup"> Sign Up </button>
                                 </div>
-                                <p className="text-center">Have an account? <a href="/login">Log In</a></p>
+                                <p className="text-center">Have an account? <Link to={ROUTES.LOG_IN}>Log In</Link></p>
                             </form>
                         </article>
                     </section>
@@ -220,4 +220,4 @@ const SignUpForm = withRouter(withFirebase(SignUpFormBase));
 
 const condition = authUser => !authUser;
 
-export default hot(module) (withAuthorization(condition)(withRouter(SignUp)))
+export default hot(module) (withAuthorization(condition)(SignUp));

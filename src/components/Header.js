@@ -45,9 +45,22 @@ class Header extends Component{
                         </button>
                         <div className="collapse navbar-collapse" id="navbarResponsive">
                             <ul className="navbar-nav ml-auto right-bar">
-                                <li className="nav-item line-separator">
-                                    <a className="nav-link" id="contact" href={this.currentLocation + "#section-footer"}>Contact Us</a>
-                                </li>
+                                <AuthUserContext.Consumer>
+                                    {authUser => authUser ?
+                                        <div>
+                                            <li className="nav-item">
+                                                <a className="nav-link" id="contact">Search Events</a>
+                                            </li>
+                                            <li className="nav-item line-separator">
+                                                <Link className="nav-link" id="create-event" to={ROUTES.CREATE_EVENT}>Create Event</Link>
+                                            </li>
+                                        </div>
+                                        :
+                                        <li className="nav-item line-separator">
+                                            <a className="nav-link" id="contact" href={this.currentLocation + "#section-footer"}>Contact Us</a>
+                                        </li>
+                                    }
+                                </AuthUserContext.Consumer>
                                 <AuthUserContext.Consumer>
                                     {authUser => authUser ?
                                         <div>

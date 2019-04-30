@@ -1,0 +1,97 @@
+section#section-event {
+    background: url("../img/event-background.jpg") no-repeat center center fixed;
+    min-height: 100%;
+    overflow: hidden;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    z-index: +1;
+}
+
+.container.top-pg-error {
+    margin: 80px 15px 40px;
+}
+
+.top-pg-event {
+    margin: 80px 40px 60px 40px;
+    padding: 50px 70px 60px 50px;
+    background-color: whitesmoke;
+}
+
+#description-wrapper {
+    margin-left: 20px;
+}
+#description-heading, #going-heading, #event-title {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+#event-description {
+    /*margin-left: 5px;*/
+    font-size: 20px;
+}
+#event-img {
+    align-self: center;
+}
+p {
+    margin-bottom: 0;
+}
+#by-org {
+    margin-top: 25px;
+}
+.btn-register {
+    width: 150px;
+}
+.display-linebreak {
+    white-space: pre-line;
+    margin-left: 15px;
+}
+#num-of-people {
+    font-size: 14px;
+    color: grey;
+}
+
+label.custom-checkbox{
+    /* Presentation */
+    font-size: 20px;
+}
+
+/* Required Styling */
+
+label.custom-checkbox input[type="checkbox"] {
+    display: none;
+}
+
+.custom-checkbox {
+    position: relative;
+    cursor: pointer;
+    margin-top: 5px;
+    margin-left: 20px;
+}
+
+.custom-checkbox .fa-star {
+    color: gold;
+    position: absolute;
+    top: 0.4em;
+    left: -1.25em;
+    font-size: 0.75em;
+}
+
+.custom-checkbox .far.fa-star {
+    color: gray;
+}
+
+.custom-checkbox .fas.fa-star {
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.custom-checkbox:hover .fas.fa-star{
+    opacity: 0.5;
+}
+
+.custom-checkbox input[type="checkbox"]:checked ~ .fas.fa-star {
+    opacity: 1;
+}
+#click-me {
+    margin-right: auto;
+}

@@ -1,0 +1,208 @@
+/*custom font*/
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+
+/*html {*/
+    /*height: 100%;*/
+    /*!*Image only BG fallback*!*/
+
+    /*!*background = gradient + image pattern combo*!*/
+    /*background:*/
+            /*linear-gradient(rgba(196, 102, 0, 0.6), rgba(155, 89, 182, 0.6));*/
+/*}*/
+
+/*body {*/
+    /*font-family: montserrat, arial, verdana;*/
+/*}*/
+
+/*basic reset*/
+* {margin: 0; padding: 0; }
+
+section#section-create-event {
+    background: url("../img/event-background.jpg") no-repeat center center fixed;
+    min-height: 100%;
+    overflow: hidden;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    z-index: +1;
+}
+
+/*form styles*/
+#msform {
+    width: 700px;
+    margin: 100px auto;
+    text-align: center;
+    position: relative;
+}
+#msform fieldset {
+    background: white;
+    border: 0 none;
+    border-radius: 3px;
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+    padding: 20px 30px;
+    box-sizing: border-box;
+    width: 80%;
+    margin: 0 10%;
+
+    /*stacking fieldsets above each other*/
+    position: relative;
+}
+/*Hide all except first fieldset*/
+#msform fieldset:not(:first-of-type) {
+    display: none;
+}
+/*labels*/
+#msform label {
+    text-align: left;
+    float:left;
+}
+.org_label {
+    width: 100%;
+}
+
+#msform .row.ticket-input {
+    margin-left:auto;
+    margin-right:auto;
+    display:table;
+}
+#msform .organizer-input input,
+#msform .ticket-input input,
+#msform .privacy-input input {
+    width: auto;
+}
+#msform .organizer-input label.control-label,
+#msform .ticket-input label.control-label,
+#msform .privacy-input label.control-label {
+    margin-right: 20px;
+}
+#msform .organizer-input label.control-label:last-of-type,
+#msform .ticket-input label.control-label:last-of-type,
+#msform .privacy-input label.control-label:last-of-type {
+    margin-right: 7px;
+}
+#msform input#org_name {
+    width: 200px;
+}
+#msform .control-label-2 {
+    width: 100%;
+}
+#msform .control-label-2 input#ticket-quantity {
+    width: 100px;
+}
+#msform .control-label-2 input#ticket-price {
+    width: 100px;
+    padding-left: 20px;
+}
+.currency-symbol {
+    position:absolute;
+    padding: 8px 8px;
+}
+#category-select {
+    width: 100%;
+    margin-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+/*inputs*/
+#msform input, #msform textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: montserrat;
+    color: #2C3E50;
+    font-size: 13px;
+}
+#msform input.datetimepicker-input {
+    /*width: 50%;*/
+    margin-bottom: 0px;
+}
+/*buttons*/
+#msform .action-button {
+    width: 100px;
+    background: #0062cc;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 3px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px;
+}
+#msform .action-button:hover, #msform .action-button:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+}
+#msform .label-row {
+    margin-left: 0px;
+}
+#msform .input-row {
+    float: none;
+}
+/*headings*/
+.fs-title {
+    font-size: 15px;
+    text-transform: uppercase;
+    color: #2C3E50;
+    margin-bottom: 10px;
+}
+.fs-subtitle {
+    font-weight: normal;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/*progressbar*/
+#msform #progressbar {
+    margin-bottom: 30px;
+    overflow: hidden;
+    /*CSS counters to number the steps*/
+    counter-reset: step;
+}
+#msform #progressbar li {
+    list-style-type: none;
+    color: black;
+    text-transform: uppercase;
+    font-size: 11px;
+    width: 25%;
+    float: left;
+    position: relative;
+}
+#msform #progressbar li:before {
+    content: counter(step);
+    counter-increment: step;
+    width: 30px;
+    line-height: 30px;
+    display: block;
+    font-size: 10px;
+    color: #333;
+    background: lightgrey;
+    border-radius: 3px;
+    margin: 0 auto 5px auto;
+}
+/*progressbar connectors*/
+#msform #progressbar li:after {
+    content: '';
+    width: 100%;
+    height: 5px;
+    background: lightgrey;
+    display: block;
+    position: absolute;
+    left: -50%;
+    top: 11px;
+    z-index: -1; /*put it behind the numbers*/
+}
+#msform #progressbar li:first-child:after {
+    /*connector not needed before the first step*/
+    content: none;
+}
+/*marking active/completed steps green*/
+/*The number of the step and the connector before it = green*/
+#msform #progressbar li.active:before,  #msform #progressbar li.active:after{
+    background: #0062cc;
+    color: white;
+}

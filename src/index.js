@@ -6,6 +6,8 @@ import Firebase, { FirebaseContext } from './components/Firebase';
 import ScrollToTop from './components/Tool/ScrollToTop'
 import { CookiesProvider } from 'react-cookie';
 
+// require('webpack-jquery-ui/effects');
+
 render((
     <BrowserRouter>
         <FirebaseContext.Provider value={new Firebase()}>
