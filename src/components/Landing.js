@@ -2,30 +2,83 @@ import React, {Component} from 'react';
 import {hot} from "react-hot-loader";
 import $ from 'jquery';
 import {Link, withRouter} from "react-router-dom";
-import * as ROUTES from "../constants/routes";
+import * as firebase from "firebase";
+import ItemsCarousel from 'react-items-carousel';
+import {Spinner} from 'react-bootstrap';
+import _ from 'lodash';
+
+import {withFirebase} from "./Firebase";
 import {AuthUserContext} from "./Session";
 import Home from "./Home";
-import {withFirebase} from "./Firebase";
+import * as ROUTES from "../constants/routes";
+import EventModel from "./Models/EventModel";
 
-class Landing extends Component {
+class LandingFormBase extends Component {
+    _isMounted = true;
 
     constructor(props) {
         super(props);
+
+        this.state = {
+            events: [],
+            activeItemIndex: 0,
+        };
 
         $(function() {
             $('a[href*=\\#section]').on('click', function(e) {
                 e.preventDefault();
                 $('html, body').animate({ scrollTop: $($(this).attr('href')).offset().top}, 500, 'linear');
             });
-
-            // $('#login', '#signup').onclick(function(e) {
-            //     e.preventDefault();
-            //     window.location.refresh();
-            // });
         });
     }
 
+    componentDidMount() {
+        this._isMounted = true;
+        const eventRef = firebase.database().ref('/events/');
+
+        eventRef.on('value', (snapshot) => {
+            // let data = _.toArray(snapshot.val());
+            let data = snapshot.val();
+
+            let events = [];
+
+            // data.forEach( event => {
+            //     console.log(event);
+            //     events.push(new EventModel(event));
+            // });
+
+            for (let key in data) {
+                if (data.hasOwnProperty(key)) {
+                    events.push(new EventModel(key, data[key]));
+                }
+            }
+            console.log(events);
+
+            if (data != null && data.length !== 0) {
+                this._isMounted && this.setState({ events: events});
+            }
+        });
+
+    };
+
+    componentWillUnmount() {
+        this._isMounted= false;
+    };
+
+    changeActiveItem = (activeItemIndex) => this._isMounted && this.setState({ activeItemIndex });
+
+    detailsHandler = event => {
+        const key = event.target.id;
+        // console.log(key);
+        this.props.history.push('event/'+key);
+    };
+
     render() {
+        const {
+            events,
+            activeItemIndex,
+        } = this.state;
+
         return (
             <AuthUserContext.Consumer>
                 {authUser => !authUser ?
@@ -56,7 +109,7 @@ class Landing extends Component {
                                         </p>
                                     </div>
                                     <div className="col text-left mt-4 top-pg-img">
-                                        <img src={require("../img/events.png")} className="img-fluid" alt=""></img>
+                                        <img src={require("../img/events.png")} className="img-fluid" alt=""/>
                                     </div>
                                 </div>
                             </div>
@@ -72,137 +125,60 @@ class Landing extends Component {
                                     <a href="#" id="see-all-event">See all</a>
                                 </div>
 
-                                <div className="row justify-content-center">
-                                    <div id="events-nearby-carousel" className="carousel slide" data-ride="carousel"
-                                         data-interval="false">
+                                <div id="event-carousel" style={{"padding":"0 60px","maxWidth":1000,"margin":"0 auto"}}>
+                                    <ItemsCarousel
+                                        // Placeholder configurations
+                                        enablePlaceholder
+                                        numberOfPlaceholderItems={3}
+                                        minimumPlaceholderTime={1000}
+                                        placeholderItem={
+                                            <div id="event-placeholder">
+                                                <Spinner id="event-placeholder-spinner" as="span" animation="grow"
+                                                         size="sm" role="status" aria-hidden="true"/>
+                                                Loading Event Data...
+                                            </div>}
 
-                                        <div className="carousel-inner" role="listbox">
+                                        // Carousel configurations
+                                        numberOfCards={3}
+                                        gutter={12}
+                                        showSlither={true}
+                                        firstAndLastGutter={false}
+                                        freeScrolling={false}
 
-                                            <div className="carousel-item active">
-                                                <div className="row justify-content-center">
-                                                    <div className="col-sm-3">
-                                                        <div className="card">
-                                                            <img className="card-img-top"
-                                                                 src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg"
-                                                                 alt="Card image cap"/>
-                                                            <div className="card-body">
-                                                                <h4 className="card-title">Card title</h4>
-                                                                <p className="card-text">Some quick example text to build on the card
-                                                                    title
-                                                                    and
-                                                                    make up the bulk of the
-                                                                    card's content.</p>
-                                                                <a className="btn btn-primary">Button</a>
-                                                            </div>
-                                                            <div className="card-footer">
-                                                                <p className="text-muted">Last updated 3 mins ago</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                        // Active item configurations
+                                        requestToChangeActive={this.changeActiveItem}
+                                        activeItemIndex={activeItemIndex}
+                                        activePosition={'center'}
 
-                                                    <div className="col-sm-3">
-                                                        <div className="card">
-                                                            <img className="card-img-top"
-                                                                 src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(18).jpg"
-                                                                 alt="Card image cap"/>
-                                                            <div className="card-body">
-                                                                <h4 className="card-title">Card title</h4>
-                                                                <p className="card-text">Some quick example text to build on the card
-                                                                    title
-                                                                    and
-                                                                    make up the bulk of the
-                                                                    card's content.</p>
-                                                                <a className="btn btn-primary">Button</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="col-sm-3">
-                                                        <div className="card">
-                                                            <img className="card-img-top"
-                                                                 src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
-                                                                 alt="Card image cap"/>
-                                                            <div className="card-body">
-                                                                <h4 className="card-title">Card title</h4>
-                                                                <p className="card-text">Some quick example text to build on the card
-                                                                    title
-                                                                    and
-                                                                    make up the bulk of the
-                                                                    card's content.</p>
-                                                                <a className="btn btn-primary">Button</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                        chevronWidth={80}
+                                        rightChevron={
+                                            <i className="fas fa-chevron-right"/>
+                                        }
+                                        leftChevron={
+                                            <i className="fas fa-chevron-left"/>
+                                        }
+                                        outsideChevron={true}
+                                    >
+                                        {Array.from(events).map((_, i) =>
+                                            <div className="card card-event" key={i}>
+                                                <img className="card-img-top card-img-event"
+                                                     src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(48).jpg"
+                                                     alt="Card image cap"/>
+                                                <div className="card-body card-body-event">
+                                                    <h4 className="card-title">{events[i].eventTitle}</h4>
+                                                    <p className="card-text card-text-event text-muted display-linebreak">
+                                                        <i className="fa fa-calendar"/> {events[i].getEventDateTimeStringForCard()}
+                                                        <i className="fa fa-map-marker"/> {events[i].eventLocation}
+                                                    </p>
+                                                    <a className="btn btn-primary btn-event-details" id={events[i].eventId}
+                                                       onClick={this.detailsHandler}>Details</a>
+                                                </div>
+                                                <div className="card-footer text-info">
+                                                    {events[i].getAttendees()}
                                                 </div>
                                             </div>
-
-                                            <div className="carousel-item">
-                                                <div className="row justify-content-center">
-                                                    <div className="col-sm-3">
-                                                        <div className="card">
-                                                            <img className="card-img-top"
-                                                                 src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg"
-                                                                 alt="Card image cap"/>
-                                                            <div className="card-body">
-                                                                <h4 className="card-title">Card title</h4>
-                                                                <p className="card-text">Some quick example text to build on the card
-                                                                    title
-                                                                    and
-                                                                    make up the bulk of the
-                                                                    card's content.</p>
-                                                                <a className="btn btn-primary">Button</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="col-sm-3">
-                                                        <div className="card">
-                                                            <img className="card-img-top"
-                                                                 src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(47).jpg"
-                                                                 alt="Card image cap"/>
-                                                            <div className="card-body">
-                                                                <h4 className="card-title">Card title</h4>
-                                                                <p className="card-text">Some quick example text to build on the card
-                                                                    title
-                                                                    and
-                                                                    make up the bulk of the
-                                                                    card's content.</p>
-                                                                <a className="btn btn-primary">Button</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="col-sm-3">
-                                                        <div className="card">
-                                                            <img className="card-img-top"
-                                                                 src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(48).jpg"
-                                                                 alt="Card image cap"/>
-                                                            <div className="card-body">
-                                                                <h4 className="card-title">Card title</h4>
-                                                                <p className="card-text">Some quick example text to build on the card
-                                                                    title
-                                                                    and
-                                                                    make up the bulk of the
-                                                                    card's content.</p>
-                                                                <a className="btn btn-primary">Button</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <a className="carousel-control-prev" href="#events-nearby-carousel" role="button"
-                                           data-slide="prev">
-                                            <span className="carousel-control-prev-icon" aria-hidden="true"/>
-                                            <span className="sr-only">Previous</span>
-                                        </a>
-                                        <a className="carousel-control-next" href="#events-nearby-carousel" role="button"
-                                           data-slide="next">
-                                            <span className="carousel-control-next-icon" aria-hidden="true"/>
-                                            <span className="sr-only">Next</span>
-                                        </a>
-                                    </div>
+                                        )}
+                                    </ItemsCarousel>
                                 </div>
 
                             </div>
@@ -307,4 +283,14 @@ class Landing extends Component {
     };
 };
 
-export default hot(module) (withRouter(withFirebase(Landing)));
+const Landing = () => (
+    <div>
+        <LandingBase/>
+    </div>
+);
+
+// const condition = authUser => !authUser;
+
+const LandingBase = withFirebase(LandingFormBase);
+
+export default hot(module) (withRouter(Landing));

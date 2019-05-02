@@ -1,6 +1,7 @@
 import React from 'react';
 import {hot} from "react-hot-loader";
 import * as ROUTES from "../constants/routes";
+import {Link} from "react-router-dom";
 
 const Footer = () => {
     return (
@@ -23,7 +24,7 @@ const Footer = () => {
                                 <li><a href=""><i className="fa fa-angle-double-right"/>Home</a></li>
                                 <li><a href="#section03"><i className="fa fa-angle-double-right"/>About</a></li>
                                 <li><a><i className="fa fa-angle-double-right"/>FAQ</a></li>
-                                <li><a href={ROUTES.SIGN_UP}><i className="fa fa-angle-double-right"/>Get Started</a></li>
+                                <li><Link to={ROUTES.SIGN_UP}><i className="fa fa-angle-double-right"/>Get Started</Link></li>
                                 <li><a><i className="fa fa-angle-double-right"/>Videos</a></li>
                             </ul>
                         </div>

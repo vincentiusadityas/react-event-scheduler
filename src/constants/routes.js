@@ -7,3 +7,4 @@ export const AFTER_RESET = '/pw-reset';
 export const PASSWORD_FORGET = '/pw-forget';
 export const CREATE_EVENT = '/create-event';
 export const EVENT = '/event/:eventId';
+export const BROWSE_EVENT = '/browse-event'

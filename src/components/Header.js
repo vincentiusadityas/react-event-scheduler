@@ -13,7 +13,7 @@ class Header extends Component{
         super(props);
         this.currentLocation = window.location.pathname.toString();
 
-        if (this.currentLocation == "/") {
+        if (this.currentLocation === "/") {
             this.currentLocation = "";
         }
 
@@ -49,7 +49,7 @@ class Header extends Component{
                                     {authUser => authUser ?
                                         <div>
                                             <li className="nav-item">
-                                                <a className="nav-link" id="contact">Search Events</a>
+                                                <a className="nav-link" id="search-event">Search Events</a>
                                             </li>
                                             <li className="nav-item line-separator">
                                                 <Link className="nav-link" id="create-event" to={ROUTES.CREATE_EVENT}>Create Event</Link>

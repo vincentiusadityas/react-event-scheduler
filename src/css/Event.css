@@ -68,30 +68,35 @@ label.custom-checkbox input[type="checkbox"] {
     margin-left: 20px;
 }
 
-.custom-checkbox .fa-star {
-    color: gold;
+.custom-checkbox .fa-heart {
+    color: red;
     position: absolute;
-    top: 0.4em;
-    left: -1.25em;
-    font-size: 0.75em;
+    top: 0.3em;
+    left: -0.75em;
+    font-size: 1em;
 }
 
-.custom-checkbox .far.fa-star {
+.custom-checkbox .far.fa-heart {
     color: gray;
 }
 
-.custom-checkbox .fas.fa-star {
+.custom-checkbox .fas.fa-heart {
     opacity: 0;
     transition: opacity 0.2s ease-in-out;
 }
 
-.custom-checkbox:hover .fas.fa-star{
+.custom-checkbox:hover .fas.fa-heart{
     opacity: 0.5;
 }
 
-.custom-checkbox input[type="checkbox"]:checked ~ .fas.fa-star {
+.custom-checkbox input[type="checkbox"]:checked ~ .fas.fa-heart {
     opacity: 1;
 }
+
+span#bookmark-text {
+    margin-left: 10px
+}
+
 #click-me {
     margin-right: auto;
 }

@@ -18,11 +18,13 @@
     "react-cookie": "^3.1.2",
     "react-dom": "16.8.6",
     "react-hot-loader": "^4.8.0",
+    "react-items-carousel": "^2.3.5",
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
     "recompose": "^0.30.0",
     "webpack-jquery-ui": "^2.0.1",
-    "yarn": "^1.15.2"
+    "yarn": "^1.15.2",
+    "lodash": "latest"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

@@ -9,7 +9,6 @@ import {withRouter} from "react-router-dom";
 import { DateTimePicker } from '@syncfusion/ej2-calendars';
 
 import '../css/CreateEvent.css'
-import * as ROUTES from "../constants/routes";
 import {eventCategories} from "../constants/event-categories";
 import {hot} from "react-hot-loader";
 
@@ -43,7 +42,8 @@ class CreateEventFormBase extends Component {
             let animating; //flag to prevent quick multi-click glitches
 
             $(".next").click(function(){
-                if($("#msform")[0].checkValidity()) {
+                const msform = $('#msform');
+                if(msform[0].checkValidity()) {
                     if(animating) return false;
                     animating = true;
 
@@ -59,7 +59,7 @@ class CreateEventFormBase extends Component {
 
                     //hide the current fieldset with style
                     current_fs.animate({opacity: 0}, {
-                        step: function(now, mx) {
+                        step: function(now) {
                             //as the opacity of current_fs reduces to 0 - stored in "now"
                             //1. scale current_fs down to 80%
                             scale = 1 - (1 - now) * 0.2;
@@ -85,7 +85,7 @@ class CreateEventFormBase extends Component {
                     });
 
                 } else {
-                    $("#msform")[0].reportValidity();
+                    msform[0].reportValidity();
                 }
             });
 
@@ -105,7 +105,7 @@ class CreateEventFormBase extends Component {
 
                 //hide the current fieldset with style
                 current_fs.animate({opacity: 0}, {
-                    step: function(now, mx) {
+                    step: function(now) {
                         //as the opacity of current_fs reduces to 0 - stored in "now"
                         //1. scale previous_fs from 80% to 100%
                         scale = 0.8 + (1 - now) * 0.2;
@@ -150,9 +150,9 @@ class CreateEventFormBase extends Component {
                 this.each(function() {
                     $(this).before("<span class='currency-symbol'>$</span>");
                     $(this).change(function() {
-                        var min = parseFloat($(this).attr("min"));
-                        var max = parseFloat($(this).attr("max"));
-                        var value = this.valueAsNumber;
+                        const min = parseFloat($(this).attr("min"));
+                        const max = parseFloat($(this).attr("max"));
+                        let value = this.valueAsNumber;
                         if(value < min)
                             value = min;
                         else if(value > max)
@@ -166,7 +166,7 @@ class CreateEventFormBase extends Component {
 
             $("#org_name").prop("disabled", true);
             $('input:radio[name="eventOrganizer"]').change(function() {
-                if ($(this).val() == 3) {
+                if ($(this).val() === 3) {
                     $("#org_name").prop("disabled", false);
                 } else {
                     $("#org_name").prop("disabled", true);
@@ -178,7 +178,7 @@ class CreateEventFormBase extends Component {
             $('input:radio[name="eventTicket"]').change(function() {
                 $("#quantity-wrapper").show();
                 $("#ticket-quantity").attr("required", "true");
-                if ($(this).val() == 1) {
+                if ($(this).val() === 1) {
                     $("#price-wrapper").hide();
                     $("#ticket-price").removeAttr("required");
                 } else {
@@ -206,13 +206,13 @@ class CreateEventFormBase extends Component {
         event.preventDefault();
         const data = new FormData(event.target);
 
-        console.log(data)
-        console.log(data.entries());
+        // console.log(data)
+        // console.log(data.entries());
         const dataDict = {};
         for(let pair of data.entries()) {
             dataDict[pair[0]] = pair[1];
         }
-        console.log(dataDict);
+        // console.log(dataDict);
 
         this.createNewEvent(dataDict);
 
@@ -233,7 +233,7 @@ class CreateEventFormBase extends Component {
 
         const userRef = firebase.database().ref('/users/' + userId);
         newEventRef.set(data)
-            .then((data) => {
+            .then(() => {
                 const key = newEventRef.key;
                 // console.log('key: ', key);
                 const eventCreated = [key];
@@ -250,7 +250,7 @@ class CreateEventFormBase extends Component {
                 //error callback
                 console.log('error: ' , error)
         });
-    }
+    };
 
     onChange = event => {
         this.setState({ [event.target.name]: event.target.value });
@@ -262,14 +262,11 @@ class CreateEventFormBase extends Component {
             eventDescription,
             eventOrganizer,
             eventLocation,
-            eventStart,
-            eventEnd,
             eventTicket,
             eventTicketQ,
             eventTicketP,
             eventPrivacy,
             eventCategory,
-            error,
             eventCategories
         } = this.state;
 
@@ -430,7 +427,7 @@ class CreateEventFormBase extends Component {
                             <label className="org_label"> Event Categories </label>
                             <select name="eventCategory" id="category-select"
                                     value={eventCategory} onChange={this.onChange} >
-                                <option className="required" value="Select a category" value="Select a category">Select a category</option>
+                                <option className="required" value="Select a category">Select a category</option>
                                 { eventCategories.map((item, idx) => (
                                     <option key={idx} value={item}>{item}</option>
                                 ))}

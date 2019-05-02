@@ -9,6 +9,7 @@ import {Badge, Button, Card, Col, Form, Jumbotron, Modal, OverlayTrigger, Popove
 import '../css/Event.css'
 import * as ROUTES from "../constants/routes";
 import {hot} from "react-hot-loader";
+import EventModel from  "./Models/EventModel"
 
 class EventFormBase extends Component {
     _isMounted = true;
@@ -65,11 +66,13 @@ class EventFormBase extends Component {
             // console.log(data);
 
             if (data != null && data.length !== 0) {
-                const date = data.eventStart.split(" ")[0];
-                const eventStatus = EventFormBase.getEventStatus(data.eventPrivacy);
-                const ticketStatus = EventFormBase.getTicketStatus(data.eventTicket);
-                const eventDateTime = EventFormBase.getEventDateTimeString(data.eventStart, data.eventEnd);
-                const numOfPeople = EventFormBase.getAttendees(data.attendees);
+                const eventModel = new EventModel(eventId, data);
+
+                const date = eventModel.getStartDate();
+                const privacyStatus = eventModel.getPrivacyStatus();
+                const ticketStatus = eventModel.getTicketStatus();
+                const eventDateTime = eventModel.getEventDateTimeString();
+                const numOfPeople = eventModel.getAttendees();
                 this.getCreatorData(data.creatorId, data.eventOrganizer);
 
                 if (userId !== "" ){
@@ -80,7 +83,7 @@ class EventFormBase extends Component {
                     userId: userId,
                     event: data,
                     date: date,
-                    eventStatus: eventStatus,
+                    eventStatus: privacyStatus,
                     ticketStatus: ticketStatus,
                     isSoldOut: data.eventTicketLeft <= 0,
                     eventDateTime: eventDateTime,
@@ -721,9 +724,9 @@ class EventFormBase extends Component {
                                             >
                                                 <label htmlFor="bookmark-event" className="custom-checkbox">
                                                     <input type="checkbox" id="bookmark-event" onChange={this.bookmarkHandler} checked={isBookmarked}/>
-                                                    <i className="far fa-star"/>
-                                                    <i className="fas fa-star"/>
-                                                    <span>Bookmark Event</span>
+                                                    <i className="far fa-heart"/>
+                                                    <i className="fas fa-heart"/>
+                                                    <span id="bookmark-text">Save Event</span>
                                                 </label>
                                             </OverlayTrigger>
                                         </Col>
