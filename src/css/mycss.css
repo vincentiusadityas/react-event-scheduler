@@ -5,20 +5,20 @@
         height:100%;
     }
 
-    ul li {
+    ul.navbar-nav li {
         display: inline-block;
         padding: 0 10px;
     }
 
-    ul li:last-child {
+    ul.navbar-nav li:last-child {
         padding: 0 0;
     }
 
-    ul li:nth-last-child(2) {
+    ul.navbar-nav li:nth-last-child(2) {
         padding-right: 0px;
     }
 
-    ul li.line-separator {
+    ul.navbar-nav li.line-separator {
         border-right: 1px solid rgb(255, 255, 255);
         padding-left: 10px;
     }

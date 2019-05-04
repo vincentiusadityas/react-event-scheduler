@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import {
-    BrowserRouter as Router,
     Switch,
-    Route, withRouter
+    Route,
+    withRouter
 } from 'react-router-dom'
 
 import * as ROUTES from '../constants/routes';
@@ -15,6 +15,7 @@ import PasswordForgetPage from "./PasswordForget";
 import AfterResetPage from "./AfterResetPassword";
 import CreateEvent from "./CreateEvent";
 import Event from "./Event";
+import BrowseEvent from "./BrowseEvent";
 
 // The Main component renders one of the three provided
 // Routes (provided that one matches). Both the /roster
@@ -40,6 +41,7 @@ class Main extends Component {
                     <Route path={ROUTES.AFTER_RESET} component={withRouter(AfterResetPage)}/>
                     <Route path={ROUTES.CREATE_EVENT} component={withRouter(CreateEvent)}/>
                     <Route path={ROUTES.EVENT} component={withRouter(Event)}/>
+                    <Route path={ROUTES.BROWSE_EVENT} component={withRouter(BrowseEvent)}/>
                 </Switch>
         );
     };

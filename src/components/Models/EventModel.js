@@ -208,9 +208,21 @@ class EventModel {
         }
     }
 
+    getEventStartTimeForCard() {
+        const split_start = this._eventStart.split(" ");
+
+        const options = { weekday: 'long', month: 'short', day: 'numeric' };
+
+        const date_start = new Date(split_start[0]);
+        const str_date_start = date_start.toLocaleDateString("en-US", options);
+
+        let composed_str = str_date_start;
+
+        return composed_str;
+    }
+
     getEventDateTimeStringForCard() {
         const split_start = this._eventStart.split(" ");
-        const split_end = this._eventEnd.split(" ");
 
         const options = { weekday: 'short', month: 'short', day: 'numeric' };
 

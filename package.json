@@ -11,9 +11,11 @@
     "intl-tel-input": "^15.0.1",
     "jquery": "^3.4.0",
     "jquery-ui-bundle": "^1.12.1-migrate",
+    "lodash": "latest",
     "path": "^0.12.7",
     "prop-types": "latest",
     "react": "16.8.6",
+    "react-autosuggest": "^9.4.3",
     "react-bootstrap": "^1.0.0-beta.6",
     "react-cookie": "^3.1.2",
     "react-dom": "16.8.6",
@@ -23,8 +25,7 @@
     "react-scripts": "2.1.8",
     "recompose": "^0.30.0",
     "webpack-jquery-ui": "^2.0.1",
-    "yarn": "^1.15.2",
-    "lodash": "latest"
+    "yarn": "^1.15.2"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

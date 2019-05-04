@@ -209,15 +209,15 @@ class EventFormBase extends Component {
         return composed_str;
     }
 
-    static getAttendees(data) {
-        const user = data.user ? data.user.length : 0;
-        const guest = data.guest ? data.guest.length : 0;
-        if ((user+guest) === 1){
-            return "1 person is going";
-        } else {
-            return (user+guest) + " people are going";
-        }
-    }
+    // static getAttendees(data) {
+    //     const user = data.user ? data.user.length : 0;
+    //     const guest = data.guest ? data.guest.length : 0;
+    //     if ((user+guest) === 1){
+    //         return "1 person is going";
+    //     } else {
+    //         return (user+guest) + " people are going";
+    //     }
+    // }
 
     registerUserToEvent() {
         const data = this.state.event;

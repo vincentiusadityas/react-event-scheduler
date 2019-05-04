@@ -122,7 +122,7 @@ class LandingFormBase extends Component {
                             <div className="container scn-pg">
                                 <div className="row scn-pg-title">
                                     <h3>Events Near You</h3>
-                                    <a href="#" id="see-all-event">See all</a>
+                                    <Link to={ROUTES.BROWSE_EVENT} id="see-all-event">See all</Link>
                                 </div>
 
                                 <div id="event-carousel" style={{"padding":"0 60px","maxWidth":1000,"margin":"0 auto"}}>
@@ -164,7 +164,7 @@ class LandingFormBase extends Component {
                                                 <img className="card-img-top card-img-event"
                                                      src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(48).jpg"
                                                      alt="Card image cap"/>
-                                                <div className="card-body card-body-event">
+                                                <div className="card-body">
                                                     <h4 className="card-title">{events[i].eventTitle}</h4>
                                                     <p className="card-text card-text-event text-muted display-linebreak">
                                                         <i className="fa fa-calendar"/> {events[i].getEventDateTimeStringForCard()}
@@ -291,6 +291,6 @@ const Landing = () => (
 
 // const condition = authUser => !authUser;
 
-const LandingBase = withFirebase(LandingFormBase);
+const LandingBase = withRouter(withFirebase(LandingFormBase));
 
-export default hot(module) (withRouter(Landing));
+export default hot(module) (withRouter(withFirebase(Landing)));

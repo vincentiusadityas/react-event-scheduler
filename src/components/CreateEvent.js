@@ -176,9 +176,10 @@ class CreateEventFormBase extends Component {
             $("#quantity-wrapper").hide();
             $("#price-wrapper").hide();
             $('input:radio[name="eventTicket"]').change(function() {
+                console.log($(this).val());
                 $("#quantity-wrapper").show();
                 $("#ticket-quantity").attr("required", "true");
-                if ($(this).val() === 1) {
+                if ($(this).val() == 1) {
                     $("#price-wrapper").hide();
                     $("#ticket-price").removeAttr("required");
                 } else {

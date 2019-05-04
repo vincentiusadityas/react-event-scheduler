@@ -28,7 +28,7 @@ class Header extends Component{
                     <div className="container">
                         <AuthUserContext.Consumer>
                             {authUser => authUser ?
-                                <Link className="navbar-brand" to={ROUTES.HOME}>
+                                <Link className="navbar-brand" to={ROUTES.BROWSE_EVENT}>
                                     {/*<img id="logo" src="./../img/groupevent.ico" alt=""/>*/}
                                     MyEvent
                                 </Link>
