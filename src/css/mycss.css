@@ -607,3 +607,7 @@ section .section-title {
         margin-bottom: 10px;
     }
 }
+
+.validation-advice{
+    color: red;
+}

@@ -8,6 +8,7 @@ import {withRouter} from "react-router-dom";
 
 import '../css/Account.css'
 import * as ROUTES from "../constants/routes";
+import {Button, Spinner} from "react-bootstrap";
 
 class AccountFormBase extends Component {
 
@@ -15,7 +16,7 @@ class AccountFormBase extends Component {
         super(props);
 
         this.state = {
-            loading: false,
+            isLoading: false,
             user: [],
             description: "",
         };
@@ -37,6 +38,15 @@ class AccountFormBase extends Component {
                 }
             });
 
+
+            $('#validation-item-custom-old-password').hide();
+            $('#validation-item-custom-old-password-wrong').hide();
+            $('#validation-item-custom-new-password').hide();
+            $('#validation-item-custom-new-password-confirm').hide();
+            $('#validation-item-custom-new-password-not-match').hide();
+            $('#validation-item-custom-new-password-not-strong').hide();
+            $('#change-pw-btn').prop('disabled', true);
+
             // console.log("waaa")
             $("#profile-edit-btn").click(function() {
                 $(".my-profile").prop("readonly", false);
@@ -44,6 +54,7 @@ class AccountFormBase extends Component {
                 $("#profile-save-btn").show();
                 $("#description").css('background-color', 'white');
 
+                $('#change-pw-btn').prop('disabled', false);
                 $('#oldPassword').prop('disabled', false);
                 $('#newPassword').prop('disabled', false);
                 $('#newPasswordConfirm').prop('disabled', false);
@@ -57,6 +68,7 @@ class AccountFormBase extends Component {
                 $('#oldPassword').val("");
                 $('#newPassword').val("");
                 $('#newPasswordConfirm').val("");
+                $('#change-pw-btn').prop('disabled', true);
             });
         });
     };
@@ -86,6 +98,7 @@ class AccountFormBase extends Component {
         event.preventDefault();
         const data = new FormData(event.target);
 
+        $('#change-pw-btn').prop('disabled', true);
         $('#oldPassword').prop('disabled', true);
         $('#newPassword').prop('disabled', true);
         $('#newPasswordConfirm').prop('disabled', true);
@@ -120,8 +133,99 @@ class AccountFormBase extends Component {
         });
     };
 
-    handlePasswordChange = event => {
+    handlePasswordChange = (event) => {
+        event.preventDefault();
+        console.log("test");
+        let isValid = false;
+        const oldPw = $('#oldPassword').val();
+        const newPw = $('#newPassword').val();
+        const newPwConfirm = $('#newPasswordConfirm').val();
 
+        if(oldPw === "") {
+            $('#validation-item-custom-old-password').show();
+            isValid = false;
+        } else {
+            $('#validation-item-custom-old-password').hide();
+            isValid = true;
+        }
+        if(newPw === "") {
+            $('#validation-item-custom-new-password').show();
+            isValid = false;
+        } else {
+            $('#validation-item-custom-new-password').hide();
+            if(newPw.length < 5 || !/\d/.test(newPw)) {
+                console.log("wrong")
+                $('#validation-item-custom-new-password-not-strong').show();
+                isValid = false;
+            } else {
+                $('#validation-item-custom-new-password-not-strong').hide();
+                isValid = true;
+            }
+        }
+        if(newPwConfirm === "") {
+            $('#validation-item-custom-new-password-confirm').show();
+            isValid = false;
+        } else {
+            $('#validation-item-custom-new-password-confirm').hide();
+            isValid = true;
+        }
+        if(newPw !== newPwConfirm) {
+            $('#validation-item-custom-new-password-not-match').show();
+            isValid = false;
+        } else {
+            $('#validation-item-custom-new-password-not-match').hide();
+            if(newPw.length < 5 || !/\d/.test(newPw)) {
+                console.log("wrong")
+                $('#validation-item-custom-new-password-not-strong').show();
+                isValid = false;
+            } else {
+                $('#validation-item-custom-new-password-not-strong').hide();
+                isValid = true;
+            }
+        }
+
+        if (isValid) {
+            this.setState({ isLoading: true });
+            $('#change-pw-btn').prop('disabled', true);
+            $('#oldPassword').prop('disabled', true);
+            $('#newPassword').prop('disabled', true);
+            $('#newPasswordConfirm').prop('disabled', true);
+            this.changePassword(oldPw, newPw);
+            console.log("password changed");
+        }
+    };
+
+    changePassword = (currentPassword, newPassword) => {
+        this.reauthenticate(currentPassword).then(() => {
+            const user = firebase.auth().currentUser;
+            user.updatePassword(newPassword).then(() => {
+
+                alert("Password update success!");
+                this.setState({ isLoading: false });
+
+                $('#oldPassword').val("");
+                $('#newPassword').val("");
+                $('#newPasswordConfirm').val("");
+                $('#change-pw-btn').prop('disabled', false);
+                $('#oldPassword').prop('disabled', false);
+                $('#newPassword').prop('disabled', false);
+                $('#newPasswordConfirm').prop('disabled', false);
+                $('#validation-item-custom-old-password-wrong').hide();
+
+            }).catch((error) => {
+                console.log(error);
+            });
+        }).catch((error) => {
+            console.log(error);
+            $('#validation-item-custom-old-password-wrong').show();
+        });
+    };
+
+    reauthenticate = (currentPassword) => {
+        const user = firebase.auth().currentUser;
+        const cred = firebase.auth.EmailAuthProvider.credential(
+            user.email, currentPassword);
+        return user.reauthenticateWithCredential(cred);
     };
 
     onChange = event => {
@@ -129,7 +233,7 @@ class AccountFormBase extends Component {
     };
 
     render() {
-        let { user, loading, description } = this.state;
+        let { user, isLoading, description } = this.state;
 
         // if (loading) {
 
@@ -317,6 +421,12 @@ class AccountFormBase extends Component {
                                                     <p className="custom-headers"> Old Password </p>
                                                     <input type="password" className="form-control my-profile" name="oldPassword"
                                                            id="oldPassword" onChange={this.onChange} readOnly/>
+                                                    <div id="validation-item-custom-old-password"
+                                                         className="validation-advice">This is a required field.
+                                                    </div>
+                                                    <div id="validation-item-custom-old-password-wrong"
+                                                         className="validation-advice">Password invalid.
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div className="row form-change-password">
@@ -324,6 +434,12 @@ class AccountFormBase extends Component {
                                                     <p className="custom-headers"> New Password </p>
                                                     <input type="password" className="form-control my-profile" name="newPassword"
                                                            id="newPassword" onChange={this.onChange} readOnly/>
+                                                    <div id="validation-item-custom-new-password"
+                                                         className="validation-advice">This is a required field.
+                                                    </div>
+                                                    <div id="validation-item-custom-new-password-not-strong"
+                                                         className="validation-advice">Password must have at least 5 characters and contains a number.
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div className="row form-change-password">
@@ -331,6 +447,37 @@ class AccountFormBase extends Component {
                                                     <p className="custom-headers"> Confirm New Password </p>
                                                     <input type="password" className="form-control my-profile" name="newPasswordConfirm"
                                                            id="newPasswordConfirm" onChange={this.onChange} readOnly/>
+                                                    <div id="validation-item-custom-new-password-confirm"
+                                                         className="validation-advice">This is a required field.
+                                                    </div>
+                                                    <div id="validation-item-custom-new-password-not-match"
+                                                         className="validation-advice">Password does not match.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br/>
+                                            <div className="row form-change-password">
+                                                <div className="col-md-8">
+                                                    <a onClick={this.handlePasswordChange}
+                                                       className="change-pw-bt">
+                                                        <Button variant="primary" id="change-pw-btn">
+                                                            {isLoading ?
+                                                                <div>
+                                                                    <Spinner
+                                                                    as="span"
+                                                                    animation="border"
+                                                                    size="sm"
+                                                                    role="status"
+                                                                    aria-hidden="true"
+                                                                    /> <span> Changing </span>
+                                                                </div>
+                                                                :
+                                                                <div>
+                                                                    Change Password
+                                                                </div>
+                                                            }
+                                                        </Button>
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
