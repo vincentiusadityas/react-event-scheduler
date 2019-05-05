@@ -7,8 +7,7 @@ import {withFirebase} from "./Firebase";
 import {withRouter} from "react-router-dom";
 
 import '../css/Account.css'
-import * as ROUTES from "../constants/routes";
-import {Button, Spinner} from "react-bootstrap";
+import {Button, Modal, Spinner} from "react-bootstrap";
 
 class AccountFormBase extends Component {
 
@@ -17,27 +16,28 @@ class AccountFormBase extends Component {
 
         this.state = {
             isLoading: false,
+            showChangePwModal: false,
             user: [],
-            description: "",
+            imgUrl: null,
+            description: '',
         };
 
         $(document).ready(function() {
-            $("input[type=\"file\"]#image-upload").change(function(input) {
-                // console.log(input)
-                // console.log(input.target.files[0])
-                if (input.target.files && input.target.files[0]) {
-                    // console.log("hah")
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        $('#image-preview').css('background-image', 'url('+e.target.result +')');
-                        $('#image-preview').hide();
-                        $('#image-preview').fadeIn(650);
-                    }
-                    // console.log("huh")
-                    reader.readAsDataURL(input.target.files[0]);
-                }
-            });
-
+            // $("input[type=\"file\"]#image-upload").change(function(input) {
+            //     // console.log(input)
+            //     // console.log(input.target.files[0])
+            //     if (input.target.files && input.target.files[0]) {
+            //         // console.log("hah")
+            //         const reader = new FileReader();
+            //         reader.onload = function(e) {
+            //             $('#image-preview').css('background-image', 'url('+e.target.result +')');
+            //             $('#image-preview').hide();
+            //             $('#image-preview').fadeIn(650);
+            //         }
+            //         // console.log("huh")
+            //         reader.readAsDataURL(input.target.files[0]);
+            //     }
+            // });
 
             $('#validation-item-custom-old-password').hide();
             $('#validation-item-custom-old-password-wrong').hide();
@@ -76,23 +76,59 @@ class AccountFormBase extends Component {
     componentDidMount() {
         const userId = firebase.auth().currentUser.uid;
         const userRef = firebase.database().ref('/users/' + userId);
+        const storage = firebase.storage();
 
         userRef.on('value', (snapshot) => {
             // convert messages list from snapshot
             let data = snapshot.val();
             // console.log(data);
 
-            this.setState(
-                { user: data,
+            this.setState({
+                    user: data,
                     loading: true,
                     description: data.description
                 });
         });
+
+        storage.ref('images').child(userId).getDownloadURL().then(url => {
+            this.setState({ imgUrl: url});
+        }, () => {
+            this.setState({ imgUrl: null});
+        })
     };
 
     // componentWillUnmount() {
     //     firebase.database().off();
     // }
+    onImageChange = (input) => {
+
+        // console.log(input.target.files[0])
+        const userId = firebase.auth().currentUser.uid;
+        const storage = firebase.storage();
+        const avatar = input.target.files[0];
+
+        if (input.target.files && avatar) {
+            const reader = new FileReader();
+            const image_preview = $('#image-preview');
+            reader.onload = function(e) {
+                image_preview.css('background-image', 'url('+e.target.result +')');
+                image_preview.hide();
+                image_preview.fadeIn(650);
+            };
+            reader.readAsDataURL(avatar);
+
+            const uploadAvatar = storage.ref('images/'+userId).put(avatar);;
+            uploadAvatar.on('state_changed', (snapshot) => {
+
+            }, (error) => {
+
+            }, () => {
+                storage.ref('images').child(userId).getDownloadURL().then(url => {
+                    console.log(url);
+                });
+            });
+        }
+    };
 
     onSubmit = event => {
         event.preventDefault();
@@ -135,7 +171,7 @@ class AccountFormBase extends Component {
 
     handlePasswordChange = (event) => {
         event.preventDefault();
-        console.log("test");
+        // console.log("test");
         let isValid = false;
         const oldPw = $('#oldPassword').val();
         const newPw = $('#newPassword').val();
@@ -154,7 +190,7 @@ class AccountFormBase extends Component {
         } else {
             $('#validation-item-custom-new-password').hide();
             if(newPw.length < 5 || !/\d/.test(newPw)) {
-                console.log("wrong")
+                // console.log("wrong");
                 $('#validation-item-custom-new-password-not-strong').show();
                 isValid = false;
             } else {
@@ -175,7 +211,7 @@ class AccountFormBase extends Component {
         } else {
             $('#validation-item-custom-new-password-not-match').hide();
             if(newPw.length < 5 || !/\d/.test(newPw)) {
-                console.log("wrong")
+                // console.log("wrong");
                 $('#validation-item-custom-new-password-not-strong').show();
                 isValid = false;
             } else {
@@ -187,9 +223,9 @@ class AccountFormBase extends Component {
         if (isValid) {
             this.setState({ isLoading: true });
             $('#change-pw-btn').prop('disabled', true);
-            $('#oldPassword').prop('disabled', true);
-            $('#newPassword').prop('disabled', true);
-            $('#newPasswordConfirm').prop('disabled', true);
+            oldPw.prop('disabled', true);
+            newPw.prop('disabled', true);
+            newPwConfirm.prop('disabled', true);
             this.changePassword(oldPw, newPw);
             console.log("password changed");
         }
@@ -200,7 +236,7 @@ class AccountFormBase extends Component {
             const user = firebase.auth().currentUser;
             user.updatePassword(newPassword).then(() => {
 
-                alert("Password update success!");
+                this.handleChangePasswordModalShow();
                 this.setState({ isLoading: false });
 
                 $('#oldPassword').val("");
@@ -217,6 +253,15 @@ class AccountFormBase extends Component {
             });
         }).catch((error) => {
             console.log(error);
+            this.setState({ isLoading: false });
+
+            $('#oldPassword').val("");
+            $('#newPassword').val("");
+            $('#newPasswordConfirm').val("");
+            $('#change-pw-btn').prop('disabled', false);
+            $('#oldPassword').prop('disabled', false);
+            $('#newPassword').prop('disabled', false);
+            $('#newPasswordConfirm').prop('disabled', false);
             $('#validation-item-custom-old-password-wrong').show();
         });
     };
@@ -232,10 +277,16 @@ class AccountFormBase extends Component {
         this.setState({ [event.target.name]: event.target.value });
     };
 
-    render() {
-        let { user, isLoading, description } = this.state;
+    handleChangePasswordModalShow = () => {
+        this.setState({ showChangePwModal: true });
+    };
 
-        // if (loading) {
+    handleChangePasswordModalClose = () => {
+        this.setState({ showChangePwModal: false });
+    };
+
+    render() {
+        let { user, isLoading, showChangePwModal, imgUrl, description } = this.state;
 
         const firstName = user.firstName;
         const lastName = user.lastName;
@@ -246,6 +297,22 @@ class AccountFormBase extends Component {
 
         return (
             <div>
+                <Modal
+                    size="sm"
+                    show={showChangePwModal}
+                    onHide={this.handleChangePasswordModalClose}
+                    aria-labelledby="example-modal-sizes-title-sm"
+                >
+                    <Modal.Header closeButton>
+                        <Modal.Title id="example-modal-sizes-title-sm">
+                            Change Password
+                        </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>Password update success!</Modal.Body>
+                    <Modal.Footer>
+                        <Button onClick={this.handleChangePasswordModalClose}>Close</Button>
+                    </Modal.Footer>
+                </Modal>
                 <section id="section-my-account">
                     <div className="container emp-profile top-pg">
                         <form onSubmit={this.onSubmit} id="profile-form">
@@ -253,13 +320,21 @@ class AccountFormBase extends Component {
                                 <div className="col-md-4">
                                     <div className="avatar-upload">
                                         <div className="avatar-edit">
-                                            <input type='file' id="image-upload" accept=".png, .jpg, .jpeg"/>
+                                            <input type='file' id="image-upload" accept=".png, .jpg, .jpeg"
+                                                onChange={this.onImageChange}/>
                                             <label htmlFor="image-upload"/>
                                         </div>
-                                        <div className="avatar-preview">
-                                            <div id="image-preview">
+                                        {imgUrl === null ?
+                                            <div className="avatar-preview">
+                                                <div id="image-preview2">
+                                                </div>
                                             </div>
-                                        </div>
+                                            :
+                                            <div className="avatar-preview">
+                                                <div id="image-preview" style={{backgroundImage: "url(" + imgUrl + ")"}}>
+                                                </div>
+                                            </div>
+                                        }
                                     </div>
                                 </div>
                                 <div className="col-md-6">
@@ -303,10 +378,10 @@ class AccountFormBase extends Component {
                                 <div className="col-md-4">
                                     <div className="profile-work">
                                         <p>ACTIVITIES</p>
-                                        <a href="">My Events</a><br/>
-                                        <a href="">My Bookings</a><br/>
-                                        <a href="">Bookmarks</a><br/>
-                                        <a href="">Event History</a><br/>
+                                        <a>My Events</a><br/>
+                                        <a>My Bookings</a><br/>
+                                        <a>Bookmarks</a><br/>
+                                        <a>Event History</a><br/>
                                     </div>
                                 </div>
                                 <div className="col-md-8">
@@ -375,7 +450,7 @@ class AccountFormBase extends Component {
                                             <div className="row form-about-me">
                                                 <div className="col-md-12">
                                                     <p>Your Bio</p>
-                                                    <textarea type="text" className="form-control my-profile" name="description"
+                                                    <textarea className="form-control my-profile" name="description"
                                                               id="description" value={description} onChange={this.onChange}
                                                               placeholder="Describe yourself here..." readOnly/>
                                                 </div>

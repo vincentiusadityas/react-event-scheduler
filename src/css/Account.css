@@ -87,6 +87,9 @@ section#section-my-account {
 .avatar-preview #image-preview {
     background-image: url("../img/avatar2.png");
 }
+.avatar-preview #image-preview2 {
+    background-image: url("../img/avatar2.png");
+}
 .avatar-preview> div {
     width: 100%;
     height: 100%;

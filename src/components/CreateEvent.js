@@ -143,8 +143,8 @@ class CreateEventFormBase extends Component {
             });
             datepicker_start.appendTo('#datetimepicker-start');
             datepicker_end.appendTo('#datetimepicker-end');
-            datepicker_start.show("time");
-            datepicker_end.show("time");
+            // datepicker_start.show("time");
+            // datepicker_end.show("time");
 
             $.fn.currencyInput = function() {
                 this.each(function() {

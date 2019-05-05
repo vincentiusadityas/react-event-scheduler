@@ -231,7 +231,7 @@ class BrowseEventFormBase extends  Component {
                                         ))
                                         :
                                         <div>
-                                            No events match your search :(
+                                            No event matches your search :(
                                         </div>
                                     }
                                 </ListGroup>
