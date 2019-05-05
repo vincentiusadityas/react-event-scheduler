@@ -7,6 +7,7 @@ import {
 import SignOutButton from './Signout';
 import * as ROUTES from '../constants/routes';
 import { AuthUserContext } from './Session';
+import $ from "jquery";
 
 class Header extends Component{
     constructor(props) {
@@ -19,6 +20,12 @@ class Header extends Component{
 
         // this.authUser = this.props.authUser;
         // console.log(this.authUser);
+        $(function() {
+            $('a[href*=\\#section]').on('click', function(e) {
+                e.preventDefault();
+                $('html, body').animate({ scrollTop: $($(this).attr('href')).offset().top}, 500, 'linear');
+            });
+        });
     }
 
     render() {
@@ -48,17 +55,25 @@ class Header extends Component{
                                 <AuthUserContext.Consumer>
                                     {authUser => authUser ?
                                         <div>
+                                            {/*<li className="nav-item">*/}
+                                                {/*<a className="nav-link" id="search-event">Search Events</a>*/}
+                                            {/*</li>*/}
                                             <li className="nav-item">
-                                                <a className="nav-link" id="search-event">Search Events</a>
+                                                <Link className="nav-link" id="create-event" to={ROUTES.CREATE_EVENT}>Create Event</Link>
                                             </li>
                                             <li className="nav-item line-separator">
-                                                <Link className="nav-link" id="create-event" to={ROUTES.CREATE_EVENT}>Create Event</Link>
+                                                <a className="nav-link" id="contact" href={this.currentLocation + "#section-footer"}>Contact Us</a>
                                             </li>
                                         </div>
                                         :
-                                        <li className="nav-item line-separator">
-                                            <a className="nav-link" id="contact" href={this.currentLocation + "#section-footer"}>Contact Us</a>
-                                        </li>
+                                        <div>
+                                            <li className="nav-item">
+                                                <Link className="nav-link" id="search-event" to={ROUTES.BROWSE_EVENT}>Browse Event</Link>
+                                            </li>
+                                            <li className="nav-item line-separator">
+                                                <a className="nav-link" id="contact" href={this.currentLocation + "#section-footer"}>Contact Us</a>
+                                            </li>
+                                        </div>
                                     }
                                 </AuthUserContext.Consumer>
                                 <AuthUserContext.Consumer>
@@ -74,12 +89,9 @@ class Header extends Component{
                                         :
                                         <div>
                                             <li className="nav-item">
-                                                {/*<a className="nav-link" id="signup" href={ROUTES.SIGN_UP}>Sign Up</a>*/}
                                                 <Link className="nav-link" id="signup" to={ROUTES.SIGN_UP}>Sign Up</Link>
                                             </li>
                                             <li className="nav-item">
-                                                {/*<a className="nav-link" id="login" href={ROUTES.LOG_IN}>Log In</a>*/}
-                                                {/*<Link className="nav-link" id="login" onClick={() => window.location.refresh()} to={ROUTES.LOG_IN}>Log In</Link>*/}
                                                 <Link className="nav-link" id="login" to={ROUTES.LOG_IN}>Log In</Link>
                                             </li>
                                         </div>

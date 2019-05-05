@@ -18,7 +18,6 @@ class AfterResetBase extends Component {
 
     render() {
         const { email } = this.state;
-        console.log("oioi")
         if (email === null) {
             return (
                 <div className="bg">

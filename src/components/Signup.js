@@ -81,7 +81,7 @@ class SignUpFormBase extends Component {
             })
             .then(() => {
                 this.setState({ ...INITIAL_STATE });
-                this.props.history.push(ROUTES.HOME);
+                this.props.history.push(ROUTES.CREATE_EVENT);
             })
             .catch(error => {
                 this.setState({ email: '', error });
@@ -106,9 +106,12 @@ class SignUpFormBase extends Component {
                     <span aria-hidden='true'>&times;</span> </button> \
                     </div>");
             });
-
         event.preventDefault();
-    }
+    };
+
+    onSocialButtonClick = () => {
+        alert("Social sign up is not implemented yet");
+    };
 
     onChange = event => {
         this.setState({ [event.target.name]: event.target.value });
@@ -128,14 +131,14 @@ class SignUpFormBase extends Component {
                 <div className="bg">
                     <div className="error-message">
                     </div>
-                    <section id="section-myform">
+                    <section id="section-signup-form">
                         <article className="card-body mx-auto">
                             <h4 className="card-title text-center">Create Account</h4>
                             <p className="text-center text-hint"> Sign up with your social media account or email address </p>
 
                             <div className="social-btn text-center">
-                                <a href="/signup" className="btn btn-primary btn-lg"><i className="fa fa-facebook"></i> Facebook</a>
-                                <a href="/signup" className="btn btn-danger btn-lg"><i className="fa fa-google"></i> Google</a>
+                                <a href="/signup" onClick={this.onSocialButtonClick} className="btn btn-primary btn-lg"><i className="fa fa-facebook"/> Facebook</a>
+                                <a href="/signup" onClick={this.onSocialButtonClick} className="btn btn-danger btn-lg"><i className="fa fa-google"/> Google</a>
                             </div>
 
                             <p className="divider-text">

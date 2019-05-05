@@ -23,9 +23,9 @@ const Footer = () => {
                             <ul className="list-unstyled quick-links">
                                 <li><a href=""><i className="fa fa-angle-double-right"/>Home</a></li>
                                 <li><a href="#section03"><i className="fa fa-angle-double-right"/>About</a></li>
-                                <li><a><i className="fa fa-angle-double-right"/>FAQ</a></li>
+                                <li><a href="https://www.reddit.com/r/PewdiepieSubmissions/" target="_blank"><i className="fa fa-angle-double-right"/>FAQ</a></li>
                                 <li><Link to={ROUTES.SIGN_UP}><i className="fa fa-angle-double-right"/>Get Started</Link></li>
-                                <li><a><i className="fa fa-angle-double-right"/>Videos</a></li>
+                                <li><a href="https://www.youtube.com/user/PewDiePie" target="_blank"><i className="fa fa-angle-double-right"/>Videos</a></li>
                             </ul>
                         </div>
                         <div className="col-xs-8 col-sm-4 col-md-4">
@@ -42,15 +42,31 @@ const Footer = () => {
                     <div className="row row-social">
                         <div className="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
                             <ul className="list-unstyled list-inline social text-center">
-                                <li className="list-inline-item"><a><i className="fa fa-facebook"/></a>
+                                <li className="list-inline-item">
+                                    <a href="https://www.facebook.com/vincentius.sundjaja" target="_blank">
+                                        <i className="fa fa-facebook"/>
+                                    </a>
                                 </li>
-                                <li className="list-inline-item"><a><i className="fa fa-twitter"/></a>
+                                <li className="list-inline-item">
+                                    <a href="https://twitter.com/vincentius_a" target="_blank">
+                                        <i className="fa fa-twitter"/>
+                                    </a>
                                 </li>
-                                <li className="list-inline-item"><a><i className="fa fa-instagram"/></a>
+                                <li className="list-inline-item">
+                                    <a href="https://www.instagram.com/vincentiusadityas" target="_blank">
+                                        <i className="fa fa-instagram"/>
+                                    </a>
                                 </li>
-                                <li className="list-inline-item"><a><i className="fa fa-google-plus"/></a>
+                                <li className="list-inline-item">
+                                    <a href="https://www.google.com/" target="_blank">
+                                        <i className="fa fa-google-plus"/>
+                                    </a>
                                 </li>
-                                <li className="list-inline-item"><a><i className="fa fa-envelope"/></a></li>
+                                <li className="list-inline-item">
+                                    <a href="https://www.gmail.com/" target="_blank">
+                                        <i className="fa fa-envelope"/>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>

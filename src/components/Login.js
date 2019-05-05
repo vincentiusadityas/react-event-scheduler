@@ -34,7 +34,7 @@ class LoginFormBase extends Component {
             remember: cookies.get('remember') || false
         };
 
-        console.log(this.state.remember)
+        // console.log(this.state.remember)
     };
 
     onSubmit = event => {
@@ -53,7 +53,7 @@ class LoginFormBase extends Component {
             .doSignInWithEmailAndPassword(email, password)
             .then(() => {
                 this.setState({ ...INITIAL_STATE });
-                this.props.history.push(ROUTES.CREATE_EVENT);
+                this.props.history.push(ROUTES.BROWSE_EVENT);
             })
             .catch(error => {
                 this.setState({ error });
@@ -78,8 +78,11 @@ class LoginFormBase extends Component {
                     <span aria-hidden='true'>&times;</span> </button> \
                     </div>");
             });
-
         event.preventDefault();
+    };
+
+    onSocialButtonClick = () => {
+        alert("Social login is not implemented yet");
     };
 
     onChange = event => {
@@ -91,22 +94,21 @@ class LoginFormBase extends Component {
 
         if (remember) {
             $('#rememberMe').prop('checked', true);
-            console.log("remember")
         }
 
         return (
             <div className="bg">
                 <div className="error-message">
                 </div>
-                <section id="section-myform">
+                <section id="section-login-form">
                     <article className="card-body mx-auto">
                         <h4 className="card-title text-center">Log In</h4>
                         <p className="text-center text-hint"> Log in with your social media account or email
                             address </p>
 
                         <div className="social-btn text-center">
-                            <a href="/login" className="btn btn-primary btn-lg"><i className="fa fa-facebook"></i> Facebook</a>
-                            <a href="/login" className="btn btn-danger btn-lg"><i className="fa fa-google"></i> Google</a>
+                            <a href="/login" onClick={this.onSocialButtonClick} className="btn btn-primary btn-lg"><i className="fa fa-facebook"/> Facebook</a>
+                            <a href="/login" onClick={this.onSocialButtonClick} className="btn btn-danger btn-lg"><i className="fa fa-google"/> Google</a>
                         </div>
 
                         <p className="divider-text">
@@ -116,7 +118,7 @@ class LoginFormBase extends Component {
                         <form onSubmit={this.onSubmit}>
                             <div className="form-group input-group">
                                 <div className="input-group-prepend">
-                                    <span className="input-group-text"> <i className="fa fa-envelope"></i> </span>
+                                    <span className="input-group-text"> <i className="fa fa-envelope"/> </span>
                                 </div>
                                 <input id="email" className="form-control" placeholder="Email address" name="email"
                                        onChange={this.onChange} value={email} type="email" required>
@@ -124,7 +126,7 @@ class LoginFormBase extends Component {
                             </div>
                             <div className="form-group input-group">
                                 <div className="input-group-prepend">
-                                    <span className="input-group-text"> <i className="fa fa-lock"></i> </span>
+                                    <span className="input-group-text"> <i className="fa fa-lock"/> </span>
                                 </div>
                                 <input id="password" className="form-control" placeholder="Password" type="password"
                                        name="password" onChange={this.onChange} value={password} required>

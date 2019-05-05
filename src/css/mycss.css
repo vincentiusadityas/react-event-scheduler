@@ -45,7 +45,7 @@ h1 {
 
 .bg {
     /* Full height */
-    height: 100vh;
+    height: 100%;
 
     /* Center and scale the image nicely */
     background: url("../img/event-background.jpg") no-repeat center center fixed;
@@ -57,10 +57,11 @@ h1 {
 
 
 /******************** LOGIN FORM ********************/
-#section-myform {
+#section-login-form {
     width: 100%;
     height: 100%;
     padding-top: 55px;
+    padding-bottom: 120px;
 }
 
 .card-body {
@@ -73,6 +74,7 @@ h1 {
     width: 100%;
     height: 100%;
     padding-top: 80px;
+    padding-bottom: 285px;
 }
 
 .card-body {
@@ -83,7 +85,12 @@ h1 {
 /******************** SIGN UP FORM ********************/
 /*ref: https://bootsnipp.com/snippets/z8699*/
 /*ref: https://www.tutorialrepublic.com/snippets/preview.php?topic=bootstrap&file=sign-up-form-with-rounded-social-buttons*/
-
+#section-signup-form {
+    width: 100%;
+    height: 100%;
+    padding-top: 55px;
+    padding-bottom: 35px;
+}
 .social-btn .btn {
     color: #fff;
     margin: 0 0 0 15px;
@@ -383,7 +390,8 @@ a#scroll{
 
 #section01 {
     /* Full height */
-    height: 100vh;
+    height: 100%;
+    padding-bottom: 30px;
 
     /* Center and scale the image nicely */
     background: url("../img/event-background.jpg") no-repeat center center fixed;

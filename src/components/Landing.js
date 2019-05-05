@@ -201,27 +201,24 @@ class LandingFormBase extends Component {
                                 <div className="row trd-pg-ftr">
                                     <div className="col">
                                         <img src={require("../img/events.png")} className="card-img-top"/>
-                                        <h5 className="ft-title">Card title</h5>
-                                        <p className="ft-text">Some quick example text to build on the card title
-                                            and make up the
-                                            bulk
-                                            of the card's content.</p>
+                                        <h5 className="ft-title">Create Event</h5>
+                                        <p className="ft-text">
+                                            Creating and sharing event on things that you love. Enjoy the togetherness with others.
+                                        </p>
                                     </div>
                                     <div className="col">
                                         <img src={require("../img/events.png")} className="card-img-top"/>
-                                        <h5 className="ft-title">Card title</h5>
-                                        <p className="ft-text">Some quick example text to build on the card title
-                                            and make up the
-                                            bulk
-                                            of the card's content.</p>
+                                        <h5 className="ft-title">Browse Event</h5>
+                                        <p className="ft-text">
+                                            Simple event search on our website will give you the events of your choice.
+                                        </p>
                                     </div>
                                     <div className="col">
                                         <img src={require("../img/events.png")} className="card-img-top"/>
-                                        <h5 className="ft-title">Card title</h5>
-                                        <p className="ft-text">Some quick example text to build on the card title
-                                            and make up the
-                                            bulk
-                                            of the card's content.</p>
+                                        <h5 className="ft-title">Join Event</h5>
+                                        <p className="ft-text">
+                                            Quickly register yourself to the event of your choice. Meet new people, make new friends.
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -238,11 +235,12 @@ class LandingFormBase extends Component {
                                         <img src={require("../img/bulb-clipart.png")} className="card-img-top"/>
                                     </div>
                                     <div className="col-md-6 ft-2-col">
-                                        <h2>Sub-title</h2>
-                                        <h4>Some quick example text to build on the card title
-                                            and make up the
-                                            bulk
-                                            of the card's content.</h4>
+                                        <h2>Experience MyEvent</h2>
+                                        <h4>
+                                            People created events to share their knowledge, to meet new people and make
+                                            new friends, to learn from one another, and to find others with the same hobbies
+                                            and interest.
+                                        </h4>
                                     </div>
                                 </div>
                             </div>
@@ -256,11 +254,12 @@ class LandingFormBase extends Component {
                             <div className="container fifth-pg">
                                 <div className="row">
                                     <div className="col-md-6 ft-3-col">
-                                        <h2>Sub-title</h2>
-                                        <h4>Some quick example text to build on the card title
-                                            and make up the
-                                            bulk
-                                            of the card's content.</h4>
+                                        <h2>Initiative and Imaginative</h2>
+                                        <h4>
+                                            Providing the space for those who are initiative and full of imagination
+                                            to organize their dream event and share with other. Experience the joy of
+                                            togetherness.
+                                        </h4>
                                     </div>
                                     <div className="col-md-4">
                                         <img src={require("../img/bulb-clipart.png")} className="card-img-top"/>
