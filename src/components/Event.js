@@ -23,6 +23,7 @@ class EventFormBase extends Component {
             showBookmarkModal: false,
             showAlert: false,
             showGuestRegistration: false,
+            showEmailUsed: false,
             isLoading: false,
             isLoadingGuest: false,
             isRegistered: false,
@@ -35,16 +36,9 @@ class EventFormBase extends Component {
             guestEmail: '',
         };
 
-        $(document).ready(function () {
-            // $('.custom-checkbox').click(function() {
-            //     console.log("test")
-            //     if ($('#bookmark-event').attr("checked")) {
-            //         console.log("CHECKED");
-            //     } else {
-            //         console.log("NOT CHECKED");
-            //     }
-            // })
-        });
+        // $(document).ready(function () {
+        //
+        // });
     };
 
     componentDidMount() {
@@ -422,7 +416,8 @@ class EventFormBase extends Component {
 
             eventRef.once('value').then((snapshot) => {
                 eventData = snapshot.val();
-                if (!eventData.attendees['guest'].includes(email)) {
+                if (typeof eventData.attendees['guest'] === 'undefined' ||
+                    !eventData.attendees['guest'].includes(email)) {
                     this._isMounted && this.setState({ isLoadingGuest: true }, () => {
                         this.registerGuestToEvent(guestData, eventId).then( () => {
                             this.setState({
@@ -432,8 +427,7 @@ class EventFormBase extends Component {
                         })
                     });
                 } else {
-                    const guestEmail = document.getElementById("guestEmail");
-                    guestEmail.setCustomValidity("This email address is already registered to this event");
+                    this._isMounted && this.setState({ showEmailUsed: true });
                 }
             });
             // console.log(fullName, " ", email);
@@ -530,6 +524,7 @@ class EventFormBase extends Component {
             showBookmarkModal,
             showAlert,
             showGuestRegistration,
+            showEmailUsed,
             isSoldOut,
             guestFullName,
             guestEmail,
@@ -563,6 +558,10 @@ class EventFormBase extends Component {
                                     <Form.Control type="email" placeholder="Email" value={guestEmail}
                                                   name="guestEmail" onChange={this.onChange}
                                                   disabled={isLoadingGuest} required/>
+                                    <div id="validation-item-custom-email-used" className="validation-advice"
+                                         hidden={!showEmailUsed}>
+                                        This email address is already registered to this event.
+                                    </div>
                                 </Col>
                             </Form.Group>
                             <Form.Group controlId="getEmailCheckbox">
@@ -621,9 +620,11 @@ class EventFormBase extends Component {
                         <Button variant="secondary" onClick={this.handleAlertClose}>
                             Close
                         </Button>
-                        <Button variant="primary" onClick={this.handleAlertClose}>
-                            Login Now
-                        </Button>
+                        <Link to={ROUTES.LOG_IN}>
+                            <Button variant="primary">
+                                Login Now
+                            </Button>
+                        </Link>
                     </Modal.Footer>
                 </Modal>
 
