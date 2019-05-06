@@ -175,23 +175,23 @@ class AccountFormBase extends Component {
         event.preventDefault();
         // console.log("test");
         let isValid = false;
-        const oldPw = $('#oldPassword').val();
-        const newPw = $('#newPassword').val();
-        const newPwConfirm = $('#newPasswordConfirm').val();
+        const oldPw = $('#oldPassword');
+        const newPw = $('#newPassword');
+        const newPwConfirm = $('#newPasswordConfirm');
 
-        if(oldPw === "") {
+        if(oldPw.val() === "") {
             $('#validation-item-custom-old-password').show();
             isValid = false;
         } else {
             $('#validation-item-custom-old-password').hide();
             isValid = true;
         }
-        if(newPw === "") {
+        if(newPw.val() === "") {
             $('#validation-item-custom-new-password').show();
             isValid = false;
         } else {
             $('#validation-item-custom-new-password').hide();
-            if(newPw.length < 5 || !/\d/.test(newPw)) {
+            if(newPw.val().length < 5 || !/\d/.test(newPw.val())) {
                 // console.log("wrong");
                 $('#validation-item-custom-new-password-not-strong').show();
                 isValid = false;
@@ -200,19 +200,19 @@ class AccountFormBase extends Component {
                 isValid = true;
             }
         }
-        if(newPwConfirm === "") {
+        if(newPwConfirm.val() === "") {
             $('#validation-item-custom-new-password-confirm').show();
             isValid = false;
         } else {
             $('#validation-item-custom-new-password-confirm').hide();
             isValid = true;
         }
-        if(newPw !== newPwConfirm) {
+        if(newPw.val() !== newPwConfirm.val()) {
             $('#validation-item-custom-new-password-not-match').show();
             isValid = false;
         } else {
             $('#validation-item-custom-new-password-not-match').hide();
-            if(newPw.length < 5 || !/\d/.test(newPw)) {
+            if(newPw.val().length < 5 || !/\d/.test(newPw.val())) {
                 // console.log("wrong");
                 $('#validation-item-custom-new-password-not-strong').show();
                 isValid = false;
@@ -228,7 +228,7 @@ class AccountFormBase extends Component {
             oldPw.prop('disabled', true);
             newPw.prop('disabled', true);
             newPwConfirm.prop('disabled', true);
-            this.changePassword(oldPw, newPw);
+            this.changePassword(oldPw.val(), newPw.val());
             console.log("password changed");
         }
     };
