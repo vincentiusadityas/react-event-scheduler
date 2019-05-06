@@ -1,3 +1,5 @@
+import EventModel from "./EventModel";
+
 class UserModel {
 
     constructor(id, data) {
@@ -114,3 +116,5 @@ class UserModel {
         this._country = value;
     }
 }
+
+export default UserModel;

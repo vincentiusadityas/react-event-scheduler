@@ -8,6 +8,7 @@ import {withRouter} from "react-router-dom";
 
 import '../css/Account.css'
 import {Button, Modal, Spinner} from "react-bootstrap";
+import UserModel from  "./Models/UserModel"
 
 class AccountFormBase extends Component {
 
@@ -81,10 +82,11 @@ class AccountFormBase extends Component {
         userRef.on('value', (snapshot) => {
             // convert messages list from snapshot
             let data = snapshot.val();
+            const userModel = new UserModel(userId, data);
             // console.log(data);
 
             this.setState({
-                    user: data,
+                    user: userModel,
                     loading: true,
                     description: data.description
                 });

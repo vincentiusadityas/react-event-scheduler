@@ -81,7 +81,7 @@ class EventFormBase extends Component {
 
                 this._isMounted && this.setState({
                     userId: userId,
-                    event: data,
+                    event: eventModel,
                     date: date,
                     eventStatus: privacyStatus,
                     ticketStatus: ticketStatus,
