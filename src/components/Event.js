@@ -1,6 +1,8 @@
 import $ from "jquery";
 import React, {Component} from 'react';
 import * as firebase from "firebase";
+import * as jsPDF from 'jspdf';
+import sgMail from '@sendgrid/mail';
 
 import {withFirebase} from "./Firebase";
 import {Link, withRouter} from "react-router-dom";
@@ -24,11 +26,17 @@ class EventFormBase extends Component {
             showAlert: false,
             showGuestRegistration: false,
             showEmailUsed: false,
+            showEmailNotVerifiedModal: false,
+            showEmailSentModal: false,
+            showDeleteEventModal: false,
+            showBookingSuccessModal: false,
+            isCreator: false,
             isLoading: false,
             isLoadingGuest: false,
             isRegistered: false,
             isSoldOut: false,
             isBookmarked: false,
+            emailVerified: null,
             event: [],
             eventDateTime: '',
             creatorName: '',
@@ -45,10 +53,23 @@ class EventFormBase extends Component {
         this._isMounted= true;
         // const userId = firebase.auth().currentUser.uid;
         // let userId = firebase.auth().currentUser !== null ? firebase.auth().currentUser.uid : "";
+
+        const creatorId = this.props.location.state.creatorId;
+        const eventOrganizer = this.props.location.state.eventOrganizer;
+
         let userId = "";
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
                 userId = firebase.auth().currentUser.uid;
+                this._isMounted && this.setState({
+                    userId: userId,
+                    emailVerified: firebase.auth().currentUser.emailVerified,
+                });
+
+                if (userId !== "" ){
+                    this.checkUserWithEvent(userId, creatorId);
+                    this.getCreatorData(creatorId, eventOrganizer);
+                }
             }
         });
 
@@ -67,14 +88,8 @@ class EventFormBase extends Component {
                 const ticketStatus = eventModel.getTicketStatus();
                 const eventDateTime = eventModel.getEventDateTimeString();
                 const numOfPeople = eventModel.getAttendees();
-                this.getCreatorData(data.creatorId, data.eventOrganizer);
-
-                if (userId !== "" ){
-                    this.checkUserWithEvent(userId);
-                }
 
                 this._isMounted && this.setState({
-                    userId: userId,
                     event: eventModel,
                     date: date,
                     eventStatus: privacyStatus,
@@ -100,21 +115,32 @@ class EventFormBase extends Component {
         this._isMounted && this.setState({ [event.target.name]: event.target.value });
     };
 
-    checkUserWithEvent(userId) {
+    checkUserWithEvent(userId, creatorId) {
         const userRef = firebase.database().ref('/users/' + userId);
 
         let userData = {};
+
+        if (userId === creatorId) {
+            this._isMounted && this.setState({
+                isCreator: true,
+            });
+
+        }
+
         userRef.once('value').then((snapshot) => {
             userData = snapshot.val();
 
             const {eventId} = this.props.match.params;
-            const eventRegistered = userData.bookedEvent;
 
+            const eventRegistered = userData.bookedEvent;
             if (eventRegistered && eventRegistered.includes(eventId)) {
                 this._isMounted && this.setState({
                     isRegistered: true,
+                    userName: userData.firstName + " " + userData.lastName,
+                    userEmail: userData.email,
                 });
             }
+
             const eventBookmarked = userData.bookmarkedEvent;
             if (eventBookmarked && eventBookmarked.includes(eventId)) {
                 this._isMounted && this.setState({
@@ -271,14 +297,26 @@ class EventFormBase extends Component {
         // console.log(event.target.value);
         // const val = event.target.value;
         if (this.state.userId !== "") {
-            this._isMounted && this.setState({ isLoading: true }, () => {
-                this.registerUserToEvent().then(() => {
-                    this.setState({
-                        isLoading: false,
-                        isRegistered: true
+            if (this.state.emailVerified) {
+                this._isMounted && this.setState({ isLoading: true }, () => {
+                    this.registerUserToEvent().then(() => {
+                        // this.sendTicketEmail().then(() => {
+                        //     this.setState({
+                        //         isLoading: false,
+                        //         isRegistered: true
+                        //     });
+                        // });
+                        this.handleBookingSuccessModalShow();
+                        this.setState({
+                            isLoading: false,
+                            isRegistered: true
+                        });
                     });
                 });
-            });
+            } else {
+                this.handleEmailNotVerifiedModalShow();
+            }
+
         } else {
             if (this.state.eventStatus === "Public") {
                 this.handleGuestEventRegisterShow();
@@ -475,6 +513,138 @@ class EventFormBase extends Component {
         return new Promise(resolve => setTimeout(resolve, 1000));
     };
 
+    onSendEmailVerification = () => {
+        // console.log("email sent");
+        this.props.firebase
+            .doSendEmailVerification()
+            .then(() => {
+
+                this.handleEmailSentModalShow();
+            });
+    };
+
+    deleteEventHandler = () => {
+        console.log("event deleted");
+
+        this.handleDeleteEventModalClose();
+    };
+
+    generatePDF(eventId) {
+        const doc = new jsPDF('p', 'mm', 'a4');
+        const imgData = require("../img/events.png");
+        const imgBarcode = require("../img/event-barcode.png");
+        const data = this.state.event;
+
+        doc.setFont('Courier');
+
+        doc.text(eventId,0,0);
+
+        doc.setFontSize(30);
+        doc.text('MyEvent', 83, 20);
+
+        doc.setFontSize(20);
+        doc.text('Organizing events for everyone', 43, 30);
+
+        doc.addImage(imgData, 'JPEG', 20, 40, 85, 60);
+
+        doc.setFontSize(16);
+        doc.text(data.eventTitle, 115, 55);
+        doc.setFontSize(14);
+        doc.text(this.state.eventDateTime, 115, 65);
+        doc.text('Location: ' + data.eventLocation, 115, 80);
+        doc.text('Hosted by: ' + this.state.creatorName, 115, 90);
+
+        doc.setLineWidth(0.05)
+        doc.line(20, 105, 190, 105) // horizontal line
+
+        doc.setFontSize(18);
+        doc.text('ADMISSION TICKET', 75, 115);
+        doc.addImage(imgBarcode, 'JPEG', 80, 118, 50, 50);
+
+        doc.text('TICKET HOLDER DETAILS', 25, 180);
+
+        doc.setFontSize(16);
+        doc.text("Name: " + this.state.userName, 30, 190);
+        doc.text("Email: " + this.state.userEmail, 30, 200);
+        doc.text("Ticket type: " + this.state.ticketStatus, 30, 210);
+        doc.text("Quantity: 1", 30, 220);
+
+        return doc
+    }
+
+    downloadPDF = () => {
+        const {eventId} = this.props.match.params;
+        const pdf = this.generatePDF(eventId);
+        pdf.save(eventId.substr(0,8)+'_'+this.state.userName+'_ticket.pdf')
+    };
+
+    savePDF() {
+        const {eventId} = this.props.match.params;
+        const pdf = this.generatePDF(eventId);
+        const pdfBase64 = pdf.output('datauristring');
+        const fileName = eventId.substr(0,8)+'_'+this.state.userName+'_ticket.pdf';
+
+        return [pdfBase64, fileName];
+
+        // const fs = require('browserify-fs');
+        // fs.writeFileSync('../pdf/'+fileName, pdf);
+    };
+
+    sendTicketEmail() {
+        // const url = 'https://us-central1-eventscheduler-ec6bf.cloudfunctions.net/eventTicketEmail';
+        // const params = new URLSearchParams();
+        sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+        const to = this.state.userEmail;
+        const from = 'noreply@eventscheduler-ec6bf.firebaseapp.com';
+        const subject = 'MyEvent Ticket - ' + this.state.event.eventTitle;
+        const content = 'Hi ' + this.state.userName + ',\n\n' +
+            'Thank you for using MyEvent to book your beloved event!\n' +
+            'In this email, we attached the ticket for your recently booked event.\n' +
+            'Event Id: ' + this.state.event.eventId + '\n' +
+            'Event Name: ' + this.state.event.eventTitle + '\n\n' +
+            'See you on the event! :)';
+        const data = this.savePDF();
+        const file = data[0];
+        const fileName = data[1];
+
+        const msg = {
+            to: to,
+            from: from,
+            subject: subject,
+            text: content,
+            attachments: [
+                {
+                    content: file,
+                    filename: fileName,
+                    type: 'plain/text',
+                    disposition: 'attachment',
+                    contentId: 'pdf'
+                },
+            ],
+        };
+
+        return sgMail.send(msg);
+
+        // params.set('to', this.state.userEmail);
+        // params.set('from', 'noreply@eventscheduler-ec6bf.firebaseapp.com');
+        // params.set('subject', 'MyEvent Ticket - ' + this.state.event.eventTitle);
+        // params.set('content', content);
+
+        // return fetch(url, {
+        //     method: 'POST',
+        //     mode: 'no-cors',
+        //     headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+        //     body: params,
+        // })
+        // .then(function (response) {
+        //     console.log(response);
+        // })
+        // .catch(function (error) {
+        //     console.log(error);
+        // });
+    }
+
     handleBookmarkModalClose = () => {
         this._isMounted && this.setState({ showBookmarkModal: false });
     };
@@ -492,11 +662,11 @@ class EventFormBase extends Component {
     };
 
     handleAlertClose = () => {
-        this._isMounted && this.setState({showAlert: false});
+        this._isMounted && this.setState({ showAlert: false });
     };
 
     handleAlertShow = () => {
-        this._isMounted && this.setState( { showAlert: true });
+        this._isMounted && this.setState({ showAlert: true });
     };
 
     handleGuestEventRegisterClose = () => {
@@ -505,6 +675,38 @@ class EventFormBase extends Component {
 
     handleGuestEventRegisterShow = () => {
         this._isMounted && this.setState( { showGuestRegistration: true });
+    };
+
+    handleEmailNotVerifiedModalClose = () => {
+        this._isMounted && this.setState({ showEmailNotVerifiedModal: false});
+    };
+
+    handleEmailNotVerifiedModalShow = () => {
+        this._isMounted && this.setState({ showEmailNotVerifiedModal: true });
+    };
+
+    handleEmailSentModalClose = () => {
+        this.setState({ showEmailSentModal: false });
+    };
+
+    handleEmailSentModalShow = () => {
+        this.setState({ showEmailSentModal: true });
+    };
+
+    handleDeleteEventModalClose = () => {
+        this.setState({ showDeleteEventModal: false });
+    };
+
+    handleDeleteEventModalShow = () => {
+        this.setState({ showDeleteEventModal: true });
+    };
+
+    handleBookingSuccessModalClose = () => {
+        this.setState({ showBookingSuccessModal: false });
+    };
+
+    handleBookingSuccessModalShow = () => {
+        this.setState({ showBookingSuccessModal: true });
     };
 
     render() {
@@ -520,11 +722,16 @@ class EventFormBase extends Component {
             isLoadingGuest,
             isRegistered,
             isBookmarked,
+            isCreator,
             showBookingCancelModal,
             showBookmarkModal,
             showAlert,
             showGuestRegistration,
             showEmailUsed,
+            showEmailNotVerifiedModal,
+            showEmailSentModal,
+            showDeleteEventModal,
+            showBookingSuccessModal,
             isSoldOut,
             guestFullName,
             guestEmail,
@@ -670,6 +877,82 @@ class EventFormBase extends Component {
                         </Button>
                     </Modal.Footer>
                 </Modal>
+
+                <Modal show={showEmailNotVerifiedModal} onHide={this.handleEmailNotVerifiedModalClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Email Not Verified</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body className="display-linebreak">
+                        <p>
+                            {'\n'}Your email is not verified yet!{'\n'}
+                            Please verify your email to be able to register to events. Check your email for email
+                            verification link or
+                            <a href="javascript:void(0);" onClick={this.onSendEmailVerification}> resend </a> one now.
+                        </p>
+                        <br/>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={this.handleEmailNotVerifiedModalClose}>
+                            Close
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+
+                <Modal
+                    size="sm"
+                    show={showEmailSentModal}
+                    onHide={this.handleEmailSentModalClose}
+                >
+                    <Modal.Header closeButton>
+                        <Modal.Title>
+                            Verification Email
+                        </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>A verification email has been sent. Please check your email!</Modal.Body>
+                    <Modal.Footer>
+                        <Button onClick={this.handleEmailSentModalClose}>Close</Button>
+                    </Modal.Footer>
+                </Modal>
+
+                <Modal show={showDeleteEventModal} onHide={this.handleDeleteEventModalClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Event Deletion</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body className="display-linebreak">
+                        <p>
+                            {'\n'}Are you sure to delete this event?{'\n'}
+                            Your action cannot be undone and all the data of this event will be deleted.{'\n'}
+                        </p>
+                        <br/>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="primary" onClick={this.handleDeleteEventModalClose}>
+                            Cancel
+                        </Button>
+                        <Button variant="danger" onClick={this.deleteEventHandler}>
+                            Delete Event
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+
+                <Modal
+                    size="sm"
+                    show={showBookingSuccessModal}
+                    onHide={this.handleBookingSuccessModalClose}
+                >
+                    <Modal.Header closeButton>
+                        <Modal.Title>
+                            Booking Success
+                        </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>Your booking has been successfully processed! Please {" "}
+                        <a href="javascript:void(0);" onClick={this.downloadPDF}>download</a>
+                        {" "} your ticket.</Modal.Body>
+                    <Modal.Footer>
+                        <Button onClick={this.handleBookingSuccessModalClose}>Close</Button>
+                    </Modal.Footer>
+                </Modal>
+                
                 {event == null || event.length === 0 ?
                     <section id="section-event">
                         <div className="container top-pg-error">
@@ -690,29 +973,38 @@ class EventFormBase extends Component {
                                     <p id="by-org">Hosted by {organizer}</p>
                                 </Col>
                                 <Col md={4}>
-                                    {!isRegistered ?
-                                        <h5 id="going-heading">Are you going? <i id="num-of-people"> {numOfPeople} </i></h5>
+                                    {isCreator ?
+                                        <h5 id="going-heading">This is my event! <i id="num-of-people"> {numOfPeople} to my event </i></h5>
                                         :
-                                        <h5 id="going-heading">You are going! <i id="num-of-people"> {numOfPeople} with you </i></h5>
+                                        !isRegistered ?
+                                            <h5 id="going-heading">Are you going? <i id="num-of-people"> {numOfPeople} </i></h5>
+                                            :
+                                            <h5 id="going-heading">You are going! <i id="num-of-people"> {numOfPeople} with you </i></h5>
+
                                     }
                                     <Row>
                                         <Col md={5}>
-                                            {!isRegistered ?
-                                                <Button className="btn-register" id="btn-register" variant={isSoldOut ? "warning" : "primary"}
-                                                        disabled={isLoading || isSoldOut} onClick={!isLoading ? this.registerHandler : null}>
-                                                    {
-                                                        !isLoading && isSoldOut ? 'Sold Out!'
-                                                        : !isLoading ? 'Register'
-                                                        : 'Loading...'
-                                                    }
+                                            {isCreator?
+                                                <Button className="btn-delete-event" id="btn-register" variant="danger"
+                                                        disabled={isLoading} onClick={this.handleDeleteEventModalShow}>
+                                                    {isLoading ? 'Loading…' : 'Delete Event'}
                                                 </Button>
                                                 :
-                                                <Button className="btn-register" id="btn-register" variant="danger"
-                                                        disabled={isLoading} onClick={this.handleBookingModalShow}>
-                                                    {isLoading ? 'Loading…' : 'Cancel Booking'}
-                                                </Button>
+                                                !isRegistered ?
+                                                    <Button className="btn-register" id="btn-register" variant={isSoldOut ? "warning" : "primary"}
+                                                            disabled={isLoading || isSoldOut} onClick={!isLoading ? this.registerHandler : null}>
+                                                        {
+                                                            !isLoading && isSoldOut ? 'Sold Out!'
+                                                            : !isLoading ? 'Register'
+                                                            : 'Loading...'
+                                                        }
+                                                    </Button>
+                                                    :
+                                                    <Button className="btn-register" id="btn-register" variant="danger"
+                                                            disabled={isLoading} onClick={this.handleBookingModalShow}>
+                                                        {isLoading ? 'Loading…' : 'Cancel Booking'}
+                                                    </Button>
                                             }
-
                                         </Col>
                                         <Col md={7}>
                                             <OverlayTrigger
@@ -731,6 +1023,13 @@ class EventFormBase extends Component {
                                                 </label>
                                             </OverlayTrigger>
                                         </Col>
+                                        {isRegistered ?
+                                            <Col md={7}>
+                                                <a href="javascript:void(0);" onClick={this.downloadPDF}>Download Your Ticket</a>
+                                            </Col>
+                                            :
+                                            <div></div>
+                                        }
                                     </Row>
                                     <hr/>
                                     {/*<p>{ticketStatus} |  {event.eventTicketLeft <= 0 ? 'Tickets sold out!' : 'Quantity: ' + event.eventTicketLeft}</p>*/}
@@ -748,7 +1047,7 @@ class EventFormBase extends Component {
                                     {" "}
                                     {event["eventTicketP"] !== "" ?
                                         <Badge pill variant="success">
-                                            Price: {event["eventTicketP"]}
+                                            Price: ${event["eventTicketP"]}
                                         </Badge>
                                         :
                                         <div/>

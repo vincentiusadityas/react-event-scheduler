@@ -16,6 +16,8 @@ const envKeys = Object.keys(env).reduce((prev, next) => {
 module.exports = {
     entry: "./src/index.js",
     mode: "development",
+    node: { fs: 'empty', net: 'empty', tls: 'empty' },
+    target: 'web',
     module: {
         rules: [
             {

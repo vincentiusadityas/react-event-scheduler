@@ -3,7 +3,7 @@ import 'jquery-ui-bundle';
 import React, {Component} from 'react';
 import * as firebase from "firebase";
 
-import { withAuthorization } from './Session';
+import { withAuthorization, withEmailVerification } from './Session';
 import {withFirebase} from "./Firebase";
 import {withRouter} from "react-router-dom";
 import { DateTimePicker } from '@syncfusion/ej2-calendars';
@@ -11,6 +11,7 @@ import { DateTimePicker } from '@syncfusion/ej2-calendars';
 import '../css/CreateEvent.css'
 import {eventCategories} from "../constants/event-categories";
 import {hot} from "react-hot-loader";
+import {compose} from "recompose";
 
 const INITIAL_STATE = {
     eventTitle: '',
@@ -453,4 +454,11 @@ const condition = authUser => !!authUser;
 
 const CreateEventBase = withRouter(withFirebase(CreateEventFormBase));
 
-export default hot(module) (withAuthorization(condition)(CreateEvent));
+export default compose(
+    withEmailVerification,
+    withAuthorization(condition),
+    withRouter,
+    withFirebase,
+)(CreateEvent)
+
+// export default hot(module) (withAuthorization(condition)(CreateEvent));

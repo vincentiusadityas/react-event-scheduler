@@ -51,8 +51,8 @@ class BrowseEventFormBase extends  Component {
                     titles.push({name: data[key].eventTitle});
                 }
             }
-            console.log(titles);
-            console.log(events);
+            // console.log(titles);
+            // console.log(events);
 
             if (data != null && data.length !== 0) {
                 this._isMounted && this.setState({
@@ -80,7 +80,7 @@ class BrowseEventFormBase extends  Component {
         for(let pair of data.entries()) {
             searchFilters[pair[0]] = pair[1];
         }
-        console.log(searchFilters);
+        // console.log(searchFilters);
 
         let updatedList = this.state.events;
         updatedList = updatedList.filter(function(item){
@@ -100,8 +100,15 @@ class BrowseEventFormBase extends  Component {
 
     detailsHandler = event => {
         const key = event.target.id;
-        // console.log(key);
-        this.props.history.push('event/'+key);
+        const data = event.target.value.split(',');
+        // console.log("DATA ", data[0]);
+        this.props.history.push({
+            pathname: 'event/'+key,
+            state: {
+                creatorId: data[0],
+                eventOrganizer: data[1],
+            }
+        });
     };
 
     // https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Regular_Expressions#Using_Special_Characters
@@ -254,6 +261,12 @@ class BrowseEventFormBase extends  Component {
                                                             </Card.Text>
                                                             <br/>
                                                             <Button variant="primary" id={filtered_events[idx].eventId}
+                                                                    value={
+                                                                        [
+                                                                            filtered_events[idx].creatorId,
+                                                                            filtered_events[idx].eventOrganizer,
+                                                                        ]
+                                                                    }
                                                                     onClick={this.detailsHandler}>Details</Button>
                                                         </Col>
                                                     </Row>

@@ -12,6 +12,7 @@ import {AuthUserContext} from "./Session";
 import Home from "./Home";
 import * as ROUTES from "../constants/routes";
 import EventModel from "./Models/EventModel";
+import BrowseEvent from "./BrowseEvent";
 
 class LandingFormBase extends Component {
     _isMounted = true;
@@ -274,7 +275,7 @@ class LandingFormBase extends Component {
                     </div>
                     :
                     <div>
-                        <Home />
+                        <BrowseEvent />
                     </div>
                 }
             </AuthUserContext.Consumer>

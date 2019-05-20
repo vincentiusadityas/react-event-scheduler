@@ -1,13 +1,14 @@
 import $ from "jquery";
 import React, {Component} from 'react';
 import * as firebase from "firebase";
+import { compose } from 'recompose';
 
-import { withAuthorization } from './Session';
+import { withAuthorization, withEmailVerification } from './Session';
 import {withFirebase} from "./Firebase";
 import {withRouter} from "react-router-dom";
 
 import '../css/Account.css'
-import {Button, Modal, Spinner} from "react-bootstrap";
+import {Badge, Button, Modal, Spinner, Popover, OverlayTrigger} from "react-bootstrap";
 import UserModel from  "./Models/UserModel"
 
 class AccountFormBase extends Component {
@@ -18,9 +19,11 @@ class AccountFormBase extends Component {
         this.state = {
             isLoading: false,
             showChangePwModal: false,
+            showEmailSentModal: false,
             user: [],
             imgUrl: null,
             description: '',
+            emailVerified: null,
         };
 
         $(document).ready(function() {
@@ -88,7 +91,8 @@ class AccountFormBase extends Component {
             this.setState({
                     user: userModel,
                     loading: true,
-                    description: data.description
+                    description: data.description,
+                    emailVerified: firebase.auth().currentUser.emailVerified,
                 });
         });
 
@@ -173,63 +177,66 @@ class AccountFormBase extends Component {
 
     handlePasswordChange = (event) => {
         event.preventDefault();
-        // console.log("test");
-        let isValid = false;
-        const oldPw = $('#oldPassword');
-        const newPw = $('#newPassword');
-        const newPwConfirm = $('#newPasswordConfirm');
 
-        if(oldPw.val() === "") {
-            $('#validation-item-custom-old-password').show();
-            isValid = false;
-        } else {
-            $('#validation-item-custom-old-password').hide();
-            isValid = true;
-        }
-        if(newPw.val() === "") {
-            $('#validation-item-custom-new-password').show();
-            isValid = false;
-        } else {
-            $('#validation-item-custom-new-password').hide();
-            if(newPw.val().length < 5 || !/\d/.test(newPw.val())) {
-                // console.log("wrong");
-                $('#validation-item-custom-new-password-not-strong').show();
+        if (!$('#change-pw-btn').prop('disabled')) {
+            // console.log("test");
+            let isValid = false;
+            const oldPw = $('#oldPassword');
+            const newPw = $('#newPassword');
+            const newPwConfirm = $('#newPasswordConfirm');
+
+            if(oldPw.val() === "") {
+                $('#validation-item-custom-old-password').show();
                 isValid = false;
             } else {
-                $('#validation-item-custom-new-password-not-strong').hide();
+                $('#validation-item-custom-old-password').hide();
                 isValid = true;
             }
-        }
-        if(newPwConfirm.val() === "") {
-            $('#validation-item-custom-new-password-confirm').show();
-            isValid = false;
-        } else {
-            $('#validation-item-custom-new-password-confirm').hide();
-            isValid = true;
-        }
-        if(newPw.val() !== newPwConfirm.val()) {
-            $('#validation-item-custom-new-password-not-match').show();
-            isValid = false;
-        } else {
-            $('#validation-item-custom-new-password-not-match').hide();
-            if(newPw.val().length < 5 || !/\d/.test(newPw.val())) {
-                // console.log("wrong");
-                $('#validation-item-custom-new-password-not-strong').show();
+            if(newPw.val() === "") {
+                $('#validation-item-custom-new-password').show();
                 isValid = false;
             } else {
-                $('#validation-item-custom-new-password-not-strong').hide();
+                $('#validation-item-custom-new-password').hide();
+                if(newPw.val().length < 5 || !/\d/.test(newPw.val())) {
+                    // console.log("wrong");
+                    $('#validation-item-custom-new-password-not-strong').show();
+                    isValid = false;
+                } else {
+                    $('#validation-item-custom-new-password-not-strong').hide();
+                    isValid = true;
+                }
+            }
+            if(newPwConfirm.val() === "") {
+                $('#validation-item-custom-new-password-confirm').show();
+                isValid = false;
+            } else {
+                $('#validation-item-custom-new-password-confirm').hide();
                 isValid = true;
             }
-        }
+            if(newPw.val() !== newPwConfirm.val()) {
+                $('#validation-item-custom-new-password-not-match').show();
+                isValid = false;
+            } else {
+                $('#validation-item-custom-new-password-not-match').hide();
+                if(newPw.val().length < 5 || !/\d/.test(newPw.val())) {
+                    // console.log("wrong");
+                    $('#validation-item-custom-new-password-not-strong').show();
+                    isValid = false;
+                } else {
+                    $('#validation-item-custom-new-password-not-strong').hide();
+                    isValid = true;
+                }
+            }
 
-        if (isValid) {
-            this.setState({ isLoading: true });
-            $('#change-pw-btn').prop('disabled', true);
-            oldPw.prop('disabled', true);
-            newPw.prop('disabled', true);
-            newPwConfirm.prop('disabled', true);
-            this.changePassword(oldPw.val(), newPw.val());
-            console.log("password changed");
+            if (isValid) {
+                this.setState({ isLoading: true });
+                $('#change-pw-btn').prop('disabled', true);
+                oldPw.prop('disabled', true);
+                newPw.prop('disabled', true);
+                newPwConfirm.prop('disabled', true);
+                this.changePassword(oldPw.val(), newPw.val());
+                console.log("password changed");
+            }
         }
     };
 
@@ -287,8 +294,25 @@ class AccountFormBase extends Component {
         this.setState({ showChangePwModal: false });
     };
 
+    handleEmailSentModalShow = () => {
+        this.setState({ showEmailSentModal: true });
+    };
+
+    handleEmailSentModalClose = () => {
+        this.setState({ showEmailSentModal: false });
+    };
+
+    onSendEmailVerification = () => {
+        // console.log("email sent");
+        $('#email-unverified')[0].click(function(){
+        });
+        this.props.firebase
+            .doSendEmailVerification()
+            .then(() => this.handleEmailSentModalShow());
+    };
+
     render() {
-        let { user, isLoading, showChangePwModal, imgUrl, description } = this.state;
+        let { user, isLoading, showChangePwModal, showEmailSentModal, imgUrl, description, emailVerified } = this.state;
 
         const firstName = user.firstName;
         const lastName = user.lastName;
@@ -315,6 +339,23 @@ class AccountFormBase extends Component {
                         <Button onClick={this.handleChangePasswordModalClose}>Close</Button>
                     </Modal.Footer>
                 </Modal>
+
+                <Modal
+                    size="sm"
+                    show={showEmailSentModal}
+                    onHide={this.handleEmailSentModalClose}
+                >
+                    <Modal.Header closeButton>
+                        <Modal.Title>
+                            Verification Email
+                        </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>A verification email has been sent. Please check your email!</Modal.Body>
+                    <Modal.Footer>
+                        <Button onClick={this.handleEmailSentModalClose}>Close</Button>
+                    </Modal.Footer>
+                </Modal>
+
                 <section id="section-my-account">
                     <div className="container emp-profile top-pg">
                         <form onSubmit={this.onSubmit} id="profile-form">
@@ -342,11 +383,38 @@ class AccountFormBase extends Component {
                                 <div className="col-md-6">
                                     <div className="profile-head">
                                         <h2>
-                                            {firstName} {lastName}
+                                            {firstName} {lastName} {" "}
+                                            {emailVerified ?
+                                                <Badge className="email-badge" id="email-verified" pill variant="success">
+                                                    Email Verified
+                                                </Badge>
+                                                :
+                                                <OverlayTrigger
+                                                    trigger="click"
+                                                    key="top"
+                                                    placement="top"
+                                                    overlay={
+                                                        <Popover
+                                                            id={`popover-positioned-top`}
+                                                            title={`Email Un-Verified`}
+                                                        >
+                                                            <strong>Verify</strong> your email to unlock all features.
+                                                            <a href="javascript:void(0);" onClick={this.onSendEmailVerification}> Resend </a> confirmation E-Mail now.
+                                                        </Popover>
+                                                    }
+                                                >
+                                                    <a id="email-unverified" className="badge badge-warning email-badge">Email Un-Verified</a>
+                                                </OverlayTrigger>
+                                            }
                                         </h2>
-                                        <h5>
-                                            {profession}
-                                        </h5>
+                                        {profession ?
+                                            <h5>
+                                                I am a {profession}
+                                            </h5>
+                                            :
+                                            <div></div>
+                                        }
+
                                         <p className="profile-rating">RATINGS : <span>8/10</span></p>
                                         <ul className="nav nav-tabs" id="myTab" role="tablist">
                                             <li className="nav-item">
@@ -535,26 +603,23 @@ class AccountFormBase extends Component {
                                             <br/>
                                             <div className="row form-change-password">
                                                 <div className="col-md-8">
-                                                    <a onClick={this.handlePasswordChange}
-                                                       className="change-pw-bt">
-                                                        <Button variant="primary" id="change-pw-btn">
-                                                            {isLoading ?
-                                                                <div>
-                                                                    <Spinner
-                                                                    as="span"
-                                                                    animation="border"
-                                                                    size="sm"
-                                                                    role="status"
-                                                                    aria-hidden="true"
-                                                                    /> <span> Changing </span>
-                                                                </div>
-                                                                :
-                                                                <div>
-                                                                    Change Password
-                                                                </div>
-                                                            }
-                                                        </Button>
-                                                    </a>
+                                                    <Button variant="primary" id="change-pw-btn" onClick={this.handlePasswordChange}>
+                                                        {isLoading ?
+                                                            <div>
+                                                                <Spinner
+                                                                as="span"
+                                                                animation="border"
+                                                                size="sm"
+                                                                role="status"
+                                                                aria-hidden="true"
+                                                                /> <span> Changing </span>
+                                                            </div>
+                                                            :
+                                                            <div>
+                                                                Change Password
+                                                            </div>
+                                                        }
+                                                    </Button>
                                                 </div>
                                             </div>
                                         </div>
@@ -582,4 +647,10 @@ const condition = authUser => !!authUser;
 
 const AccountBase = withRouter(withFirebase(AccountFormBase));
 
-export default withAuthorization(condition)(Account);
+// export default withEmailVerification(withAuthorization(condition))(Account);
+
+export default compose(
+    withAuthorization(condition),
+    withRouter,
+    withFirebase,
+)(Account);

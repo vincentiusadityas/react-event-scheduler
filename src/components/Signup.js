@@ -80,6 +80,9 @@ class SignUpFormBase extends Component {
                     });
             })
             .then(() => {
+                return this.props.firebase.doSendEmailVerification();
+            })
+            .then(() => {
                 this.setState({ ...INITIAL_STATE });
                 this.props.history.push(ROUTES.CREATE_EVENT);
             })
@@ -113,6 +116,57 @@ class SignUpFormBase extends Component {
         alert("Social sign up is not implemented yet");
     };
 
+    onSignInWithGoogle = event => {
+        let update = false;
+
+        this.props.firebase
+            .doSignInWithGoogle()
+            .then(socialAuthUser => {
+                // Create a user in your Firebase Realtime Database too
+                console.log(socialAuthUser.user.displayName);
+                console.log(socialAuthUser.user.email);
+                const name = socialAuthUser.user.displayName;
+                const nameArr = name.split(" ");
+                let firstName = "";
+                let lastName = "";
+                if (nameArr.length === 1) {
+                    firstName = nameArr[0];
+                } else {
+                    lastName = nameArr[nameArr.length-1];
+                    firstName = name.substring(0, name.length-lastName.length-1);
+                }
+
+                if (socialAuthUser.additionalUserInfo.isNewUser) {
+                    return this.props.firebase
+                        .user(socialAuthUser.user.uid)
+                        .set({
+                            firstName: firstName,
+                            lastName: lastName,
+                            email: socialAuthUser.user.email,
+                            phone: "",
+                            uniqueId: socialAuthUser.user.uid.substr(0,8),
+                            profession: "",
+                            description: "",
+                        });
+                } else {
+                    return this.props.firebase
+                        .user(socialAuthUser.user.uid)
+                        .update({
+                            firstName: firstName,
+                            lastName: lastName,
+                        });
+                }
+            })
+            .then(() => {
+                this.setState({ ...INITIAL_STATE });
+                this.props.history.push(ROUTES.BROWSE_EVENT);
+            })
+            .catch(error => {
+                this.setState({ error });
+            });
+        event.preventDefault();
+    };
+
     onChange = event => {
         this.setState({ [event.target.name]: event.target.value });
     };
@@ -138,7 +192,7 @@ class SignUpFormBase extends Component {
 
                             <div className="social-btn text-center">
                                 <a href="/signup" onClick={this.onSocialButtonClick} className="btn btn-primary btn-lg"><i className="fa fa-facebook"/> Facebook</a>
-                                <a href="/signup" onClick={this.onSocialButtonClick} className="btn btn-danger btn-lg"><i className="fa fa-google"/> Google</a>
+                                <a href="/signup" onClick={this.onSignInWithGoogle} className="btn btn-danger btn-lg"><i className="fa fa-google"/> Google</a>
                             </div>
 
                             <p className="divider-text">

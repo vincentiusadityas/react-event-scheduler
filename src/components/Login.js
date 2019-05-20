@@ -81,8 +81,121 @@ class LoginFormBase extends Component {
         event.preventDefault();
     };
 
-    onSocialButtonClick = () => {
-        alert("Social login is not implemented yet");
+    onSignInWithFacebook = event => {
+        let update = false;
+        if ($('#updateData').prop('checked')) {
+            update = true;
+        }
+
+        this.props.firebase
+            .doSignInWithFacebook()
+            .then(socialAuthUser => {
+                // Create a user in your Firebase Realtime Database too
+
+                const name = socialAuthUser.additionalUserInfo.profile.name;
+                const nameArr = name.split(" ");
+                let firstName = "";
+                let lastName = "";
+                if (nameArr.length === 1) {
+                    firstName = nameArr[0];
+                } else {
+                    lastName = nameArr[nameArr.length-1];
+                    firstName = name.substring(0, name.length-lastName.length-1);
+                }
+
+                if (socialAuthUser.additionalUserInfo.isNewUser) {
+                    return this.props.firebase
+                        .user(socialAuthUser.user.uid)
+                        .set({
+                            firstName: firstName,
+                            lastName: lastName,
+                            email: socialAuthUser.additionalUserInfo.profile.email,
+                            phone: "",
+                            uniqueId: socialAuthUser.user.uid.substr(0,8),
+                            profession: "",
+                            description: "",
+                        });
+                } else {
+                    return update && this.props.firebase
+                        .user(socialAuthUser.user.uid)
+                        .update({
+                            firstName: firstName,
+                            lastName: lastName,
+                        });
+                }
+            })
+            .then(() => {
+                this.setState({ ...INITIAL_STATE });
+                this.props.history.push(ROUTES.BROWSE_EVENT);
+            })
+            .catch(error => {
+                this.setState({ error });
+                const errorMessage = "An account with an E-Mail address to\n" +
+                    "  this social account already exists. Try to login with\n" +
+                    "  your Google account or type in your email and password instead.";
+                $(".error-message").html(
+                    "<div class='alert alert-warning alert-dismissible fade show' id='email-used-alert' role='alert'> \
+                    <strong>Error: </strong>" + errorMessage +
+                    "<button type='button' class='close' data-dismiss='alert' aria-label='Close'> \
+                    <span aria-hidden='true'>&times;</span> </button> \
+                    </div>");
+            });
+
+        event.preventDefault();
+    };
+
+    onSignInWithGoogle = event => {
+        let update = false;
+        if ($('#updateData').prop('checked')) {
+            update = true;
+        }
+
+        this.props.firebase
+            .doSignInWithGoogle()
+            .then(socialAuthUser => {
+                // Create a user in your Firebase Realtime Database too
+                console.log(socialAuthUser.user.displayName);
+                console.log(socialAuthUser.user.email);
+                const name = socialAuthUser.user.displayName;
+                const nameArr = name.split(" ");
+                let firstName = "";
+                let lastName = "";
+                if (nameArr.length === 1) {
+                    firstName = nameArr[0];
+                } else {
+                    lastName = nameArr[nameArr.length-1];
+                    firstName = name.substring(0, name.length-lastName.length-1);
+                }
+
+                if (socialAuthUser.additionalUserInfo.isNewUser) {
+                    return this.props.firebase
+                        .user(socialAuthUser.user.uid)
+                        .set({
+                            firstName: firstName,
+                            lastName: lastName,
+                            email: socialAuthUser.user.email,
+                            phone: "",
+                            uniqueId: socialAuthUser.user.uid.substr(0,8),
+                            profession: "",
+                            description: "",
+                        });
+                } else {
+                    return update && this.props.firebase
+                        .user(socialAuthUser.user.uid)
+                        .update({
+                            firstName: firstName,
+                            lastName: lastName,
+                        });
+                }
+            })
+            .then(() => {
+                this.setState({ ...INITIAL_STATE });
+                this.props.history.push(ROUTES.BROWSE_EVENT);
+            })
+            .catch(error => {
+                this.setState({ error });
+            });
+        event.preventDefault();
     };
 
     onChange = event => {
@@ -105,10 +218,16 @@ class LoginFormBase extends Component {
                         <h4 className="card-title text-center">Log In</h4>
                         <p className="text-center text-hint"> Log in with your social media account or email
                             address </p>
-
+                        <div className="update-data text-center">
+                            <input className="form-check-input" type="checkbox" name="updateData" id="updateData">
+                            </input>
+                            <label className="form-check-label" htmlFor="updateData">
+                                Update my data from my social media
+                            </label>
+                        </div>
                         <div className="social-btn text-center">
-                            <a href="/login" onClick={this.onSocialButtonClick} className="btn btn-primary btn-lg"><i className="fa fa-facebook"/> Facebook</a>
-                            <a href="/login" onClick={this.onSocialButtonClick} className="btn btn-danger btn-lg"><i className="fa fa-google"/> Google</a>
+                            <a href="/login" onClick={this.onSignInWithFacebook} className="btn btn-primary btn-lg"><i className="fa fa-facebook"/> Facebook</a>
+                            <a href="/login" onClick={this.onSignInWithGoogle} className="btn btn-danger btn-lg"><i className="fa fa-google"/> Google</a>
                         </div>
 
                         <p className="divider-text">
