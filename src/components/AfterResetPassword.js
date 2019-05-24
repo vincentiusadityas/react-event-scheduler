@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import * as ROUTES from '../constants/routes';
 import {Link, withRouter} from "react-router-dom";
+import {hot} from "react-hot-loader";
 
 const AfterResetPage = () => (
     <div>
@@ -52,4 +53,4 @@ class AfterResetBase extends Component {
 
 const AfterReset = withRouter(AfterResetBase);
 
-export default AfterResetPage;
+export default hot(module) (AfterResetPage);

@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { withFirebase } from './Firebase';
 import * as ROUTES from '../constants/routes';
 import {Link, withRouter} from "react-router-dom";
+import {hot} from "react-hot-loader";
 
 const PasswordForgetPage = () => (
     <div>
@@ -87,4 +88,4 @@ class PasswordForgetFormBase extends Component {
 
 const PasswordForgetForm = withRouter(withFirebase(PasswordForgetFormBase));
 
-export default PasswordForgetPage;
+export default hot(module) (PasswordForgetPage);

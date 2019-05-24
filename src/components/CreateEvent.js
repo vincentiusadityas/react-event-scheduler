@@ -1,9 +1,9 @@
 import $ from "jquery";
 import 'jquery-ui-bundle';
 import React, {Component} from 'react';
-import * as firebase from "firebase";
+import * as firebase from "firebase/app";
 
-import { withAuthorization, withEmailVerification } from './Session';
+import { withAuthorization } from './Session';
 import {withFirebase} from "./Firebase";
 import {withRouter} from "react-router-dom";
 import { DateTimePicker } from '@syncfusion/ej2-calendars';
@@ -177,7 +177,7 @@ class CreateEventFormBase extends Component {
             $("#quantity-wrapper").hide();
             $("#price-wrapper").hide();
             $('input:radio[name="eventTicket"]').change(function() {
-                console.log($(this).val());
+                // console.log($(this).val());
                 $("#quantity-wrapper").show();
                 $("#ticket-quantity").attr("required", "true");
                 if ($(this).val() == 1) {
@@ -454,11 +454,11 @@ const condition = authUser => !!authUser;
 
 const CreateEventBase = withRouter(withFirebase(CreateEventFormBase));
 
-export default compose(
-    withEmailVerification,
-    withAuthorization(condition),
-    withRouter,
-    withFirebase,
-)(CreateEvent)
+// export default compose(
+//     withEmailVerification,
+//     withAuthorization(condition),
+//     withRouter,
+//     withFirebase,
+// )(CreateEvent)
 
-// export default hot(module) (withAuthorization(condition)(CreateEvent));
+export default hot(module) (withAuthorization(condition)(CreateEvent));

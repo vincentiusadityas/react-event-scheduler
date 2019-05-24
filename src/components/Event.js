@@ -1,8 +1,8 @@
 import $ from "jquery";
 import React, {Component} from 'react';
-import * as firebase from "firebase";
-import * as jsPDF from 'jspdf';
-import sgMail from '@sendgrid/mail';
+import * as firebase from "firebase/app";
+import * as JSPDF from 'jspdf';
+// import sgMail from '@sendgrid/mail';
 
 import {withFirebase} from "./Firebase";
 import {Link, withRouter} from "react-router-dom";
@@ -68,9 +68,10 @@ class EventFormBase extends Component {
 
                 if (userId !== "" ){
                     this.checkUserWithEvent(userId, creatorId);
-                    this.getCreatorData(creatorId, eventOrganizer);
                 }
             }
+
+            this.getCreatorData(creatorId, eventOrganizer);
         });
 
         const {eventId} = this.props.match.params;
@@ -180,54 +181,54 @@ class EventFormBase extends Component {
         }
     };
 
-    static getEventStatus(data) {
-        if (data === "1") {
-            return "Public";
-        } else if (data === "2") {
-            return "Private";
-        } else {
-            return "";
-        }
-    }
-
-    static getTicketStatus(data) {
-        if (data === "1") {
-            return "Free Event";
-        } else if (data === "2") {
-            return "Paid Event";
-        } else {
-            return "";
-        }
-    }
-
-    static getEventDateTimeString(start, end) {
-        const split_start = start.split(" ");
-        const split_end = end.split(" ");
-
-        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-
-        const date_start = new Date(split_start[0]);
-        const str_date_start = date_start.toLocaleDateString("en-US", options);
-        const date_end = new Date(split_end[0]);
-        const str_date_end = date_end.toLocaleDateString("en-US", options);
-
-        const str_time_start = split_start[1] + " " + split_start[2];
-        const str_time_end = split_end[1] + " " + split_end[2];
-
-        let composed_str="";
-        if (str_date_start === str_date_end) {
-            composed_str =
-                str_date_start + "\n" +
-                str_time_start + " to " + str_time_end;
-        } else {
-            composed_str =
-                str_date_start + "( " + str_time_start + " )" + "\n" +
-                "to" + "\n" +
-                str_date_end + "( " + str_time_end + " )";
-        }
-
-        return composed_str;
-    }
+    // static getEventStatus(data) {
+    //     if (data === "1") {
+    //         return "Public";
+    //     } else if (data === "2") {
+    //         return "Private";
+    //     } else {
+    //         return "";
+    //     }
+    // }
+    //
+    // static getTicketStatus(data) {
+    //     if (data === "1") {
+    //         return "Free Event";
+    //     } else if (data === "2") {
+    //         return "Paid Event";
+    //     } else {
+    //         return "";
+    //     }
+    // }
+    //
+    // static getEventDateTimeString(start, end) {
+    //     const split_start = start.split(" ");
+    //     const split_end = end.split(" ");
+    //
+    //     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    //
+    //     const date_start = new Date(split_start[0]);
+    //     const str_date_start = date_start.toLocaleDateString("en-US", options);
+    //     const date_end = new Date(split_end[0]);
+    //     const str_date_end = date_end.toLocaleDateString("en-US", options);
+    //
+    //     const str_time_start = split_start[1] + " " + split_start[2];
+    //     const str_time_end = split_end[1] + " " + split_end[2];
+    //
+    //     let composed_str="";
+    //     if (str_date_start === str_date_end) {
+    //         composed_str =
+    //             str_date_start + "\n" +
+    //             str_time_start + " to " + str_time_end;
+    //     } else {
+    //         composed_str =
+    //             str_date_start + "( " + str_time_start + " )" + "\n" +
+    //             "to" + "\n" +
+    //             str_date_end + "( " + str_time_end + " )";
+    //     }
+    //
+    //     return composed_str;
+    // }
 
     // static getAttendees(data) {
     //     const user = data.user ? data.user.length : 0;
@@ -287,7 +288,7 @@ class EventFormBase extends Component {
         userRef.update({
             "bookedEvent": bookedEvent,
         }).then(function() {
-            console.log(type + " event from user!")
+            console.log(type + " event from user success!")
         }).catch(function(error) {
             console.error(type + " event from user failed: " + error)
         });
@@ -518,7 +519,6 @@ class EventFormBase extends Component {
         this.props.firebase
             .doSendEmailVerification()
             .then(() => {
-
                 this.handleEmailSentModalShow();
             });
     };
@@ -530,7 +530,7 @@ class EventFormBase extends Component {
     };
 
     generatePDF(eventId) {
-        const doc = new jsPDF('p', 'mm', 'a4');
+        const doc = new JSPDF('p', 'mm', 'a4');
         const imgData = require("../img/events.png");
         const imgBarcode = require("../img/event-barcode.png");
         const data = this.state.event;
@@ -552,10 +552,10 @@ class EventFormBase extends Component {
         doc.setFontSize(14);
         doc.text(this.state.eventDateTime, 115, 65);
         doc.text('Location: ' + data.eventLocation, 115, 80);
-        doc.text('Hosted by: ' + this.state.creatorName, 115, 90);
+        doc.text('' + this.state.creatorName, 115, 90);
 
-        doc.setLineWidth(0.05)
-        doc.line(20, 105, 190, 105) // horizontal line
+        doc.setLineWidth(0.05);
+        doc.line(20, 105, 190, 105); // horizontal line
 
         doc.setFontSize(18);
         doc.text('ADMISSION TICKET', 75, 115);
@@ -578,72 +578,49 @@ class EventFormBase extends Component {
         pdf.save(eventId.substr(0,8)+'_'+this.state.userName+'_ticket.pdf')
     };
 
-    savePDF() {
-        const {eventId} = this.props.match.params;
-        const pdf = this.generatePDF(eventId);
-        const pdfBase64 = pdf.output('datauristring');
-        const fileName = eventId.substr(0,8)+'_'+this.state.userName+'_ticket.pdf';
+    // savePDF() {
+    //     const {eventId} = this.props.match.params;
+    //     const pdf = this.generatePDF(eventId);
+    //     const pdfBase64 = pdf.output('datauristring');
+    //     const fileName = eventId.substr(0,8)+'_'+this.state.userName+'_ticket.pdf';
+    //
+    //     return [pdfBase64, fileName];
+    // };
 
-        return [pdfBase64, fileName];
-
-        // const fs = require('browserify-fs');
-        // fs.writeFileSync('../pdf/'+fileName, pdf);
-    };
-
-    sendTicketEmail() {
-        // const url = 'https://us-central1-eventscheduler-ec6bf.cloudfunctions.net/eventTicketEmail';
-        // const params = new URLSearchParams();
-        sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-
-        const to = this.state.userEmail;
-        const from = 'noreply@eventscheduler-ec6bf.firebaseapp.com';
-        const subject = 'MyEvent Ticket - ' + this.state.event.eventTitle;
-        const content = 'Hi ' + this.state.userName + ',\n\n' +
-            'Thank you for using MyEvent to book your beloved event!\n' +
-            'In this email, we attached the ticket for your recently booked event.\n' +
-            'Event Id: ' + this.state.event.eventId + '\n' +
-            'Event Name: ' + this.state.event.eventTitle + '\n\n' +
-            'See you on the event! :)';
-        const data = this.savePDF();
-        const file = data[0];
-        const fileName = data[1];
-
-        const msg = {
-            to: to,
-            from: from,
-            subject: subject,
-            text: content,
-            attachments: [
-                {
-                    content: file,
-                    filename: fileName,
-                    type: 'plain/text',
-                    disposition: 'attachment',
-                    contentId: 'pdf'
-                },
-            ],
-        };
-
-        return sgMail.send(msg);
-
-        // params.set('to', this.state.userEmail);
-        // params.set('from', 'noreply@eventscheduler-ec6bf.firebaseapp.com');
-        // params.set('subject', 'MyEvent Ticket - ' + this.state.event.eventTitle);
-        // params.set('content', content);
-
-        // return fetch(url, {
-        //     method: 'POST',
-        //     mode: 'no-cors',
-        //     headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
-        //     body: params,
-        // })
-        // .then(function (response) {
-        //     console.log(response);
-        // })
-        // .catch(function (error) {
-        //     console.log(error);
-        // });
-    }
+    // sendTicketEmail() {
+    //     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+    //
+    //     const to = this.state.userEmail;
+    //     const from = 'noreply@eventscheduler-ec6bf.firebaseapp.com';
+    //     const subject = 'MyEvent Ticket - ' + this.state.event.eventTitle;
+    //     const content = 'Hi ' + this.state.userName + ',\n\n' +
+    //         'Thank you for using MyEvent to book your beloved event!\n' +
+    //         'In this email, we attached the ticket for your recently booked event.\n' +
+    //         'Event Id: ' + this.state.event.eventId + '\n' +
+    //         'Event Name: ' + this.state.event.eventTitle + '\n\n' +
+    //         'See you on the event! :)';
+    //     const data = this.savePDF();
+    //     const file = data[0];
+    //     const fileName = data[1];
+    //
+    //     const msg = {
+    //         to: to,
+    //         from: from,
+    //         subject: subject,
+    //         text: content,
+    //         attachments: [
+    //             {
+    //                 content: file,
+    //                 filename: fileName,
+    //                 type: 'plain/text',
+    //                 disposition: 'attachment',
+    //                 contentId: 'pdf'
+    //             },
+    //         ],
+    //     };
+    //
+    //     return sgMail.send(msg);
+    // }
 
     handleBookmarkModalClose = () => {
         this._isMounted && this.setState({ showBookmarkModal: false });
@@ -686,27 +663,27 @@ class EventFormBase extends Component {
     };
 
     handleEmailSentModalClose = () => {
-        this.setState({ showEmailSentModal: false });
+        this._isMounted && this.setState({ showEmailSentModal: false });
     };
 
     handleEmailSentModalShow = () => {
-        this.setState({ showEmailSentModal: true });
+        this._isMounted && this.setState({ showEmailSentModal: true });
     };
 
     handleDeleteEventModalClose = () => {
-        this.setState({ showDeleteEventModal: false });
+        this._isMounted && this.setState({ showDeleteEventModal: false });
     };
 
     handleDeleteEventModalShow = () => {
-        this.setState({ showDeleteEventModal: true });
+        this._isMounted && this.setState({ showDeleteEventModal: true });
     };
 
     handleBookingSuccessModalClose = () => {
-        this.setState({ showBookingSuccessModal: false });
+        this._isMounted && this.setState({ showBookingSuccessModal: false });
     };
 
     handleBookingSuccessModalShow = () => {
-        this.setState({ showBookingSuccessModal: true });
+        this._isMounted && this.setState({ showBookingSuccessModal: true });
     };
 
     render() {
@@ -1028,7 +1005,7 @@ class EventFormBase extends Component {
                                                 <a href="javascript:void(0);" onClick={this.downloadPDF}>Download Your Ticket</a>
                                             </Col>
                                             :
-                                            <div></div>
+                                            <div/>
                                         }
                                     </Row>
                                     <hr/>

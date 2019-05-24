@@ -1,15 +1,17 @@
 import $ from "jquery";
 import React, {Component} from 'react';
-import * as firebase from "firebase";
+import * as firebase from "firebase/app";
+import 'firebase/storage';
 import { compose } from 'recompose';
 
-import { withAuthorization, withEmailVerification } from './Session';
+import { withAuthorization } from './Session';
 import {withFirebase} from "./Firebase";
 import {withRouter} from "react-router-dom";
 
 import '../css/Account.css'
 import {Badge, Button, Modal, Spinner, Popover, OverlayTrigger} from "react-bootstrap";
 import UserModel from  "./Models/UserModel"
+import {hot} from "react-hot-loader";
 
 class AccountFormBase extends Component {
 
@@ -127,10 +129,10 @@ class AccountFormBase extends Component {
             uploadAvatar.on('state_changed', (snapshot) => {
 
             }, (error) => {
-
+                console.log(error);
             }, () => {
                 storage.ref('images').child(userId).getDownloadURL().then(url => {
-                    console.log(url);
+                    // console.log(url);
                 });
             });
         }
@@ -649,8 +651,10 @@ const AccountBase = withRouter(withFirebase(AccountFormBase));
 
 // export default withEmailVerification(withAuthorization(condition))(Account);
 
-export default compose(
-    withAuthorization(condition),
-    withRouter,
-    withFirebase,
-)(Account);
+// export default compose(
+//     withAuthorization(condition),
+//     withRouter,
+//     withFirebase,
+// )(Account);
+
+export default hot(module) (withAuthorization(condition)(Account));

@@ -21,7 +21,6 @@ const withAuthorization = condition => Component => {
         }
 
         componentWillUnmount() {
-
             this._isMounted = false;
             this.listener();
         }

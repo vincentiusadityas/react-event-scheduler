@@ -2,14 +2,13 @@ import React, {Component} from 'react';
 import {hot} from "react-hot-loader";
 import $ from 'jquery';
 import {Link, withRouter} from "react-router-dom";
-import * as firebase from "firebase";
+import * as firebase from "firebase/app";
 import ItemsCarousel from 'react-items-carousel';
-import {Spinner} from 'react-bootstrap';
-import _ from 'lodash';
+import {Button, Spinner} from 'react-bootstrap';
+// import _ from 'lodash';
 
 import {withFirebase} from "./Firebase";
 import {AuthUserContext} from "./Session";
-import Home from "./Home";
 import * as ROUTES from "../constants/routes";
 import EventModel from "./Models/EventModel";
 import BrowseEvent from "./BrowseEvent";
@@ -53,7 +52,7 @@ class LandingFormBase extends Component {
                     events.push(new EventModel(key, data[key]));
                 }
             }
-            console.log(events);
+            // console.log(events);
 
             if (data != null && data.length !== 0) {
                 this._isMounted && this.setState({ events: events});
@@ -70,8 +69,15 @@ class LandingFormBase extends Component {
 
     detailsHandler = event => {
         const key = event.target.id;
-        // console.log(key);
-        this.props.history.push('event/'+key);
+        const data = event.target.value.split(',');
+        // console.log("DATA ", data[0]);
+        this.props.history.push({
+            pathname: 'event/'+key,
+            state: {
+                creatorId: data[0],
+                eventOrganizer: data[1],
+            }
+        });
     };
 
     render() {
@@ -171,8 +177,16 @@ class LandingFormBase extends Component {
                                                         <i className="fa fa-calendar"/> {events[i].getEventDateTimeStringForCard()}
                                                         <i className="fa fa-map-marker"/> {events[i].eventLocation}
                                                     </p>
-                                                    <a className="btn btn-primary btn-event-details" id={events[i].eventId}
-                                                       onClick={this.detailsHandler}>Details</a>
+                                                    <Button variant="primary" className="btn-event-details"
+                                                            id={events[i].eventId}
+                                                            value={
+                                                                [
+                                                                    events[i].creatorId,
+                                                                    events[i].eventOrganizer,
+                                                                ]
+                                                            }
+                                                            onClick={this.detailsHandler}>Details
+                                                    </Button>
                                                 </div>
                                                 <div className="card-footer text-info">
                                                     {events[i].getAttendees()}

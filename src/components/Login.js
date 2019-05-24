@@ -6,6 +6,7 @@ import withAuthorization from "./Session/withAuthorization";
 import $ from "jquery";
 import { withCookies, Cookies } from 'react-cookie';
 import {instanceOf} from "prop-types";
+import {hot} from "react-hot-loader";
 
 const INITIAL_STATE = {
     email: '',
@@ -20,6 +21,8 @@ const Login = () => (
 );
 
 class LoginFormBase extends Component {
+    _isMounted = true;
+
     static propTypes = {
         cookies: instanceOf(Cookies).isRequired
     };
@@ -37,6 +40,14 @@ class LoginFormBase extends Component {
         // console.log(this.state.remember)
     };
 
+    componentDidMount() {
+        this._isMounted= true;
+    };
+
+    componentWillUnmount() {
+        this._isMounted= false;
+    }
+
     onSubmit = event => {
         const { email, password } = this.state;
         const { cookies } = this.props;
@@ -52,11 +63,11 @@ class LoginFormBase extends Component {
         this.props.firebase
             .doSignInWithEmailAndPassword(email, password)
             .then(() => {
-                this.setState({ ...INITIAL_STATE });
+                this._isMounted && this.setState({ ...INITIAL_STATE });
                 this.props.history.push(ROUTES.BROWSE_EVENT);
             })
             .catch(error => {
-                this.setState({ error });
+                this._isMounted && this.setState({ error });
 
                 // Handle Errors here.
                 const errorCode = error.code.split("/");
@@ -125,11 +136,11 @@ class LoginFormBase extends Component {
                 }
             })
             .then(() => {
-                this.setState({ ...INITIAL_STATE });
+                this._isMounted && this.setState({ ...INITIAL_STATE });
                 this.props.history.push(ROUTES.BROWSE_EVENT);
             })
             .catch(error => {
-                this.setState({ error });
+                this._isMounted && this.setState({ error });
                 const errorMessage = "An account with an E-Mail address to\n" +
                     "  this social account already exists. Try to login with\n" +
                     "  your Google account or type in your email and password instead.";
@@ -154,8 +165,8 @@ class LoginFormBase extends Component {
             .doSignInWithGoogle()
             .then(socialAuthUser => {
                 // Create a user in your Firebase Realtime Database too
-                console.log(socialAuthUser.user.displayName);
-                console.log(socialAuthUser.user.email);
+                // console.log(socialAuthUser.user.displayName);
+                // console.log(socialAuthUser.user.email);
                 const name = socialAuthUser.user.displayName;
                 const nameArr = name.split(" ");
                 let firstName = "";
@@ -189,17 +200,17 @@ class LoginFormBase extends Component {
                 }
             })
             .then(() => {
-                this.setState({ ...INITIAL_STATE });
+                this._isMounted && this.setState({ ...INITIAL_STATE });
                 this.props.history.push(ROUTES.BROWSE_EVENT);
             })
             .catch(error => {
-                this.setState({ error });
+                this._isMounted && this.setState({ error });
             });
         event.preventDefault();
     };
 
     onChange = event => {
-        this.setState({ [event.target.name]: event.target.value });
+        this._isMounted && this.setState({ [event.target.name]: event.target.value });
     };
 
     render() {
@@ -282,4 +293,4 @@ const condition = authUser => !authUser;
 
 const LoginForm = withRouter(withFirebase(withCookies(LoginFormBase)));
 
-export default withAuthorization(condition)(Login)
+export default hot(module) (withAuthorization(condition)(Login));

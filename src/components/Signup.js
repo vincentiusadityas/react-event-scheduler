@@ -28,6 +28,7 @@ const SignUp = () => (
 );
 
 class SignUpFormBase extends Component {
+    _isMounted = true;
 
     constructor(props) {
         super(props);
@@ -123,8 +124,8 @@ class SignUpFormBase extends Component {
             .doSignInWithGoogle()
             .then(socialAuthUser => {
                 // Create a user in your Firebase Realtime Database too
-                console.log(socialAuthUser.user.displayName);
-                console.log(socialAuthUser.user.email);
+                // console.log(socialAuthUser.user.displayName);
+                // console.log(socialAuthUser.user.email);
                 const name = socialAuthUser.user.displayName;
                 const nameArr = name.split(" ");
                 let firstName = "";

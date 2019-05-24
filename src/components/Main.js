@@ -9,7 +9,6 @@ import * as ROUTES from '../constants/routes';
 import Landing from './Landing'
 import Login from './Login'
 import SignUp from './Signup'
-import Home from "./Home";
 import Account from "./Account";
 import PasswordForgetPage from "./PasswordForget";
 import AfterResetPage from "./AfterResetPassword";
@@ -33,7 +32,6 @@ class Main extends Component {
         return (
                 <Switch>
                     <Route exact path={ROUTES.LANDING} component={withRouter(Landing)}/>
-                    <Route path={ROUTES.HOME} component={withRouter(Home)}/>
                     <Route path={ROUTES.ACCOUNT} component={withRouter(Account)}/>
                     <Route path={ROUTES.LOG_IN} component={withRouter(Login)}/>
                     <Route path={ROUTES.SIGN_UP} component={withRouter(SignUp)}/>

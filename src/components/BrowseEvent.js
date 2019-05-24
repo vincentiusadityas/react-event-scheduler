@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import * as firebase from "firebase";
+import * as firebase from "firebase/app";
 import {hot} from "react-hot-loader";
 import {withRouter} from "react-router-dom";
-import {Button, Card, Col, Dropdown, ListGroup, Row, Tab} from 'react-bootstrap';
+import {Button, Card, Col, ListGroup, Row, Tab} from 'react-bootstrap';
 import Autosuggest from 'react-autosuggest';
 
 import '../css/BrowseEvent.css'
@@ -226,7 +226,7 @@ class BrowseEventFormBase extends  Component {
                         </form>
                     </div>
 
-                    <Tab.Container id="left-tabs-example" defaultActiveKey="first">
+                    <Tab.Container defaultActiveKey={filtered_events.length > 0 ? filtered_events[0].eventId : "first"}>
                         <Row>
                             <Col xs={4} sm={6} md={5}>
                                 <ListGroup id="event-list" variant="pills" className="flex-column">
@@ -292,4 +292,4 @@ const BrowseEvent = () => (
 
 const BrowseEventBase = withRouter(withFirebase(BrowseEventFormBase));
 
-export default hot(module) (withRouter(withFirebase(BrowseEvent)));
+export default hot(module) (BrowseEvent);

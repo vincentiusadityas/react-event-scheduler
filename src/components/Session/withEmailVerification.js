@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 import AuthUserContext from './context';
 import { withFirebase } from '../Firebase';
-import Home from "../Home";
+// import Home from "../Home";
 
 const needsEmailVerification = authUser =>
     authUser &&
