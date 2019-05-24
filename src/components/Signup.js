@@ -2,11 +2,13 @@ import React, {Component} from 'react';
 import {Link, withRouter} from "react-router-dom";
 import {hot} from "react-hot-loader";
 import $ from "jquery";
+import ReCAPTCHA from "react-google-recaptcha";
 
 import { withFirebase } from './Firebase';
 import * as ROUTES from '../constants/routes';
 import withAuthorization from "./Session/withAuthorization";
 import PasswordInput from "./Tool/PasswordInput";
+import {Button, Modal} from "react-bootstrap";
 
 const INITIAL_STATE = {
     firstName: '',
@@ -29,11 +31,16 @@ const SignUp = () => (
 
 class SignUpFormBase extends Component {
     _isMounted = true;
+    SITE_KEY = process.env.GOOGLE_RECAPTCHA_SITE_KEY;
 
     constructor(props) {
         super(props);
 
-        this.state = { ...INITIAL_STATE };
+        this.state = {
+            isHuman: false,
+            showReCaptchaModal: false,
+            ...INITIAL_STATE
+        };
 
         $(function() {
             $('#password, #confirm-password').on('keyup', function () {
@@ -55,61 +62,74 @@ class SignUpFormBase extends Component {
             });
         });
     };
+    
+    componentDidMount() {
+        this._isMounted= true;
+    };
+
+    componentWillUnmount() {
+        this._isMounted= false;
+    };
 
     onSubmit = event => {
         // console.log(this.state);
 
-        const { firstName, lastName, email, phone, uniqueId, profession, description, passwordOne } = this.state;
+        const { firstName, lastName, email, phone, profession, description, passwordOne } = this.state;
 
         // console.log(email);
         // console.log(passwordOne);
 
-        this.props.firebase
-            .doCreateUserWithEmailAndPassword(email, passwordOne)
-            .then(authUser => {
-                // Create a user in your Firebase realtime database
-                return this.props.firebase
-                    .user(authUser.user.uid)
-                    .set({
-                        firstName,
-                        lastName,
-                        email,
-                        phone,
-                        uniqueId: authUser.user.uid.substr(0,8),
-                        profession,
-                        description
-                    });
-            })
-            .then(() => {
-                return this.props.firebase.doSendEmailVerification();
-            })
-            .then(() => {
-                this.setState({ ...INITIAL_STATE });
-                this.props.history.push(ROUTES.CREATE_EVENT);
-            })
-            .catch(error => {
-                this.setState({ email: '', error });
+        if (this.state.isHuman) {
+            this.props.firebase
+                .doCreateUserWithEmailAndPassword(email, passwordOne)
+                .then(authUser => {
+                    // Create a user in your Firebase realtime database
+                    return this.props.firebase
+                        .user(authUser.user.uid)
+                        .set({
+                            firstName,
+                            lastName,
+                            email,
+                            phone,
+                            uniqueId: authUser.user.uid.substr(0,8),
+                            profession,
+                            description
+                        });
+                })
+                .then(() => {
+                    return this.props.firebase.doSendEmailVerification();
+                })
+                .then(() => {
+                    this._isMounted && this._isMounted && this.setState({ ...INITIAL_STATE });
+                    this.props.history.push(ROUTES.CREATE_EVENT);
+                })
+                .catch(error => {
+                    this._isMounted && this._isMounted && this.setState({ email: '', error });
 
-                // Handle Errors here.
-                const errorCode = error.code.split("/");
-                const errorCodeName = errorCode[1];
+                    // Handle Errors here.
+                    const errorCode = error.code.split("/");
+                    const errorCodeName = errorCode[1];
 
-                let errorMessage = error.message;
+                    let errorMessage = error.message;
 
-                if (errorCodeName === "too-many-requests") {
-                    errorMessage = "The password is invalid or the user does not have a password";
-                }
+                    if (errorCodeName === "too-many-requests") {
+                        errorMessage = "The password is invalid or the user does not have a password";
+                    }
 
-                // console.log(errorCodeName + ": " + errorMessage)
-                // this.props.history.push(ROUTES.LOG_IN);
+                    // console.log(errorCodeName + ": " + errorMessage)
+                    // this.props.history.push(ROUTES.LOG_IN);
 
-                $(".error-message").html(
-                    "<div class='alert alert-warning alert-dismissible fade show' id='email-used-alert' role='alert'> \
-                    <strong>Error: </strong>" + errorMessage +
-                    "<button type='button' class='close' data-dismiss='alert' aria-label='Close'> \
-                    <span aria-hidden='true'>&times;</span> </button> \
-                    </div>");
-            });
+                    $(".error-message").html(
+                        "<div class='alert alert-warning alert-dismissible fade show' id='email-used-alert' role='alert'> \
+                        <strong>Error: </strong>" + errorMessage +
+                        "<button type='button' class='close' data-dismiss='alert' aria-label='Close'> \
+                        <span aria-hidden='true'>&times;</span> </button> \
+                        </div>");
+                });
+        } else {
+            this.handleReCaptchaModalShow();
+        }
+
         event.preventDefault();
     };
 
@@ -159,17 +179,35 @@ class SignUpFormBase extends Component {
                 }
             })
             .then(() => {
-                this.setState({ ...INITIAL_STATE });
+                this._isMounted && this._isMounted && this.setState({ ...INITIAL_STATE });
                 this.props.history.push(ROUTES.BROWSE_EVENT);
             })
             .catch(error => {
-                this.setState({ error });
+                this._isMounted && this.setState({ error });
             });
         event.preventDefault();
     };
 
     onChange = event => {
-        this.setState({ [event.target.name]: event.target.value });
+        this._isMounted && this.setState({ [event.target.name]: event.target.value });
+    };
+
+    // specifying your onload callback function
+    handleReCaptcha = value => {
+        // console.log(value);
+        this._isMounted && this.setState({ isHuman: true })
+    };
+
+    handleReCaptchaExpired = () => {
+        this._isMounted && this.setState({ isHuman: false })
+    };
+
+    handleReCaptchaModalClose = () => {
+        this._isMounted && this.setState({ showReCaptchaModal: false })
+    };
+
+    handleReCaptchaModalShow = () => {
+        this._isMounted && this.setState({ showReCaptchaModal: true })
     };
 
     render() {
@@ -179,25 +217,46 @@ class SignUpFormBase extends Component {
             email,
             passwordOne,
             passwordTwo,
+            showReCaptchaModal,
         } = this.state;
 
         return (
             <div>
+                <Modal
+                    size="sm"
+                    show={showReCaptchaModal}
+                    onHide={this.handleReCaptchaModalClose}
+                >
+                    <Modal.Header closeButton>
+                        <Modal.Title>
+                            ReCaptcha
+                        </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>Please verify that you are a human by checking the ReCaptcha.</Modal.Body>
+                    <Modal.Footer>
+                        <Button onClick={this.handleReCaptchaModalClose}>Close</Button>
+                    </Modal.Footer>
+                </Modal>
+
                 <div className="bg">
                     <div className="error-message">
                     </div>
                     <section id="section-signup-form">
                         <article className="card-body mx-auto">
                             <h4 className="card-title text-center">Create Account</h4>
-                            <p className="text-center text-hint"> Sign up with your social media account or email address </p>
+                            {/*<p className="text-center text-hint"> Sign up with your social media account or email address </p>*/}
 
-                            <div className="social-btn text-center">
-                                <a href="/signup" onClick={this.onSocialButtonClick} className="btn btn-primary btn-lg"><i className="fa fa-facebook"/> Facebook</a>
-                                <a href="/signup" onClick={this.onSignInWithGoogle} className="btn btn-danger btn-lg"><i className="fa fa-google"/> Google</a>
-                            </div>
+                            {/*<div className="social-btn text-center">*/}
+                            {/*    <a href="/signup" onClick={this.onSocialButtonClick} className="btn btn-primary btn-lg"><i className="fa fa-facebook"/> Facebook</a>*/}
+                            {/*    <a href="/signup" onClick={this.onSignInWithGoogle} className="btn btn-danger btn-lg"><i className="fa fa-google"/> Google</a>*/}
+                            {/*</div>*/}
 
+                            {/*<p className="divider-text">*/}
+                            {/*    <span><b>OR</b></span>*/}
+                            {/*</p>*/}
+
+                            <p className="text-center text-hint"> Fill in your details to sign up and join us! </p>
                             <p className="divider-text">
-                                <span><b>OR</b></span>
                             </p>
 
                             <form onSubmit={this.onSubmit}>
@@ -249,6 +308,14 @@ class SignUpFormBase extends Component {
                                            onChange={this.onChange} name="passwordTwo" value={passwordTwo} type="password" required>
                                     </input>
                                 </div>
+                                <ReCAPTCHA
+                                    id="sign-up-recaptcha"
+                                    sitekey="6Le8NaUUAAAAAGPSCfTFeDTUBi4KcdluJLLqfPMo"
+                                    render="explicit"
+                                    onChange = {this.handleReCaptcha}
+                                    onExpired = {this.handleReCaptchaExpired}
+
+                                />
                                 <div className="form-group text-center">
                                     <div className="form-check">
                                         <input className="form-check-input" type="checkbox" value="" id="invalidCheck" required>

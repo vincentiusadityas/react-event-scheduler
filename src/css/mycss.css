@@ -164,6 +164,10 @@ h1 {
 .text-hint {
     font-weight: lighter;
 }
+#sign-up-recaptcha{
+    display: table;
+    margin: auto;
+}
 
 /*input#password-str{*/
     /*-webkit-appearance:none!important;*/
