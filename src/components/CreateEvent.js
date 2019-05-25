@@ -246,7 +246,13 @@ class CreateEventFormBase extends Component {
                 }).catch(function(error) {
                     console.error("Adding created event to user failed: "+error)
                 });
-                this.props.history.push('event/'+key);
+                this.props.history.push({
+                    pathname: 'event/'+key,
+                    state: {
+                        creatorId: data['creatorId'],
+                        eventOrganizer: data['eventOrganizer'],
+                    }
+                });
 
             }).catch((error) => {
                 //error callback

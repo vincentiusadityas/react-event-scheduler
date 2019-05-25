@@ -237,7 +237,7 @@ class AccountFormBase extends Component {
                 newPw.prop('disabled', true);
                 newPwConfirm.prop('disabled', true);
                 this.changePassword(oldPw.val(), newPw.val());
-                console.log("password changed");
+                // console.log("password changed");
             }
         }
     };

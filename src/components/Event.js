@@ -524,8 +524,72 @@ class EventFormBase extends Component {
     };
 
     deleteEventHandler = () => {
-        console.log("event deleted");
+        const {eventId} = this.props.match.params;
+        const eventRef = firebase.database().ref('/events/' + eventId);
+        let eventData;
 
+        eventRef.once('value').then((snapshot) => {
+            eventData = snapshot.val();
+
+            const creatorId = eventData.creatorId;
+            const creatorRef = firebase.database().ref('/users/' + creatorId);
+
+            const attendees = eventData.attendees.user;
+            const index = attendees.indexOf(creatorId);
+            attendees.splice(index, 1);
+
+            attendees.forEach(attendeeId => {
+                const attendeeRef =  firebase.database().ref('/users/' + attendeeId);
+                attendeeRef.once('value').then((snapshot) => {
+                    const attendeeData = snapshot.val();
+
+                    const bookedEvent = attendeeData.bookedEvent;
+                    const bookmarkedEvent = attendeeData.bookmarkedEvent;
+
+                    const idxBooked = bookedEvent.indexOf(eventId);
+                    bookedEvent.splice(idxBooked, 1);
+
+                    if (bookmarkedEvent != null) {
+                        const idxBookmarked = bookmarkedEvent.indexOf(eventId);
+                        bookmarkedEvent.splice(idxBookmarked, 1);
+                    }
+
+                    attendeeRef.update({
+                        bookedEvent: bookedEvent,
+                        bookmarkedEvent: bookmarkedEvent,
+                    }).then(function() {
+                        console.log("Event booked deleted from user")
+                    }).catch(function(error) {
+                        console.error("Deleting booked event from user failed: "+error)
+                    });
+               })
+            });
+
+            creatorRef.once('value').then((snapshot) => {
+                const creatorData = snapshot.val();
+                const eventCreated = creatorData.eventCreated;
+
+                if (eventCreated !== undefined) {
+                    const idx = eventCreated.indexOf(eventId);
+                    eventCreated.splice(idx, 1);
+                    creatorRef.update({
+                        eventCreated: eventCreated,
+                    }).then(function() {
+                        console.log("Event deleted from creator")
+                    }).catch(function(error) {
+                        console.error("Deleting event from creator failed: "+error)
+                    });
+                }
+            })
+
+            eventRef.remove()
+                .then(function() {
+                    console.log("Event deleted from database")
+                    this.props.history.push(ROUTES.BROWSE_EVENT);
+                }).catch(function(error) {
+                    console.error("Deleting event from database failed: "+error)
+                });;
+        });
         this.handleDeleteEventModalClose();
     };
 
@@ -934,7 +998,7 @@ class EventFormBase extends Component {
                     <section id="section-event">
                         <div className="container top-pg-error">
                             <h1>Error</h1>
-                            <p>Sorry, but the event you look does not exist :(</p>
+                            <p>Sorry, but the event you look does not exist or has been deleted :(</p>
                         </div>
                     </section>
                     :

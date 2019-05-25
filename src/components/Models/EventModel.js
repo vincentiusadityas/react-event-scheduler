@@ -162,7 +162,7 @@ class EventModel {
     getTicketStatus() {
         if (this._eventTicket === "1") {
             return "Free Event";
-        } else if (this._eventPrivacy  === "2") {
+        } else if (this._eventTicket  === "2") {
             return "Paid Event";
         } else {
             return "";
